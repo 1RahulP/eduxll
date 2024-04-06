@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.custom-bg{
+    /* backdrop-filter: blur(11px); */
+    background-color: white;
+}
+
+.logoslider .slick-track {
+    align-items: center;
+    display: flex;
+}
