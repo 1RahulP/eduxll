@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.10",
+    "@types/react-fontawesome": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^11.0.24",
     "jsonwebtoken": "^9.0.2",

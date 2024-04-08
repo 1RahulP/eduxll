@@ -1,20 +1,20 @@
 import { Children } from "react";
 
 interface BadgechipProp {
-  textcolor?: string;
-  bgcolor?: string;
+
   children?: any;
-  textname?: string;
+  textname?: String;
+  className?:String
 }
 const Badgechip = ({
-  textcolor,
-  bgcolor,
+  
   children,
+  className,
   ...rest
 }: BadgechipProp) => {
   return (
     <>
-      <div className={`text-[${textcolor}] bg-[${bgcolor}] rounded-[5px] `}>
+      <div className={`rounded-[5px] w-fit h-[25px] px-4 rounded-md leading-none flex items-center ${className}`}>
         {children}
       </div>
     </>

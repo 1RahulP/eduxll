@@ -6,18 +6,19 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const LogoSlider = () => {
+const RecruitersSlider = () => {
   var settings = {
     dots: false,
     infinite: true,
+    arrows: false,
     speed: 1000,
-    slidesToShow: 6,
+    slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
@@ -25,7 +26,7 @@ const LogoSlider = () => {
       {
         breakpoint: 800,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -73,7 +74,7 @@ const LogoSlider = () => {
     </>
   );
 };
-export default LogoSlider;
+export default RecruitersSlider;
 
 const logosliderarry = [
   {

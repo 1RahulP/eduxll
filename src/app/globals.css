@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body{
+    overflow-x: hidden;
+}
 .custom-bg{
     /* backdrop-filter: blur(11px); */
     background-color: white;
@@ -11,4 +13,23 @@
 .logoslider .slick-track {
     align-items: center;
     display: flex;
+}
+.reviewSlider .slick-track{
+    display: flex;
+    gap: 20px;
+
+}
+.logo-slider button, .reviewSlider button{
+    display: none;
+}
+
+
+.shape722 {
+    display: none;
+}
+
+@media (min-width:1024px) {
+    .shape722 {
+        display: block;
+    }   
 }
