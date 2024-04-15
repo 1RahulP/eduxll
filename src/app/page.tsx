@@ -325,7 +325,7 @@ const page = () => {
             </p>
           </div>
           <div className="md:mt-0 mt-8">
-            <button className="px-6 py-2 border border-blue-700">
+            <button className="px-6 py-2 border text-[#000] border-[#000]  !rounded-[0px] hover:bg-[#000] hover:text-[#fff]">
               View All Categories
             </button>
           </div>

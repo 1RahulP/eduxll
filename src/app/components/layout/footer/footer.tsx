@@ -146,9 +146,9 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="shape722 absolute bottom-[20%] right-[.5%] none sm:block ">
+        {/* <div className="shape722 absolute bottom-[20%] right-[.5%] none sm:block ">
           <Image src="/shape7.png" width={200} height={117} alt="shape7" />
-        </div>
+        </div> */}
       </div>
     </>
   );

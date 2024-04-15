@@ -14,6 +14,13 @@ body{
     align-items: center;
     display: flex;
 }
+@layer base {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
 .reviewSlider .slick-track{
     display: flex;
     gap: 20px;
@@ -33,3 +40,7 @@ body{
         display: block;
     }   
 }
+.toggleSyllabus :last-child>p {
+    position: relative;
+    top: 15px;
+  }

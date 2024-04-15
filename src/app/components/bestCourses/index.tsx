@@ -6,20 +6,42 @@ import { useState } from "react";
 
 const BestCourses = () => {
   const [popUp, setPopUp] = useState("");
+  const [filteractive, setfilteractive] = useState<any>("View All");
+  console.log("filteractive", { filteractive });
+
+  const activeTab = (item: any) => {
+    setfilteractive(item);
+  };
+
   return (
     <>
       <section className="bg-[#f6f8fb] py-[50px] lg:px-0 px-6">
-        <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
-          <h2 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[20px]">
-            Discover <br />
-            World&apos;s Best Courses
-          </h2>
-
+        <div className=" md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
+          <div className="flex justify-between items-center">
+            <h2 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[20px]">
+              Discover <br />
+              World&apos;s Best Courses
+            </h2>
+            <Button
+              text={"VIEW ALL  "}
+              className={
+                "px-6 py-2 border text-[#000] !border-[#000]  !rounded-[0px] hover:bg-[#000] hover:text-[#fff]"
+              }
+            />
+          </div>
           <div className="md:flex hidden grid grid-cols-3 gap-[45px] mb-8">
             {Coursesfilter.map((item, index) => {
               return (
                 <>
-                  <div key={index} className="">
+                  <div
+                    key={index}
+                    onClick={() => activeTab(item)}
+                    className={`${
+                      filteractive?.tabname === item.tabname
+                        ? "  after:w-full    after:transition-all transition-all  after:h-[2px] after:bg-[#ed1d26] after:absolute relative after:left-[0] after:bottom-[0px] text-[#ed1d26]"
+                        : ""
+                    } `}
+                  >
                     {item.tabname}
                   </div>
                 </>
@@ -34,8 +56,9 @@ const BestCourses = () => {
                   key={index}
                   className="relative"
                   onMouseEnter={() => setPopUp(item.key)}
+                  onMouseLeave={() => setPopUp("")}
                 >
-                  <div className="max-w-[410px] rounded-xl bg-white shadow-xl">
+                  <div className="max-w-[410px] rounded-xl bg-white shadow-md hover:shadow-xl">
                     <div>
                       <Image
                         className="rounded-xl"
@@ -63,7 +86,7 @@ const BestCourses = () => {
                             <span>4.9 (25)</span>
                           </div>
                         </div>
-                        <h3 className="text-xl font-semibold mt-4">
+                        <h3 className="text-xl font-semibold mt-4 line-clamp-2">
                           {item.title}
                         </h3>
                         <div className="mt-2">

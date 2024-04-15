@@ -6,15 +6,23 @@ const LatestNews = () => {
   return (
     <>
       <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
-        <h2 className="text-3xl font-semibold my-8 text-center">
-          Read Our Latest Tech News
-        </h2>
+        <div className="relative">
+          <h2 className="text-3xl font-semibold my-8 text-center">
+            Read Our Latest Tech News
+          </h2>
+          <Button
+            text={"VIEW ALL  "}
+            className={
+              "absolute top-[0px] right-[0px] px-6 py-2 border text-[#000] !border-[#000]  !rounded-[0px] hover:bg-[#000] hover:text-[#fff]"
+            }
+          />
+        </div>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
           {latestNewsArray?.map((item, index) => {
             return (
               <div
-                className="max-w-[410px] rounded-xl bg-white shadow-xl"
+                className="max-w-[410px] rounded-xl bg-white shadow-md hover:shadow-xl"
                 key={index}
               >
                 <div>

@@ -54,13 +54,13 @@ const LogoSlider = () => {
                     <div className="flex  items-center justify-center h=[100% ]">
                       <Image
                         src={item.logo}
-                        width={100}
-                        height={36}
+                        width={160}
+                        height={70}
                         key={index}
                         alt=""
                         objectFit="contain"
                         objectPosition="center"
-                        className="brightness-100 transition-all hover:transition-all contrast-0 hover:brightness-auto hover:contrast-100"
+                        className="    "
                       />
                     </div>
                   </>
@@ -77,39 +77,21 @@ export default LogoSlider;
 
 const logosliderarry = [
   {
-    logo: "/logoslider/brand01.png",
+    logo: "/logoslider/1.webp",
   },
   {
-    logo: "/logoslider/brand02.png",
+    logo: "/logoslider/2.webp",
   },
   {
-    logo: "/logoslider/brand03.png",
+    logo: "/logoslider/3.webp",
   },
   {
-    logo: "/logoslider/brand05.png",
+    logo: "/logoslider/4.webp",
   },
   {
-    logo: "/logoslider/brand06.png",
+    logo: "/logoslider/5.webp",
   },
   {
-    logo: "/logoslider/brand07.png",
-  },
-  {
-    logo: "/logoslider/brand01.png",
-  },
-  {
-    logo: "/logoslider/brand02.png",
-  },
-  {
-    logo: "/logoslider/brand03.png",
-  },
-  {
-    logo: "/logoslider/brand05.png",
-  },
-  {
-    logo: "/logoslider/brand06.png",
-  },
-  {
-    logo: "/logoslider/brand07.png",
+    logo: "/logoslider/6.webp",
   },
 ];
