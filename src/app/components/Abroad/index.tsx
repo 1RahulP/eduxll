@@ -36,8 +36,7 @@ const BestCourses = () => {
         <div className=" md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
           <div className="flex justify-between items-center">
             <h2 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[20px]">
-              Discover <br />
-              World&apos;s Best Courses
+              Study Abroad
             </h2>
             <Button
               text={"VIEW ALL  "}

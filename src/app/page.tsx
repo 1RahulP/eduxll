@@ -15,6 +15,8 @@ import ReviewSlider from "./components/review-slider/review-slider";
 import LatestNews from "./components/latest-news/latest-news";
 import RecruitersSlider from "./components/logoslider/Recruiters";
 import NewsSlider from "./components/logoslider/News";
+import AbroadCourses from "./components/Abroad";
+import FreeCoursesSlider from "./components/free-courses/free-courses";
 
 const page = () => {
   return (
@@ -280,6 +282,8 @@ const page = () => {
 
       <LogoSlider />
       <BestCourses />
+
+      <AbroadCourses />
       <div className="bg-[url('/blue-bg.png')] bg-contain">
         <div className="md:max-w-[1230px] w-[100%] mx-auto px-[15px] py-12 grid lg:grid-cols-3 md:grid-cols-2     gap-10">
           <div className="flex gap-6 items-center">
@@ -371,6 +375,26 @@ const page = () => {
             Think and Say About Eduman
           </h2>
           <ReviewSlider />
+        </div>
+        <div className="my-12 md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
+          <h2 className="text-center text-3xl font-semibold">
+            Start with our
+            
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-red-400 via-purple-700 to-pink-600"> Free Courses</span>
+          </h2>
+          <p className="my-2 text-center">
+            Earn certifications by upskilling with 750+ Hours of learning
+            content taught by <br /> academic and industry experts
+          </p>
+          <FreeCoursesSlider />
+          <div>
+          <Button
+              text={"View All Free Courses"}
+              className={
+                "px-6 py-4 border text-[#fff] !border-[#000] bg-black !rounded-md m-auto"
+              }
+            />
+          </div>
         </div>
         <div>
           <LatestNews />

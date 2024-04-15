@@ -3,6 +3,16 @@ import Image from "next/image";
 import Button from "../../button/Button";
 import ModalBox from "../../modal-box/modal-box";
 import { useState } from "react";
+import BadgeChip from "../../badge";
+import Tabslider from "../../tabnavslider";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
+import Slidernav1 from "../../slidernav";
+import SideMenuCardbox from "../../sidemenucardbox";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -20,6 +30,14 @@ const Header = () => {
   const sideBarClose = (value: any) => {
     setColor("");
   };
+
+  const [filteractive, setfilteractive] = useState<any>(
+    "Artificial Intelligence"
+  );
+  console.log("bablu", { filteractive });
+  const activeTab = (item: any) => {
+    setfilteractive(item);
+  };
   return (
     <>
       <div className="relative bg-[#eaeaea] py-2">
@@ -35,7 +53,7 @@ const Header = () => {
           className="absolute right-3 top-2 cursor-pointer"
         />
       </div>
-      <div className="sticky top-0 z-[9]">
+      <div className="sticky top-0 z-[99]">
         <div className="flex p-2 px-8 justify-between items-center  shadow-md custom-bg z-[9] border-b">
           <div className="flex items-center gap-8">
             <div>
@@ -45,7 +63,10 @@ const Header = () => {
             <p className="text-xl font-semibold">5</p>
             <p className="text-sm text-[#adadad]"> YEARS</p>
           </div> */}
-            <div onMouseEnter={() => setSIdebar(true)}>
+            <div 
+            // onMouseEnter={() => setSIdebar(true)}
+            onClick={()=>setSIdebar(!sidebar)}
+            >
               <Button
                 notesImage
                 dropdownImage
@@ -141,11 +162,11 @@ const Header = () => {
         </div>
         {sidebar && (
           <div
-            onMouseLeave={() => setSIdebar(false)}
+            // onMouseLeave={() => setSIdebar(false)}
             className="absolute w-full backdrop-blur-sm"
           >
-            <div className="bg-[#f9f9f9] h-[92vh] w-fit  z-[9] top-[65px] flex ">
-              <div className="w-[260px] py-4 overflow-y-scroll relative">
+            <div className="bg-[#fff]  w-fit  z-[9]  flex  sidemenubar ">
+              <div className="w-[260px] py-4 overflow-y relative">
                 {sideBarArray?.map((item, index) => {
                   return (
                     <>
@@ -157,23 +178,39 @@ const Header = () => {
                           return (
                             <div
                               key={ind}
-                              className={`flex justify-between cursor-pointer mb-2 px-4 ${
+                              className={`flex justify-between cursor-pointer   px-4 ${
                                 color === val.listItem
-                                  ? " bg-blue-800 text-white"
+                                  ? " bg-[#fdbebf] text-[#ea1d22]  hoverimagecolorchnge"
                                   : ""
                               }`}
                               onMouseEnter={() => toggleSidebar(val.listItem)}
                               onMouseLeave={() => sideBarClose("")}
                             >
-                              <p className="py-4">{val.listItem}</p>
-                              {val.key === true && (
-                                <Image
-                                  src={"/greater.svg"}
-                                  alt="greater"
-                                  width={8}
-                                  height={12}
-                                />
-                              )}
+                              <p className="py-[12px]">{val.listItem}</p>
+                              {val.key === true &&
+                                (color === val.listItem ? (
+                                  <>
+                                    {" "}
+                                    <Image
+                                      src={
+                                        "/svg/arrow-drop-right-linewhite.svg"
+                                      }
+                                      alt="greater"
+                                      width={20}
+                                      height={20}
+                                    />
+                                  </>
+                                ) : (
+                                  <>
+                                    {" "}
+                                    <Image
+                                      src={"/svg/arrow-drop-right-line.svg"}
+                                      alt="greater"
+                                      width={20}
+                                      height={20}
+                                    />
+                                  </>
+                                ))}
                             </div>
                           );
                         })}
@@ -201,7 +238,7 @@ const Header = () => {
                 />
               </div>
               {pagePartition === true && (
-                <div className="w-[800px] bg-red overflow-y-scroll relative">
+                <div className="max-w-[900px] bg-red overflow-y relative">
                   <Image
                     src={"/close.svg"}
                     alt="close"
@@ -212,7 +249,7 @@ const Header = () => {
                   />
 
                   <div>
-                    <div className="bg-[#1f453d] p-6">
+                    <div className="bg-[#1f453d] py-[20px] px-[20px]">
                       <h3 className="text-white text-2xl font-semibold">
                         Career resources
                       </h3>
@@ -225,7 +262,103 @@ const Header = () => {
                         className={"text-white bg-red-500 rounded-none mt-4"}
                       />
                     </div>
-                    <div></div>
+                    <div className="py-[20px] px-[20px]">
+                      <h3 className="text-black text-2xl font-semibold">
+                        Speeialization
+                      </h3>
+
+                      <div className=" px-[20px] mt-[10px] mb-[20px]">
+                        <div className=" relative tabsliderlayout ">
+                          <Slidernav1 navsize="25" navfix="2" />
+
+                          <Swiper
+                            slidesPerView="auto"
+                            spaceBetween={15}
+                            className="mySwiper2 width-100 !px-[15px]"
+                            navigation={{
+                              nextEl: ".review2-swiper-button-next",
+                              prevEl: ".review2-swiper-button-prev",
+                            }}
+                            modules={[Navigation]}
+                          >
+                            {speeializationtab.map((item, index) => {
+                              return (
+                                <>
+                                  <SwiperSlide>
+                                    <div
+                                      key={index}
+                                      onClick={() => activeTab(item)}
+                                      className={`${
+                                        filteractive?.speeialglistItem ===
+                                        item.speeialglistItem
+                                          ? "  after:w-full    after:transition-all transition-all  after:h-[2px] after:bg-[#ed1d26] after:absolute relative after:left-[0] after:bottom-[0px] text-[#ed1d26]"
+                                          : ""
+                                      } `}
+                                    >
+                                      {item.speeialglistItem}
+                                    </div>
+                                  </SwiperSlide>
+                                </>
+                              );
+                            })}
+                          </Swiper>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap   gap-[10px] gap-y-[5px] my-[10px]">
+                        {speeializationtab.map((item, index) => {
+                          return (
+                            <>
+                              <BadgeChip theme="default" size="medium">
+                                {item.speeialglistItem}
+                              </BadgeChip>
+                            </>
+                          );
+                        })}
+                      </div>
+
+                      <div className="DegreeCertifications grid grid-cols-2 gap-[10px]">
+                        <div className="Degree">
+                          <h4 className="text-[15px] font-[500] mb-[10px] mt-[15px] text-[#000]">
+                            Degree
+                          </h4>
+
+                          <div className=" grid grid-cols-1 gap-[10px]">
+                            {degreearry?.map((item, index) => {
+                              return (
+                                <>
+                                  <SideMenuCardbox
+                                    key={index}
+                                    logoimage={item.logo}
+                                    logoname={item.logoname}
+                                    titlename={item.titlename}
+                                  />
+                                </>
+                              );
+                            })}
+                          </div>
+                        </div>
+                        <div className="Certifications">
+                          <h4 className="text-[15px] font-[500] mb-[10px] mt-[15px] text-[#000]">
+                            Certifications
+                          </h4>
+                          <div className=" grid grid-cols-1 gap-[10px]">
+                            {certificationsearry?.map((item, index) => {
+                              return (
+                                <>
+                                  <SideMenuCardbox
+                                    key={index}
+                                    logoimage={item.logo}
+                                    logoname={item.logoname}
+                                    titlename={item.titlename}
+                                  />
+                                </>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -378,7 +511,7 @@ const sideBarArray = [
     ],
   },
   {
-    title: "By topic",
+    title: "By Topic",
     list: [
       {
         key: true,
@@ -430,5 +563,60 @@ const sideBarArray = [
         listItem: "Schools & Partners",
       },
     ],
+  },
+];
+
+const speeializationtab = [
+  { speeialglistItem: "Artificial Intelligence" },
+  { speeialglistItem: "Data Science" },
+  { speeialglistItem: "Finance" },
+  { speeialglistItem: "Business Administration" },
+  { speeialglistItem: "Cybersecurity" },
+  { speeialglistItem: "Computer Science" },
+  { speeialglistItem: "View all topics" },
+];
+
+const degreearry = [
+  {
+    logo: "/logo/IBM-Logo-Blk---Square.png",
+    logoname: "IBM",
+    titlename: "Python for Data Science, AI & Development",
+  },
+  {
+    logo: "/logo/uc-chile360x360.png",
+    logoname: "Pontificia Universidad Católica de Chile",
+    titlename: "English for Common Interactions in the Workplace: Basic Level",
+  },
+  {
+    logo: "/logo/square_logo_large.png",
+    logoname: "Yale University",
+    titlename: "Introduction to Psychology",
+  },
+  {
+    logo: "/logo/JHU-Logo-Square-Mini_180px.png",
+    logoname: "Johns Hopkins University",
+    titlename: "Business Analytics with Excel: Elementary to Advanced",
+  },
+];
+const certificationsearry = [
+  {
+    logo: "/logo/IBM-Logo-Blk---Square.png",
+    logoname: "IBM",
+    titlename: "Python for Data Science, AI & Development",
+  },
+  {
+    logo: "/logo/uc-chile360x360.png",
+    logoname: "Pontificia Universidad Católica de Chile",
+    titlename: "English for Common Interactions in the Workplace: Basic Level",
+  },
+  {
+    logo: "/logo/square_logo_large.png",
+    logoname: "Yale University",
+    titlename: "Introduction to Psychology",
+  },
+  {
+    logo: "/logo/JHU-Logo-Square-Mini_180px.png",
+    logoname: "Johns Hopkins University",
+    titlename: "Business Analytics with Excel: Elementary to Advanced",
   },
 ];

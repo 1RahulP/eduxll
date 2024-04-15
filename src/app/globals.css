@@ -35,6 +35,39 @@ body{
     display: none;
 }
 
+
+.sidemenubar {
+    height: calc(100vh - 65px);
+    position: relative;
+    z-index: 99;
+}
+.overflow-y {
+    overflow-y: auto;  
+}
+.overflow-y::-webkit-scrollbar {
+      width:4px;
+    }
+  
+    /* Track */
+    .overflow-y::-webkit-scrollbar-track {
+      background: #616161;
+      border-radius: 4px;
+    }
+  
+    /* Handle */
+    .overflow-y::-webkit-scrollbar-thumb {
+      background: #000;
+      border-radius: 4px;
+    }
+  
+    /* Handle on hover */
+    .overflow-y::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    } 
+  .hoverimagecolorchnge img {
+    fill: #fff;
+  }
+
 @media (min-width:1024px) {
     .shape722 {
         display: block;
@@ -44,3 +77,7 @@ body{
     position: relative;
     top: 15px;
   }
+
+  .tabsliderlayout .swiper-wrapper .swiper-slide {
+    width: fit-content;
+}
