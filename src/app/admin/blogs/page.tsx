@@ -1,28 +1,65 @@
-import { Input, Textarea } from "@nextui-org/react"
+// "use client"
+import { connect } from "@/app/dbConfig";
+import Blog from "@/app/models/blogModels";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
 
-const Blogs = () =>{
-    return(
-        <div className="p-4">
-             <div className="grid gap-4">
-      <Input label="Title" className="w-[600px]" />
-      <div>
-        <label htmlFor="course_image" className="mb-2 text-sm ml-2">
-          Course Image
-        </label>
+const getAllBlogs = async () => {
+  try {
+    connect();
+    const blogs = await Blog.find();
+    return blogs;
+  } catch (error) {
+    return error;
+  }
+};
+// const [blogs,setBlogs] = useState([]);
 
-        <Input type="file" id="course_image" className="w-[600px]" />
+const page = async () => {
+  const response: any = await getAllBlogs();
+
+  //  setBlogs(response);
+
+
+  return (
+    <div className="w-full p-4">
+      <div className="flex justify-end">
+        <Link
+          href="/admin/blogs/create-blog"
+          className="bg-black text-white px-6 py-2 rounded-md"
+        >
+          {" "}
+          Create Blog
+        </Link>
       </div>
-      <Input label="Course duration" className="w-[600px]" />
-      <div>
-        <label htmlFor="broch" className="mb-2 text-sm ml-2">
-          Brochure File
-        </label>
-
-        <Input type="file" id="broch" className="w-[600px]" />
-      </div>
-      <Textarea label="Description" />
+      {response?.length > 0 && (
+        <>
+          <div className="mt-8">
+            {response?.map((blog: any) => {
+             
+              return (
+                <Link href={`/admin/blogs/${blog?.slug}`} key={blog?._id}>
+                  <div className="grid grid-cols-[10%_25%_40%_25%] items-center mb-6 bg-white rounded-xl p-4">
+                    <Image
+                      src={blog.featureImage}
+                      width={100}
+                      height={100}
+                      alt="image"
+                      className="w-[80px] h-[80px] rounded-xl"
+                    />
+                    <h2>{blog?._id}</h2>
+                    <h2>{blog?.title}</h2>
+                    <p>{blog.content}</p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
-        </div>
-    )
-}
-export default Blogs
+  );
+};
+
+export default page;

@@ -11,6 +11,8 @@ import Slidernav1 from "../slidernav";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import BadgeChip from "../badge";
+import { randomUUID } from "crypto";
+import { useRouter } from "next/navigation";
 
 const BestCourses = () => {
   const [popUp, setPopUp] = useState("");
@@ -29,6 +31,10 @@ const BestCourses = () => {
     { speeialglistItem: "Computer Science" },
     { speeialglistItem: "View all topics" },
   ];
+
+  const router = useRouter();
+
+  const randomNumber = Math.floor(Math.random() * 100) + 1;
 
   return (
     <>
@@ -102,9 +108,12 @@ const BestCourses = () => {
                     onMouseEnter={() => setPopUp(item.key)}
                     onMouseLeave={() => setPopUp("")}
                   >
-                    <div>
+                    <div
+                      onClick={() => router.push(`/product/${randomNumber}`)}
+                      className="cursor-pointer"
+                    >
                       <div className="max-w-[350px] rounded-xl bg-white shadow-md hover:shadow-xl">
-                        <div>
+                        <div className="relative after:bg-gradient-to-r after:from-black after:rounded-t-xl overflow-hidden	 after:absolute after:w-[100%] after:h-[100%]    after:top-[0px] after:left-[0px]">
                           <Image
                             className="rounded-t-xl h-[120px] w-full object-cover object-top"
                             src={item.imageUrl}
@@ -113,6 +122,22 @@ const BestCourses = () => {
                             height={60}
                             objectFit="cover"
                           />
+
+                          <div
+                            className="z-[1] absolute shadow-lg shadow-black-500/50 top-[40%] left-[20px] bg-[#fff] rounded-[5px] p-[3px] "
+                            style={{
+                              transform: "translate(0%, -30%)",
+                            }}
+                          >
+                            <Image
+                              className="rounded-[5px]"
+                              src={item.logo}
+                              alt={"image"}
+                              width={100}
+                              height={50}
+                              objectFit="cover"
+                            />
+                          </div>
                         </div>
                         <div>
                           <div className="contentbox p-[25px] pt-[10px]">
@@ -161,9 +186,9 @@ const BestCourses = () => {
                               </span>
                               <span className="text-[14px]">{item.months}</span>
                             </div>
-                            <div className="mt-2 flex gap-[10px] items-center">
+                            {/* <div className="mt-2 flex gap-[10px] items-center">
                               <span className="">
-                                {/* ${item.discountPrice}{" "} */}
+                                
                                 <Image
                                   src={item?.userImage}
                                   alt="rating"
@@ -174,7 +199,7 @@ const BestCourses = () => {
                               <span className="text-[14px]">
                                 {item.username}
                               </span>
-                            </div>
+                            </div> */}
                           </div>
                           <div className="border-t-1 px-[30px] align-center text-center w-full py-2">
                             <div className="text-[#2467ec] cursor-pointer ">
@@ -184,7 +209,9 @@ const BestCourses = () => {
                         </div>
                       </div>
                       <div
-                        className={`absolute   ${popUp === item.key ? "block" : "hidden"}
+                        className={`absolute  z-[9]   ${
+                          popUp === item.key ? "block" : "hidden"
+                        }
                         max-w-[320px] sm:left-6 left-[2px] rounded-xl top-0 p-6 bg-white`}
                       >
                         {/* <Badgechip
@@ -192,7 +219,7 @@ const BestCourses = () => {
                         >
                           Business
                         </Badgechip> */}
-                        <h3 className="font-semibold mt-4">
+                        <h3 className="font-semibold ">
                           Write Better Emails: Tactics for Smarter Team
                           Communication
                         </h3>
@@ -221,10 +248,12 @@ const BestCourses = () => {
                             );
                           })}
                         </div>
-                        <div className="my-4">
+                        <div className="my-4 mb-">
                           <Button
                             text={"View Details"}
-                            className={"text-white bg-blue-500 border-none text-md !rounded-md"}
+                            className={
+                              "text-white bg-blue-500 border-none text-md !rounded-md mr-auto ml-auto"
+                            }
                           />
                         </div>
                       </div>
@@ -248,10 +277,12 @@ const Coursesfilter = [
   { tabname: "Business" },
   { tabname: "Life Styles" },
 ];
+
 const bestSellerArray = [
   {
     key: "cardOne",
     imageUrl: "/best-seller/01.jpg",
+    logo: "/logoslider/1.webp",
     badge: "Development",
     title: "WordPress Development Course for Plugins & Themes",
     degreeIcon: "/svg/news-line.svg",
@@ -267,6 +298,7 @@ const bestSellerArray = [
   {
     key: "cardTwo",
     imageUrl: "/best-seller/02.jpg",
+    logo: "/logoslider/2.webp",
     badge: "Development",
     title: "Master Google Docs: Free online documents for personal use",
     degreeIcon: "/svg/refund-line.svg",
@@ -283,6 +315,7 @@ const bestSellerArray = [
     key: "cardThree",
 
     imageUrl: "/best-seller/03.jpg",
+    logo: "/logoslider/3.webp",
     badge: "Business",
     title: "Write Better Emails: Tactics for Smarter Team Communication",
     discountPrice: "FREE",
@@ -300,6 +333,7 @@ const bestSellerArray = [
     key: "cardFourth",
 
     imageUrl: "/best-seller/04.jpg",
+    logo: "/logoslider/4.webp",
     badge: "Development",
     title: "Python and Django Full Stack Web Developer Bootcamp",
     discountPrice: 47.0,
@@ -317,6 +351,7 @@ const bestSellerArray = [
     key: "cardFifth",
 
     imageUrl: "/best-seller/05.jpg",
+    logo: "/logoslider/5.webp",
     badge: "Data Science",
     title: "Data Science Real-Life Data Science Exercises Included",
     discountPrice: 47.0,
@@ -334,6 +369,7 @@ const bestSellerArray = [
     key: "cardSixth",
 
     imageUrl: "/best-seller/06.jpg",
+    logo: "/logoslider/6.webp",
     badge: "Life Style",
     title: "Become a Super Human: Naturally & Safely Boost",
     discountPrice: 47.0,

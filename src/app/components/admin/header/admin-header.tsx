@@ -15,11 +15,11 @@ const HeaderAdmin = () => {
     };
   return (
     <div>
-      <div className=" w-[270px] border grid gap-6 p-4 shadow-xl">
+      <div className="w-[270px] h-[95vh] border shadow-xl p-2">
         {sidebarCollection?.map((item, index) => {
           return (
             <div
-              className="cursor-pointer"
+              className="cursor-pointer mb-2 rounded-md hover:bg-black hover:text-white p-2"
               key={index}
               onClick={() => toggleSidebar(item.title)}
             >

@@ -57,14 +57,25 @@ const Banner = () => {
                 </div> */}
                 <div>
                   <div className="text-[#808292] sm:mt-0 mt-4">
-                    <p>
+                    {/* <p>
                       Need help?{" "}
                       <Link href={"#"} className="underline">
                         {" "}
                         Contact our Edla support
                       </Link>
+                    </p> */}
+                    <p>
+                      Tell us about your query{" "}
+                      <span className="text-red-500 font-semibold">
+                        Call us
+                      </span>{" "}
+                      <Link
+                        href={"tel:8448198656"}
+                        className="font-semibold text-red-500"
+                      >
+                        +91 8448198656
+                      </Link>{" "}
                     </p>
-                    <p>Tell us about your query <span className="text-red-500 font-semibold">Call us</span> <Link href={"tel:8448198656"} className="font-semibold text-red-500">+91 8448198656</Link> </p>
                   </div>
                   <div></div>
                 </div>

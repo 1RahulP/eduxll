@@ -29,16 +29,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        {path === "/admin/dashboard" || path==="/admin/courses" || path==="/admin/blogs" || path==="/admin/courses/create-course" || path=== "/admin/not-found" ? (
+        {path === "/admin/dashboard" || path==="/admin/courses" || path==="/admin/blogs" || path==="/admin/courses/create-course" || path=== "/admin/not-found" || path==="/admin/blogs/create-blog" ? (
           <div className="flex gap-4 p-6">
             <HeaderAdmin />
-            <div>{children}</div>
+            <div className="w-full bg-[#e5e5e5] h-screen">{children}</div>
           </div>
         ) : (
           <>
-            <Header />
+            
             <div>{children}</div>
-            <Footer />
+            
           </>
         )}
       </body>

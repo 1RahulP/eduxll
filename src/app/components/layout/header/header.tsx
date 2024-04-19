@@ -13,6 +13,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import Slidernav1 from "../../slidernav";
 import SideMenuCardbox from "../../sidemenucardbox";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -38,6 +39,8 @@ const Header = () => {
   const activeTab = (item: any) => {
     setfilteractive(item);
   };
+  const router = useRouter();
+
   return (
     <>
       <div className="relative bg-[#eaeaea] py-2">
@@ -56,16 +59,16 @@ const Header = () => {
       <div className="sticky top-0 z-[99]">
         <div className="flex p-2 px-8 justify-between items-center  shadow-md custom-bg z-[9] border-b">
           <div className="flex items-center gap-8">
-            <div>
+            <div onClick={() => router.push("/")} className="cursor-pointer">
               <Image src={"/logo.webp"} alt="close" width={160} height={50} />
             </div>
             {/* <div className="p-2 shadow-xl text-center border rounded-t-2xl">
             <p className="text-xl font-semibold">5</p>
             <p className="text-sm text-[#adadad]"> YEARS</p>
           </div> */}
-            <div 
-            // onMouseEnter={() => setSIdebar(true)}
-            onClick={()=>setSIdebar(!sidebar)}
+            <div
+              // onMouseEnter={() => setSIdebar(true)}
+              onClick={() => setSIdebar(!sidebar)}
             >
               <Button
                 notesImage
@@ -89,7 +92,7 @@ const Header = () => {
                         {item.menu === "More" ? (
                           <div
                             className="flex items-center"
-                            onMouseEnter={() => setIsToggled(true)}
+                            onClick={() => setIsToggled(!isToggled)}
                           >
                             {item.menu}
                             <div>
@@ -107,10 +110,7 @@ const Header = () => {
                               {isToggled === true && (
                                 <>
                                   {item?.submenu && (
-                                    <ul
-                                      onMouseLeave={() => setIsToggled(false)}
-                                      className="absolute top-[48px] right-0 z-10  w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                    >
+                                    <ul className="absolute top-[48px] right-0 z-10  w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                       {item?.submenu?.map((item, ind) => {
                                         return (
                                           <li
@@ -337,6 +337,10 @@ const Header = () => {
                               );
                             })}
                           </div>
+
+                          <a className=" block text-center text-[#ed1e27] text-[15px] font-[500] mt-[15px] align-center">
+                            View All
+                          </a>
                         </div>
                         <div className="Certifications">
                           <h4 className="text-[15px] font-[500] mb-[10px] mt-[15px] text-[#000]">
@@ -356,6 +360,9 @@ const Header = () => {
                               );
                             })}
                           </div>
+                          <a className=" block text-center text-[#ed1e27] text-[15px] font-[500] mt-[15px] align-center">
+                            View All
+                          </a>
                         </div>
                       </div>
                     </div>

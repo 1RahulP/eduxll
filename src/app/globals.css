@@ -2,82 +2,114 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    overflow-x: hidden;
+body {
+  overflow-x: hidden;
 }
-.custom-bg{
-    /* backdrop-filter: blur(11px); */
-    background-color: white;
+.custom-bg {
+  /* backdrop-filter: blur(11px); */
+  background-color: white;
 }
 
 .logoslider .slick-track {
-    align-items: center;
-    display: flex;
+  align-items: center;
+  display: flex;
 }
 @layer base {
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
-.reviewSlider .slick-track{
-    display: flex;
-    gap: 20px;
-
 }
-.logo-slider button, .reviewSlider button{
-    display: none;
+.reviewSlider .slick-track {
+  display: flex;
+  gap: 20px;
 }
-
+.logo-slider button,
+.reviewSlider button {
+  display: none;
+}
 
 .shape722 {
-    display: none;
+  display: none;
 }
-
 
 .sidemenubar {
-    height: calc(100vh - 65px);
-    position: relative;
-    z-index: 99;
+  height: calc(100vh - 65px);
+  position: relative;
+  z-index: 99;
 }
 .overflow-y {
-    overflow-y: auto;  
+  overflow-y: auto;
 }
 .overflow-y::-webkit-scrollbar {
-      width:4px;
-    }
-  
-    /* Track */
-    .overflow-y::-webkit-scrollbar-track {
-      background: #616161;
-      border-radius: 4px;
-    }
-  
-    /* Handle */
-    .overflow-y::-webkit-scrollbar-thumb {
-      background: #000;
-      border-radius: 4px;
-    }
-  
-    /* Handle on hover */
-    .overflow-y::-webkit-scrollbar-thumb:hover {
-      background: #555;
-    } 
-  .hoverimagecolorchnge img {
-    fill: #fff;
-  }
-
-@media (min-width:1024px) {
-    .shape722 {
-        display: block;
-    }   
+  width: 4px;
 }
-.toggleSyllabus :last-child>p {
-    position: relative;
-    top: 15px;
-  }
-
-  .tabsliderlayout .swiper-wrapper .swiper-slide {
-    width: fit-content;
+.master-banner {
+  /* background: linear-gradient(270deg, rgba(91, 90, 90, 0) -2.59%, hsla(0, 4%, 5%, .746) 49.82%, rgba(0, 0, 0, .854) 98.45%); */
+  background-image: url("/master.webp");
 }
+/* Track */
+.overflow-y::-webkit-scrollbar-track {
+  background: #616161;
+  border-radius: 4px;
+}
+
+/* Handle */
+.overflow-y::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.overflow-y::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.hoverimagecolorchnge img {
+  fill: #fff;
+}
+.simply-success-content {
+  background-color: #689d68;
+  color: white;
+}
+@media (min-width: 1024px) {
+  .shape722 {
+    display: block;
+  }
+}
+.toggleSyllabus :last-child > p {
+  position: relative;
+  top: 15px;
+}
+
+.toggleSyllabus :last-child > p {
+  position: relative;
+  top: 15px;
+}
+
+.tabsliderlayout .swiper-wrapper .swiper-slide {
+  width: fit-content;
+}
+
+.loadingSpinnerContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 5000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #e8e8e8 transparent #f2f2f2 transparent;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+

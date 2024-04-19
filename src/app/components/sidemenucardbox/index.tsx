@@ -13,7 +13,7 @@ const SideMenuCardbox = ({
 }: SideMenuCardboxProp) => {
   return (
     <>
-      <div className="flex items-center gap-[5px] border border-[#000] rounded-[5px] border-t border-slate-100 dark:border-slate-400/10 p-[10px]">
+      <div className="hover:bg-slate-50 flex items-center gap-[5px] border border-[#000] rounded-[5px] border-t border-slate-100 dark:border-slate-400/10 p-[10px]">
         <div className="logo">
           <Image
             src={logoimage}

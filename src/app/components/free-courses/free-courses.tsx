@@ -25,9 +25,7 @@ const FreeCoursesSlider = () => {
     <>
       <section className=" py-[50px] lg:px-0 px-6">
         <div className=" md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
-          <div className="flex justify-between items-center">
-            
-          </div>
+          <div className="flex justify-between items-center"></div>
           <div className="md:flex hidden grid grid-cols-3 gap-[45px] mb-[10px]">
             {/* {Coursesfilter.map((item, index) => {
               return (
@@ -74,7 +72,7 @@ const FreeCoursesSlider = () => {
                   >
                     <div>
                       <div className="max-w-[350px] rounded-xl bg-white shadow-md hover:shadow-xl">
-                        <div>
+                        <div className="relative after:bg-gradient-to-r after:from-black after:rounded-t-xl overflow-hidden	 after:absolute after:w-[100%] after:h-[100%]    after:top-[0px] after:left-[0px]">
                           <Image
                             className="rounded-t-xl h-[120px] w-full object-cover object-top"
                             src={item.imageUrl}
@@ -83,6 +81,22 @@ const FreeCoursesSlider = () => {
                             height={60}
                             objectFit="cover"
                           />
+
+                          <div
+                            className="z-[1] absolute shadow-lg shadow-black-500/50 top-[40%] left-[20px] bg-[#fff] rounded-[5px] p-[3px] "
+                            style={{
+                              transform: "translate(0%, -30%)",
+                            }}
+                          >
+                            <Image
+                              className="rounded-[5px]"
+                              src={item.logo}
+                              alt={"image"}
+                              width={100}
+                              height={50}
+                              objectFit="cover"
+                            />
+                          </div>
                         </div>
                         <div>
                           <div className="contentbox p-[25px] pt-[10px]">
@@ -94,10 +108,10 @@ const FreeCoursesSlider = () => {
                             <div className="flex gap-2 items-center mt-4">
                               <div>
                                 <Image
-                                  src={"/book.png"}
+                                  src={"/book-open-line.svg"}
                                   alt="book"
-                                  width={26}
-                                  height={26}
+                                  width={20}
+                                  height={20}
                                 />
                               </div>
                               <span>{item.courses} Courses</span>
@@ -127,6 +141,7 @@ const bestSellerArray = [
   {
     key: "cardOne",
     imageUrl: "/best-seller/01.jpg",
+    logo: "/logoslider/1.webp",
     book: "/book.png",
     title: "Gen AI & ChatGPT",
     content:
@@ -136,6 +151,7 @@ const bestSellerArray = [
   {
     key: "cardTwo",
     imageUrl: "/best-seller/02.jpg",
+    logo: "/logoslider/2.webp",
     book: "/book.png",
     title: "Gen AI & ChatGPT",
     content:
@@ -146,6 +162,7 @@ const bestSellerArray = [
     key: "cardThree",
 
     imageUrl: "/best-seller/03.jpg",
+    logo: "/logoslider/3.webp",
     book: "/book.png",
     title: "Gen AI & ChatGPT",
     content:
@@ -156,6 +173,7 @@ const bestSellerArray = [
     key: "cardFourth",
 
     imageUrl: "/best-seller/04.jpg",
+    logo: "/logoslider/4.webp",
     badge: "Development",
     book: "/book.png",
     title: "Gen AI & ChatGPT",
@@ -167,6 +185,7 @@ const bestSellerArray = [
     key: "cardFifth",
 
     imageUrl: "/best-seller/05.jpg",
+    logo: "/logoslider/5.webp",
     book: "/book.png",
     title: "Gen AI & ChatGPT",
     content:
@@ -177,6 +196,7 @@ const bestSellerArray = [
     key: "cardSixth",
 
     imageUrl: "/best-seller/06.jpg",
+    logo: "/logoslider/6.webp",
     book: "/book.png",
     title: "Gen AI & ChatGPT",
     content:
