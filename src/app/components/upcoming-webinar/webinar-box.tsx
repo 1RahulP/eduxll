@@ -36,8 +36,9 @@ const WebniarBox = ({ response, category }: any) => {
                 key={index}
                 className="border rounded-xl bg-[#f8f9fb] rounded-md shadow-xl cursor-pointer"
                 onClick={() =>
-                  router.push(`/free-masterclass/webinars/${item?.slug}`)
+                  router.push(`/webinars/free-classes/${item?.slug}`)
                 }
+               
                 //style={{ marginRight: "20px" }}
               >
                 <div>

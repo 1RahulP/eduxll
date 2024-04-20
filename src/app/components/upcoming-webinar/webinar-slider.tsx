@@ -10,6 +10,8 @@ import BadgeChip from "../badge";
 import { useRouter } from "next/navigation";
 import WebniarBox from "./webinar-box";
 
+
+
 const WebinarSlider = ({ response }: any) => {
   const router = useRouter();
   console.log("inner response", { response });

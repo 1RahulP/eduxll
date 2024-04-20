@@ -1,10 +1,13 @@
-import Link from "next/link";
-import HeaderLayout from "../components/headerLayout/HeaderLayout";
-import MasterSlider from "../components/free-masterSlider/master-slider";
-import Button from "../components/button/Button";
-import WebinarSlider from "../components/upcoming-webinar/webinar-slider";
+
+import HeaderLayout from "@/app/components/headerLayout/HeaderLayout";
+import WebinarSlider from "@/app/components/upcoming-webinar/webinar-slider";
+import Image from "next/image";
 import { connect } from "../dbConfig";
 import FreeMaster from "../models/freeMaster";
+import Link from "next/link";
+
+
+
 
 const getAllClassess = async () => {
   try {
@@ -15,13 +18,13 @@ const getAllClassess = async () => {
     return error;
   }
 };
-
-const FreeMasterClass = async () => {
+const Webinars = async() => {
+ 
   const response: any = await getAllClassess();
 
   return (
     <HeaderLayout>
-      <div className="h-[400px] master-banner relative bg-[url('/master.webp')] bg-no-repeat bg-cover pr-12 pl-32 py-8">
+         <div className="h-[400px] master-banner relative bg-[url('/master.webp')] bg-no-repeat bg-cover pr-12 pl-32 py-8">
         <div className="flex gap-2 text-white">
           <Link href={"/"} className="cursor-pointer text-[#dbd8d8]">
             Home
@@ -54,25 +57,13 @@ const FreeMasterClass = async () => {
           </div>
         </div>
       </div>
-      <div className="my-16 pr-12 pl-32">
-        <h3 className="text-4xl font-semibold pl-20">Free Masterclasses</h3>
-        <MasterSlider response={response} />
-        <div>
-          <Button
-            text={"VIEW OUR MASTERCLASSES"}
-            className={
-              "bg-red-500 text-white rounded-md px-12 py-4 !rounded-md font-semibold tracking-wide shadow-xl m-auto"
-            }
-          />
-        </div>
-        {/* <div className="my-16">
+      <div className="my-16">
           <h3 className="text-3xl font-semibold text-center">
             Register for Upcoming Webinars
           </h3>
-          <WebinarSlider response={response} />
-        </div> */}
-      </div>
+          <WebinarSlider  response={response} />
+        </div>
     </HeaderLayout>
   );
 };
-export default FreeMasterClass;
+export default Webinars;
