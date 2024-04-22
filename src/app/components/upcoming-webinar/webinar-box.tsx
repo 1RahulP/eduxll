@@ -13,6 +13,15 @@ const WebniarBox = ({ response, category }: any) => {
 
   const router = useRouter();
 
+  // const webinarSlug = (item: any) => {
+  //   // console.log(globalState,"ggggggg");
+  //   // setGlobalState(item);
+  //   router.push(`/webinars/free-classes/${item?.slug}`);
+
+  // };
+
+  console.log("websniar response", { response });
+
   return (
     <>
       {filterData?.length > 0 &&
@@ -36,9 +45,10 @@ const WebniarBox = ({ response, category }: any) => {
                 key={index}
                 className="border rounded-xl bg-[#f8f9fb] rounded-md shadow-xl cursor-pointer"
                 onClick={() =>
+                  // webinarSlug(item)
                   router.push(`/webinars/free-classes/${item?.slug}`)
                 }
-               
+
                 //style={{ marginRight: "20px" }}
               >
                 <div>
@@ -61,7 +71,7 @@ const WebniarBox = ({ response, category }: any) => {
                           UPCOMING
                         </BadgeChip>
                         <h3 className="text-xl font-semibold my-2">
-                          {formattedDate} | {formattedTime}
+                          {formattedDate} |{formattedTime}
                         </h3>
                         <p className="text-md">
                           <div dangerouslySetInnerHTML={{ __html: content }} />

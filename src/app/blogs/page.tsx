@@ -1,28 +1,31 @@
 import Link from "next/link";
 import HeaderLayout from "../components/headerLayout/HeaderLayout";
-import MasterSlider from "../components/free-masterSlider/master-slider";
+import Image from "next/image";
 import Button from "../components/button/Button";
-import WebinarSlider from "../components/upcoming-webinar/webinar-slider";
+import LatestNews from "../components/latest-news/latest-news";
 import { connect } from "../dbConfig";
-import FreeMaster from "../models/freeMaster";
+import Blog from "../models/blogModels";
 
-const getAllClassess = async () => {
-  try {
-    connect();
-    const freeMaterClassess = await FreeMaster.find();
-    return freeMaterClassess;
-  } catch (error) {
-    return error;
-  }
-};
 
-const FreeMasterClass = async () => {
-  const response: any = await getAllClassess();
+
+const Blogs =async () => {
+// eslint-disable-next-line @next/next/no-async-client-component
+const getAllBlogs = async () => {
+    try {
+      connect();
+      const blogs = await Blog.find();
+      return blogs;
+    } catch (error) {
+      return error;
+    }
+  };
+const response: any = await getAllBlogs();
+
+  
 
   return (
     <HeaderLayout>
-      <div className="h-[400px] master-banner relative bg-[url('/master.webp')] bg-no-repeat bg-cover">
-        <div className="pr-12 pl-32 py-8 bg-gradient-to-r from-black to-transparent h-full">
+      <div className="h-[400px] master-banner relative bg-[url('/master.webp')] bg-no-repeat bg-cover pr-12 pl-32 py-8">
         <div className="flex gap-2 text-white">
           <Link href={"/"} className="cursor-pointer text-[#dbd8d8]">
             Home
@@ -54,29 +57,12 @@ const FreeMasterClass = async () => {
             <span>1-1 career counselling</span>
           </div>
         </div>
-        </div>
       </div>
-      
-      <div className="my-16 pr-12 pl-32">
-        <h3 className="text-4xl font-semibold pl-20">Free Masterclasses</h3>
-        <MasterSlider response={response} />
-        <div>
-          <Button
-            text={"VIEW OUR MASTERCLASSES"}
-            className={
-              "bg-red-500 text-white rounded-md px-12 py-4 !rounded-md font-semibold tracking-wide shadow-xl m-auto"
-            }
-          />
-        </div>
-        {/* <div className="my-16">
-          <h3 className="text-3xl font-semibold text-center">
-            Register for Upcoming Webinars
-          </h3>
-          <WebinarSlider response={response} />
-        </div> */}
+      <div className="my-16">
+      <LatestNews response={response} />
       </div>
-      
+
     </HeaderLayout>
   );
 };
-export default FreeMasterClass;
+export default Blogs;

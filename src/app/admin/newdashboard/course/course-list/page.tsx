@@ -6,6 +6,7 @@ import { connect } from "@/app/dbConfig";
 import FreeMaster from "@/app/models/freeMaster";
 import { format } from "date-fns";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const getAllClassess = async () => {
   try {
@@ -26,10 +27,10 @@ const Page = async () => {
         <div className="sm:col-span-12  md:col-span-12 lg:col-span-12 xl:col-span-12 ">
           <div className="bg-white dark:bg-dark-card shadow  rounded-md w-full relative">
             <div className="flex items-center justify-between border-b border-dashed border-slate-200 dark:border-slate-700 p-4 dark:text-slate-300/70">
-              <h4 className="font-medium text-lg">Free Master List</h4>
-              <Link href="/admin/newdashboard/create-free-master">
+              <h4 className="font-medium text-lg">Course List</h4>
+              <Link href="/admin/newdashboard/course/create_course">
                 <button className="bg-blue-700 rounded-[5px] hover:bg-blue-900 text-[#fff] py-[5px] px-[15px] text-[15px]">
-                  Create Free Master
+                  Create course list
                 </button>
               </Link>
             </div>

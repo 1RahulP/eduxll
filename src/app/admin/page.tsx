@@ -64,9 +64,7 @@ const LogIn = () => {
               </div>
             </div>
             <button
-              onClick={() =>
-                router.push("/admin/newdashboard/course/create_course")
-              }
+              onClick={() => router.push("/admin/newdashboard")}
               className="mt-[20px] w-min text-[15px] flex items-center rounded-md gap-[10px] justify-center	 px-[20px] py-[10px] text-[#fff] transition-all hover:transition-all bg-red-500 hover:bg-red-700"
             >
               Login

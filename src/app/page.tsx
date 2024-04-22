@@ -14,6 +14,7 @@ import FreeCoursesSlider from "./components/free-courses/free-courses";
 import HeaderLayout from "./components/headerLayout/HeaderLayout";
 import Blog from "@/app/models/blogModels";
 import { connect } from "./dbConfig";
+import News from "./models/newsModels";
 
 const getAllBlogs = async () => {
   try {
@@ -25,8 +26,21 @@ const getAllBlogs = async () => {
   }
 };
 
+const getAllNews = async () => {
+  try {
+    connect();
+    const news = await News.find();
+    return news;
+  } catch (error) {
+    return error;
+  }
+};
+
 const page = async () => {
   const response: any = await getAllBlogs();
+  const responseNews: any = await getAllNews();
+
+  console.log("responseNews", { responseNews });
 
   return (
     <HeaderLayout>
@@ -163,7 +177,7 @@ const page = async () => {
             <h2 className="text-3xl font-semibold mb-[16px] text-center">
               edu<span className="text-[red]">XLL</span> in the News
             </h2>
-            <NewsSlider response={response} />
+            <NewsSlider response={responseNews} />
           </div>
         </div>
         <div className="w-[100%]">

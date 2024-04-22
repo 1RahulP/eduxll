@@ -148,11 +148,18 @@ const navlist = [
     active: ["home"],
     subMenu: [],
   },
+  {
+    SvgIcon: "/news-line.svg",
+    text: "News List",
+    query: "/admin/newdashboard/newsList",
+    active: ["home"],
+    subMenu: [],
+  },
 
   {
     SvgIcon: "/booklet-line.svg",
     text: "Course List",
-    query: "/admin/newdashboard/freeMaster/freemasterlist",
+    query: "/admin/newdashboard/course/course-list",
     active: ["home"],
     subMenu: [],
   },
@@ -160,7 +167,15 @@ const navlist = [
   {
     SvgIcon: "/user-voice-line.svg",
     text: "Free Master List",
-    query: "/home",
+    query: "/admin/newdashboard/freeMaster/freemasterlist",
+    active: ["home"],
+    subMenu: [],
+  },
+  {
+    SvgIcon: "/user-voice-line.svg",
+    text: "Webinar",
+    query: "/admin/newdashboard/webinar/webinarlist",
+    // query: "/admin/newdashboard/webinar/webinarlist",
     active: ["home"],
     subMenu: [],
   },

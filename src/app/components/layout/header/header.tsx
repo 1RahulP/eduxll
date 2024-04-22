@@ -21,9 +21,19 @@ const Header = () => {
   const [sidebar, setSIdebar] = useState(false);
   const [pagePartition, setPagePartition] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
+
+  const [moreMenu,setMoreMenu] = useState("")
   // const handleToggle = () => {
   //   setIsToggled(!isToggled);
   // };
+
+  const toggleMore = (item:string) =>{
+    // console.log(item,"console");
+      item=== "Free Master Class" && router.push("/free-masterclass");
+      item=== "Webinars" && router.push("/webinars");
+      item=== "Blog" && router.push("/blogs");
+      item=== "about us" && router.push("/about-us");
+  }
   const toggleSidebar = (val: any) => {
     setColor(val);
     setPagePartition(true);
@@ -115,15 +125,13 @@ const Header = () => {
                                         return (
                                           <li
                                             key={ind}
-                                            className="py-1 hover:bg-[#f9f9f9]"
+                                            className="py-1 hover:bg-[#f9f9f9] text-gray-700 block px-4 py-2 text-sm"
                                             role="none"
+                                            onClick={()=>toggleMore(item.navlink)}
                                           >
-                                            <a
-                                              href="#"
-                                              className="text-gray-700 block px-4 py-2 text-sm"
-                                            >
+                                          
                                               {item.navlink}
-                                            </a>
+                                            
                                           </li>
                                         );
                                       })}
@@ -429,9 +437,10 @@ const menuArray = [
   {
     menu: "More",
     submenu: [
-      { navlink: "about us " },
-      { navlink: "Free Master Class " },
+      { navlink: "about us" },
+      { navlink: "Free Master Class" },
       { navlink: "Blog" },
+      {navlink: "Webinars"},
       { navlink: "Contact us" },
     ],
   },

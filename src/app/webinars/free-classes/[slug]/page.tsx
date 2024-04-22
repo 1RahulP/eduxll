@@ -57,7 +57,7 @@ const FreeClasses = () => {
       <div className="bg-red-700 py-16 text-white">
         <div className="max-w-[600px] m-auto">
           <h3 className="text-3xl text-center font-semibold">
-            Let's Stay in Touch
+            Let&apos;s Stay in Touch
           </h3>
           <p className="text-center mt-2 text-sm">
             Get updates on courses, market insights, and offers.
@@ -90,7 +90,7 @@ const FreeClasses = () => {
               </span>
             </h3>
             <p className="mt-2 sm:text-left text-center">
-              Talk to our experts. We’re available 24/7.
+              Talk to our experts. We&apos;re available 24/7.
             </p>
             <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 items-center my-8">
               <div className="flex gap-2 sm:text-xl text-md items-center">

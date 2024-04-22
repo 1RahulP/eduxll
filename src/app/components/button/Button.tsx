@@ -24,6 +24,7 @@ const Button = ({
         className={`border border-red-500 py-2 px-4 h-fit !rounded-[0px] leading-none flex items-center gap-2 ${className}`}
         onClick={onClick}
       >
+        
         {notesImage && (
           <Image src={"/view.png"} alt="view" width={22} height={24} />
         )}
