@@ -16,7 +16,7 @@ const LatestNews = async ({ response }: LatestNewsProps) => {
       <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
         <div className="relative">
           <h2 className="text-3xl font-semibold my-8 text-center">
-            Read Our Latest Tech News
+            Read Our Latest Blogs
           </h2>
           <Button
             text={"VIEW ALL  "}

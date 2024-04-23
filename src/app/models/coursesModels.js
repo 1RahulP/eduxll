@@ -1,16 +1,11 @@
 // generate courses schema
 import mongoose, { Schema } from "mongoose";
 
-
 const CourseModuleSchema = new Schema({
-  id: { type: Number,},
-  modulTitle: {  type: String,  trim: true },
-  modulDescription: { type: String,  trim: true },
-
-})
-
-
-
+  id: { type: Number },
+  modulTitle: { type: String, trim: true },
+  modulDescription: { type: String, trim: true },
+});
 
 const coursesSchema = new Schema({
   title: {
@@ -54,10 +49,8 @@ const coursesSchema = new Schema({
     trim: true,
   },
 
-
   price: {
     type: Number,
-    
   },
 
   courseImage: {
@@ -79,13 +72,9 @@ const coursesSchema = new Schema({
     type: [CourseModuleSchema],
     default: [],
   },
-  
-
-
-
 });
 
-const Courses = mongoose.models.courses || mongoose.model("courses", coursesSchema);
+const Courses =
+  mongoose?.models?.courses || mongoose.model("courses", coursesSchema);
 
 export default Courses;
-

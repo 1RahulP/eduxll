@@ -45,7 +45,11 @@ const NewsSlider = ({ response }: any) => {
     <>
       <section className="bg-[#fff]   py-[30px]  border-r-2 border-[red] ">
         <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
-          <div className="logoslider">
+          <div
+            className="logoslider 
+          
+          "
+          >
             {/* <Slider autoplay {...settings} className=""> */}
             <IconsBox response={response} categories="news" />
             {/* </Slider> */}

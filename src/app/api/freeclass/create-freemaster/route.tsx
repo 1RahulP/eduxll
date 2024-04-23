@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
 
     const freeMasterClass = {
       name: formData.get("name") as string,
+      ptitle: formData.get("ptitle") as string,
       description: formData.get("description") as string,
       content: formData.get("content") as string,
       date: formData.get("date") as string,

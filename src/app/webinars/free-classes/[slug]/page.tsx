@@ -42,7 +42,7 @@ const FreeClasses = async ({ params }: any) => {
               <span>Webinar</span>
             </div>
             <h2 className="text-2xl font-semibold mt-12 mb-6">
-              AI&apos;s Impact on Healthcare Digitalization
+              {response?.ptitle}
             </h2>
             <div>
               <div className="flex">

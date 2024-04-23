@@ -9,6 +9,10 @@ const FreeMasterSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a description"],
   },
+  ptitle: {
+    type: String,
+    required: [true, "Please provide a page title"],
+  },
   ylink: {
     type: String,
     required: [true, "Please provide a ylink"],
