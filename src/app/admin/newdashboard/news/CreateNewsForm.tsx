@@ -16,7 +16,6 @@ const CreateNewsForm = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
-    formData.append("content", JSON.stringify(state.content));
     const response = await axios.post("/api/news/create-news", formData);
     console.log(response);
     router.refresh();
@@ -45,30 +44,6 @@ const CreateNewsForm = () => {
             <div>
               <div className="mb-4 w-[100%]">
                 <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                  Meta Title
-                </label>
-                <input
-                  type="text"
-                  placeholder="Meta Title"
-                  name="mtitle"
-                  className="form-input w-full rounded-md mt-1 border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                  required
-                />
-              </div>
-              <div className="mb-4 w-[100%]">
-                <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                  Meta description
-                </label>
-                <input
-                  type="text"
-                  placeholder="Meta description"
-                  name="mdescription"
-                  className="form-input w-full rounded-md mt-1 border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                  required
-                />
-              </div>
-              <div className="mb-4 w-[100%]">
-                <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
                   News Title
                 </label>
                 <input
@@ -92,42 +67,16 @@ const CreateNewsForm = () => {
                   required
                 />
               </div>
-
               <div className="mb-4 w-[100%]">
                 <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                  News Content
+                  News link
                 </label>
-                {/* <CKEditor
-                  editor={ClassicEditor}
-                  data="<p>Hello from CKEditor&nbsp;5!</p>"
-                  onReady={(editor) => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log("Editor is ready to use!", editor);
-                  }}
-                  onChange={(event) => {
-                    console.log(event);
-                  }}
-                  onBlur={(event, editor) => {
-                    console.log("Blur.", editor);
-                  }}
-                  onFocus={(event, editor) => {
-                    console.log("Focus.", editor);
-                  }}
-                /> */}
-
-                <IRichTextEditor
-                  id="rte"
-                  sticky={false}
-                  controls={[
-                    ["bold", "italic", "underline"],
-                    ["link", "image", "video", "blockquote", "code"],
-                    ["unorderedList", "h1", "h2", "h3"],
-                    ["alignLeft", "alignCenter", "alignRight"],
-                  ]}
-                  value={state.content}
-                  onChange={(value, delta, sources) =>
-                    onChangeState("content", value)
-                  }
+                <input
+                  type="text"
+                  placeholder="link"
+                  name="link"
+                  className="form-input w-full rounded-md mt-1 border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                  required
                 />
               </div>
             </div>

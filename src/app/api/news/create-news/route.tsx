@@ -26,11 +26,9 @@ export async function POST(request: NextRequest) {
     const newsData = {
       title: formData.get("title") as string,
       slug: slug,
-      content: formData.get("content") as string,
       category: formData.get("category") as string,
       featureImage: featuredImageUrl,
-      mtitle: formData.get("mtitle") as string,
-      mdescription: formData.get("mdescription") as string,
+      link: formData.get("link") as string,
     };
 
     const n = new News(newsData);

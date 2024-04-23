@@ -17,19 +17,42 @@ const IconsBox = ({ response, categories }: any) => {
       {filterData?.length > 0 &&
         filterData?.map((item: any, index: any) => {
           return (
-            <Link href={`/news/${item?.slug}`} key={item?._id}>
-              <div className="flex  items-center justify-center h-[100% ] cursor-pointer">
-                <Image
-                  src={item?.featureImage}
-                  width={100}
-                  height={36}
-                  alt=""
-                  objectFit="contain"
-                  objectPosition="center"
-                  className="brightness-100 transition-all hover:transition-all contrast-0 hover:brightness-auto hover:contrast-100"
-                />
+            <>
+              <div
+                className="flex  items-center justify-center h-[100% ] "
+                key={item?._id}
+              >
+                {categories === "news" ? (
+                  <>
+                    <a href={`${item?.link}`} target="_blank">
+                      <Image
+                        src={item?.featureImage}
+                        width={100}
+                        height={36}
+                        alt=""
+                        objectFit="contain"
+                        objectPosition="center"
+                        className="brightness-100 transition-all hover:transition-all cursor-pointer "
+                        // className="brightness-100 transition-all hover:transition-all contrast-0 hover:brightness-auto hover:contrast-100"
+                      />
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <Image
+                      src={item?.featureImage}
+                      width={100}
+                      height={36}
+                      alt=""
+                      objectFit="contain"
+                      objectPosition="center"
+                      className="brightness-100 transition-all hover:transition-all "
+                      // className="brightness-100 transition-all hover:transition-all contrast-0 hover:brightness-auto hover:contrast-100"
+                    />
+                  </>
+                )}
               </div>
-            </Link>
+            </>
           );
         })}
     </div>

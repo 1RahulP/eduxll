@@ -47,11 +47,6 @@ const NewsList = async () => {
                                 News Image
                               </a>
                             </th>
-                            <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
-                              <a href="#" className="dataTable-sorter">
-                                News Slug
-                              </a>
-                            </th>
                             <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase asc">
                               <a href="#" className="dataTable-sorter">
                                 News Name
@@ -59,12 +54,12 @@ const NewsList = async () => {
                             </th>
                             <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
                               <a href="#" className="dataTable-sorter">
-                                News Description
+                                Category
                               </a>
                             </th>
                             <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
                               <a href="#" className="dataTable-sorter">
-                                Category
+                                News link
                               </a>
                             </th>
                             <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
@@ -90,21 +85,14 @@ const NewsList = async () => {
                                   />
                                   {/* {blogs?.featuredImage} */}
                                 </td>
-                                <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-blue">
-                                  {blogs?.slug}
-                                </td>
                                 <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                   {blogs?.title}
                                 </td>
                                 <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  <div
-                                    dangerouslySetInnerHTML={{
-                                      __html: blogs?.content,
-                                    }}
-                                  />
+                                  {blogs?.category}
                                 </td>
                                 <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  {blogs?.category}
+                                  {blogs?.link}
                                 </td>
                                 <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                   <div className="flex gap-[10px]">

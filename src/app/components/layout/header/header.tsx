@@ -33,6 +33,7 @@ const Header = () => {
       item=== "Webinars" && router.push("/webinars");
       item=== "Blog" && router.push("/blogs");
       item=== "about us" && router.push("/about-us");
+      item=== "Contact us" && router.push("/contact-us");
   }
   const toggleSidebar = (val: any) => {
     setColor(val);

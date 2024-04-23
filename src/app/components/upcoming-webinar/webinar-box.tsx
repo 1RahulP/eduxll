@@ -46,7 +46,13 @@ const WebniarBox = ({ response, category }: any) => {
                 className="border rounded-xl bg-[#f8f9fb] rounded-md shadow-xl cursor-pointer"
                 onClick={() =>
                   // webinarSlug(item)
-                  router.push(`/webinars/free-classes/${item?.slug}`)
+                  // router.push(`/webinars/free-classes/${item?.slug}`)
+                  // router.push(`/webinars/free-classes/${item?.slug}`)
+                  router.push(
+                    category === "Masterclasses"
+                      ? `/free-masterclass/free-classes/${item?.slug}`
+                      : `/webinars/free-classes/${item?.slug}`
+                  )
                 }
 
                 //style={{ marginRight: "20px" }}
@@ -70,16 +76,35 @@ const WebniarBox = ({ response, category }: any) => {
                         >
                           UPCOMING
                         </BadgeChip>
-                        <h3 className="text-xl font-semibold my-2">
-                          {formattedDate} |{formattedTime}
-                        </h3>
-                        <p className="text-md">
-                          <div dangerouslySetInnerHTML={{ __html: content }} />
-                        </p>
-                        <p className="font-semibold mt-4">{item?.name}</p>
-                        <p className="text-sm line-clamp-1">
-                          {item?.description}
-                        </p>
+                        {category === "Masterclasses" ? (
+                          <>
+                            <h3 className="text-xl font-semibold my-2">
+                              {formattedDate} |{formattedTime}
+                            </h3>
+                            <p className="text-md">
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: item?.content
+                                    .replace(/"/g, "")
+                                    .slice(0, 100),
+                                }}
+                              ></div>
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <h3 className="text-xl font-semibold my-2">
+                              {item?.ptitle}
+                            </h3>
+                            <p className="text-md">
+                              {formattedDate} |{formattedTime}
+                            </p>
+                            <p className="font-semibold mt-4">{item?.name}</p>
+                            <p className="text-sm line-clamp-1">
+                              {item?.description}
+                            </p>
+                          </>
+                        )}
                       </div>
                       <Button
                         text={"Register Now"}

@@ -8,10 +8,10 @@ import { Input } from "@nextui-org/react";
 import { format } from "date-fns";
 import Image from "next/image";
 
-const getWebinar = async (slug: string) => {
+const getMaster = async (slug: string) => {
   try {
     connect();
-    const freeMaterClassess = await Web.findOne({ slug });
+    const freeMaterClassess = await FreeMaster.findOne({ slug });
     return freeMaterClassess;
   } catch (error) {
     return error;
@@ -19,7 +19,7 @@ const getWebinar = async (slug: string) => {
 };
 const FreeClasses = async ({ params }: any) => {
   const paramA = params.slug;
-  const response = await getWebinar(paramA);
+  const response = await getMaster(paramA);
   console.log(response, "got it on slug page..!!");
 
   const formattedDate = format(new Date(response?.date), " do MMM '|' EEEE,");
@@ -39,7 +39,7 @@ const FreeClasses = async ({ params }: any) => {
             <div className="flex gap-2">
               <span className="cursor-pointer">Home</span>
               <span>{">"}</span>
-              <span>Webinar</span>
+              <span>Free Master Classes</span>
             </div>
             <h2 className="text-2xl font-semibold mt-12 mb-6">
               AI&apos;s Impact on Healthcare Digitalization

@@ -5,6 +5,10 @@ const Webinarschema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a name"],
   },
+  ptitle: {
+    type: String,
+    required: [true, "Please provide a page title"],
+  },
   description: {
     type: String,
     required: [true, "Please provide a description"],

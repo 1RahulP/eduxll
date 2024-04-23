@@ -73,7 +73,7 @@ const Page = () => {
                               <div className="flex gap-[10px]">
                                 <a
                                   href="#"
-                                  className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
+                                  className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center "
                                 >
                                   <Image
                                     src="/edit-box-line.svg"
@@ -84,7 +84,7 @@ const Page = () => {
                                 </a>
                                 <a
                                   href="#"
-                                  className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
+                                  className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center "
                                 >
                                   <Image
                                     src="/delete-bin-line.svg"

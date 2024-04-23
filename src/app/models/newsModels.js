@@ -10,10 +10,6 @@ const NewsSchma = new mongoose.Schema({
     required: { true: "Please provide a slug" },
     unique: true,
   },
-  content: {
-    type: String,
-    required: [true, "Please provide a content"],
-  },
   featureImage: {
     type: String,
   },
@@ -23,13 +19,9 @@ const NewsSchma = new mongoose.Schema({
   images: {
     type: [String],
   },
-  mtitle: {
+  link: {
     type: String,
-    required: [true, "Please provide a meta title"],
-  },
-  mdescription: {
-    type: String,
-    required: [true, "Please provide a meta description"],
+    required: [true, "Please provide a meta link"],
   },
 });
 

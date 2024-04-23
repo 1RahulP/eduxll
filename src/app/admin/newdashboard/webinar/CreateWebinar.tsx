@@ -69,11 +69,23 @@ const Webinar = () => {
               </div>
               <div className="mb-4 w-[100%]">
                 <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                  Name
+                  Title
                 </label>
                 <input
                   type="text"
                   placeholder="Title"
+                  name="ptitle"
+                  className="form-input w-full rounded-md mt-1 border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                  required
+                />
+              </div>
+              <div className="mb-4 w-[100%]">
+                <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                  User Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="User name"
                   name="name"
                   className="form-input w-full rounded-md mt-1 border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
                   required
@@ -81,11 +93,11 @@ const Webinar = () => {
               </div>
               <div className="mb-4 w-[100%]">
                 <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                  Description
+                  User Description
                 </label>
                 <input
                   type="text"
-                  placeholder="description"
+                  placeholder="User description"
                   name="description"
                   className="form-input w-full rounded-md mt-1 border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
                   required
