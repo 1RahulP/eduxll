@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { Component } from "react";
 import dynamic from "next/dynamic";
+import LinkModelBox from "@/app/components/linkmodelbox/linkmodelbox";
 
 const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
@@ -11,8 +12,10 @@ const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
 
 const FreeMasterClasses = () => {
   const router = useRouter();
+  const [loading, setLoadig] = React.useState<Boolean>(false);
   const [blogPopup, setBlogPopup] = React.useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoadig(true);
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -23,6 +26,7 @@ const FreeMasterClasses = () => {
     );
     console.log(response);
     router.refresh();
+    setLoadig(false);
     setBlogPopup(true);
   };
 
@@ -36,6 +40,17 @@ const FreeMasterClasses = () => {
   console.log("state", { state });
   return (
     <>
+      {blogPopup && (
+        <LinkModelBox
+          buttonclose={() => setBlogPopup(false)}
+          buttonsave={() =>
+            router.push("/admin/newdashboard/freeMaster/freemasterlist")
+          }
+          modelheading="Free Master Classess"
+          itemicon="sussess"
+          modelcontent="Free Master Classess Created Sussessfully"
+        />
+      )}
       <div className="flex bg-[#fff] items-center justify-between   px-[15px] py-[15px] mb-[20px] rounded-[10px]">
         <h2>Create Free Master Classess</h2>
       </div>
@@ -205,13 +220,23 @@ const FreeMasterClasses = () => {
               </label>
             </div>
           </div>
+          {loading && (
+            <button
+              disabled
+              className="bg-black text-white p-2 rounded-md max-w-[636px]"
+            >
+              Loading..
+            </button>
+          )}
 
-          <button
-            type="submit"
-            className="bg-black text-white p-2 rounded-md max-w-[636px]"
-          >
-            Submit
-          </button>
+          {!loading && (
+            <button
+              type="submit"
+              className="bg-black text-white p-2 rounded-md max-w-[636px]"
+            >
+              Submit
+            </button>
+          )}
         </form>
       </div>
     </>

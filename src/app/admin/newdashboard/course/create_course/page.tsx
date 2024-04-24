@@ -7,6 +7,8 @@ import Image from "next/image";
 import { set } from "mongoose";
 import { uploadFiletoFirebase } from "@/app/utils";
 import { createCourse, updateCourseFields } from "@/app/actions";
+import LinkModelBox from "@/app/components/linkmodelbox/linkmodelbox";
+import { useRouter } from "next/navigation";
 
 const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
@@ -17,8 +19,10 @@ const CreateCourse = () => {
   const [courseImage, setCourseImage] = useState<any>(null);
   const [courseBrochure, setCourseBrochure] = useState<any>(null);
   const [courseCertificate, setCourseCertificate] = useState<any>(null);
+  const [blogPopup, setBlogPopup] = React.useState(false);
 
   const [loading, setLoadig] = useState<Boolean>(false);
+  const router = useRouter();
 
   const [courses, setCourses] = useState({
     title: "",
@@ -79,7 +83,7 @@ const CreateCourse = () => {
         const response2 = await axios.put("/api/course", data);
       }
     }
-
+    setBlogPopup(true);
     setLoadig(false);
   };
 
@@ -96,6 +100,17 @@ const CreateCourse = () => {
   return (
     <>
       <SideBarLayout>
+        {blogPopup && (
+          <LinkModelBox
+            buttonclose={() => setBlogPopup(false)}
+            buttonsave={() =>
+              router.push("/admin/newdashboard/course/course-list")
+            }
+            modelheading="Course"
+            itemicon="sussess"
+            modelcontent="Course Created Sussessfully"
+          />
+        )}
         <div className="flex items-center justify-between border-b-[1px] border-slate-200 px-[15px] pb-[15px] mb-[20px]">
           <h2>Create Course</h2>
         </div>

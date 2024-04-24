@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { Component } from "react";
 import dynamic from "next/dynamic";
+import LinkModelBox from "@/app/components/linkmodelbox/linkmodelbox";
 
 const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
@@ -11,14 +12,18 @@ const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
 
 const CreateNewsForm = () => {
   const router = useRouter();
+  const [loading, setLoadig] = React.useState<Boolean>(false);
+
   const [blogPopup, setBlogPopup] = React.useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoadig(true);
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
     const response = await axios.post("/api/news/create-news", formData);
     console.log(response);
     router.refresh();
+    setLoadig(false);
     setBlogPopup(true);
   };
 
@@ -32,6 +37,15 @@ const CreateNewsForm = () => {
   console.log("state", { state });
   return (
     <>
+      {blogPopup && (
+        <LinkModelBox
+          buttonclose={() => setBlogPopup(false)}
+          buttonsave={() => router.push("/admin/newdashboard/newsList")}
+          modelheading="News"
+          itemicon="sussess"
+          modelcontent="News Created Sussessfully"
+        />
+      )}
       <div className="flex bg-[#fff] items-center justify-between   px-[15px] py-[15px] mb-[20px] rounded-[10px]">
         <h2>Create News</h2>
       </div>
@@ -107,12 +121,23 @@ const CreateNewsForm = () => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="bg-black text-white p-2 rounded-md max-w-[636px]"
-          >
-            Submit
-          </button>
+          {loading && (
+            <button
+              disabled
+              className="bg-black text-white p-2 rounded-md max-w-[636px]"
+            >
+              Loading..
+            </button>
+          )}
+
+          {!loading && (
+            <button
+              type="submit"
+              className="bg-black text-white p-2 rounded-md max-w-[636px]"
+            >
+              Submit
+            </button>
+          )}
         </form>
       </div>
     </>

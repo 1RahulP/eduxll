@@ -3,6 +3,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { Component } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import LinkModelBox from "@/app/components/linkmodelbox/linkmodelbox";
 
 const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
@@ -12,7 +14,9 @@ const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
 const CreateBlogfname = () => {
   const router = useRouter();
   const [blogPopup, setBlogPopup] = React.useState(false);
+  const [loading, setLoadig] = React.useState<Boolean>(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoadig(true);
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -20,6 +24,7 @@ const CreateBlogfname = () => {
     const response = await axios.post("/api/blog/create-blog", formData);
     console.log(response);
     router.refresh();
+    setLoadig(false);
     setBlogPopup(true);
   };
 
@@ -33,11 +38,19 @@ const CreateBlogfname = () => {
   console.log("state", { state });
   return (
     <>
+      {blogPopup && (
+        <LinkModelBox
+          buttonclose={() => setBlogPopup(false)}
+          buttonsave={() => router.push("/admin/newdashboard/bloglist")}
+          modelheading="Blogs"
+          itemicon="sussess"
+          modelcontent="Blogs Created Sussessfully"
+        />
+      )}
+
       <div className="flex bg-[#fff] items-center justify-between   px-[15px] py-[15px] mb-[20px] rounded-[10px]">
         <h2>Create Blog</h2>
       </div>
-
-      {blogPopup && <h2>blogs created sussessfully</h2>}
 
       <div className="flex flex-col   bg-[#fff] p-8 w-full rounded-[10px]">
         <form onSubmit={handleSubmit} className="flex flex-col">
@@ -158,12 +171,23 @@ const CreateBlogfname = () => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="bg-black text-white p-2 rounded-md max-w-[636px]"
-          >
-            Submit
-          </button>
+          {loading && (
+            <button
+              disabled
+              className="bg-black text-white p-2 rounded-md max-w-[636px]"
+            >
+              Loading..
+            </button>
+          )}
+
+          {!loading && (
+            <button
+              type="submit"
+              className="bg-black text-white p-2 rounded-md max-w-[636px]"
+            >
+              Submit
+            </button>
+          )}
         </form>
       </div>
     </>

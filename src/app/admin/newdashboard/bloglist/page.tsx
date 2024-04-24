@@ -57,11 +57,11 @@ const BlogList = async () => {
                                 Blog Name
                               </a>
                             </th>
-                            <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
+                            {/* <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
                               <a href="#" className="dataTable-sorter">
                                 Blog Description
                               </a>
-                            </th>
+                            </th> */}
                             <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
                               <a href="#" className="dataTable-sorter">
                                 Category
@@ -91,18 +91,28 @@ const BlogList = async () => {
                                   {/* {blogs?.featuredImage} */}
                                 </td>
                                 <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-blue">
-                                  {blogs?.slug}
+                                  <div
+                                    className="titlemet titlemet line-clamp-1 max-w-[200px]"
+                                    title={blogs?.slug}
+                                  >
+                                    {blogs?.slug}
+                                  </div>
                                 </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                  {blogs?.title}
+                                <td className="p-3  text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                  <div
+                                    className="titlemet line-clamp-1 max-w-[200px]"
+                                    title={blogs?.title}
+                                  >
+                                    {blogs?.title}
+                                  </div>
                                 </td>
-                                <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                {/* <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                   <div
                                     dangerouslySetInnerHTML={{
                                       __html: blogs?.content,
                                     }}
                                   />
-                                </td>
+                                </td> */}
                                 <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                   {blogs?.category}
                                 </td>

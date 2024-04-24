@@ -6,7 +6,12 @@ import Blog from "@/app/models/blogModels";
 import { connect } from "@/app/dbConfig";
 import Slidernav1 from "../slidernav";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css/pagination";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // eslint-disable-next-line @next/next/no-async-client-component
 const IconsBox = ({ response, categories }: any) => {
@@ -18,40 +23,22 @@ const IconsBox = ({ response, categories }: any) => {
 
   const [popUp, setPopUp] = useState("");
 
+  console.log("filterData length", filterData?.length);
 
-  console.log("filterData length",filterData?.length)
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
   return (
-    <div className="relative">
-        <Slidernav1 navfix="3" />
-
-        <Swiper
-              slidesPerView={3.2}
-              spaceBetween={15}
-              className="mySwiper3 width-100"
-              navigation={{
-                nextEl: ".review3-swiper-button-next",
-                prevEl: ".review3-swiper-button-prev",
-              }}
-              grid={{
-                rows: 2,
-              }}
-              modules={[Navigation]}
-            >
+    <Slider {...settings}>
       {filterData?.length > 0 &&
         filterData?.map((item: any, index: any) => {
           return (
             <>
-
-<SwiperSlide
-            key={index}
-            className="relative"
-            onMouseEnter={() => setPopUp(item._id)}
-            onMouseLeave={() => setPopUp("")}
-          >
-              <div
-                className="flex  items-center justify-center h-[100% ] "
-                
-              >
+              <div className="flex  items-center justify-center h-[100% ] ">
                 {categories === "news" ? (
                   <>
                     <a href={`${item?.link}`} target="_blank">
@@ -63,11 +50,10 @@ const IconsBox = ({ response, categories }: any) => {
                         objectFit="contain"
                         objectPosition="center"
                         className="brightness-100 transition-all hover:transition-all cursor-pointer "
-                        // className="brightness-100 transition-all hover:transition-all contrast-0 hover:brightness-auto hover:contrast-100"
                       />
                     </a>
                   </>
-                ) : (
+                ) : categories === "recruiters" ? (
                   <>
                     <Image
                       src={item?.featureImage}
@@ -77,18 +63,16 @@ const IconsBox = ({ response, categories }: any) => {
                       objectFit="contain"
                       objectPosition="center"
                       className="brightness-100 transition-all hover:transition-all "
-                      // className="brightness-100 transition-all hover:transition-all contrast-0 hover:brightness-auto hover:contrast-100"
                     />
                   </>
+                ) : (
+                  <></>
                 )}
               </div>
-              </SwiperSlide>
             </>
           );
         })}
-        </Swiper>
-    </div>
-    
+    </Slider>
   );
 };
 

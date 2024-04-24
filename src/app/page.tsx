@@ -40,8 +40,6 @@ const page = async () => {
   const response: any = await getAllBlogs();
   const responseNews: any = await getAllNews();
 
-  
-
   return (
     <HeaderLayout>
       <div>
@@ -185,7 +183,7 @@ const page = async () => {
             <h2 className="text-3xl font-semibold mb-[16px] text-center">
               Our Top Recruiters
             </h2>
-            <RecruitersSlider response={response} />
+            <RecruitersSlider response={responseNews} />
           </div>
         </div>
       </div>

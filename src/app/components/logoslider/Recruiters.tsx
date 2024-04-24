@@ -50,7 +50,7 @@ const RecruitersSlider = ({ response }: any) => {
               {...settings}
               className="items-center justify-center"
             >
-            <IconsBox response={response} categories="recruiters" />
+              <IconsBox response={response} categories="recruiters" />
             </Slider>
           </div>
         </div>
