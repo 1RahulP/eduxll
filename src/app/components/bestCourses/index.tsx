@@ -12,12 +12,11 @@ import CourseCard from "../courseCard";
 import Slidernav1 from "../slidernav";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import Slider from "react-slick";
 
 const BestCourses = () => {
   const [popUp, setPopUp] = useState("");
   const [filteractive, setfilteractive] = useState<any>("View All");
-  console.log("filteractive", { filteractive });
-
   const activeTab = (item: any) => {
     setfilteractive(item);
   };
@@ -34,6 +33,29 @@ const BestCourses = () => {
   const router = useRouter();
 
   const randomNumber = Math.floor(Math.random() * 100) + 1;
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <>
@@ -51,7 +73,7 @@ const BestCourses = () => {
               }
             />
           </div>
-          <div className="md:flex hidden grid grid-cols-3 gap-[45px] mb-[10px]">
+          <div className="md:flex  grid grid-cols-3 gap-[45px] mb-[10px]">
             {Coursesfilter.map((item, index) => {
               return (
                 <>
@@ -83,30 +105,23 @@ const BestCourses = () => {
             })}
           </div>
 
-          <div
-            className="relative grid
-          grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[15px]"
-          >
+          <div className="relative gap-[15px]">
             {/* <Slidernav1 navfix="2" /> */}
-            <CourseCard
-              popUp={popUp}
-              setPopUp={setPopUp}
-              listArray={listArray}
-            />
-            {/* <Swiper
-              slidesPerView={3.2}
-              spaceBetween={15}
-              className="mySwiper2 width-100"
-              navigation={{
-                nextEl: ".review2-swiper-button-next",
-                prevEl: ".review2-swiper-button-prev",
-              }}
-              grid={{
-                rows: 2,
-              }}
-              modules={[Navigation]}
+
+            <CourseCard  />
+            {/* <Slider
+              autoplay
+              {...settings}
+              className="items-center justify-center mx-[-10px]"
             >
-              {bestSellerArray?.map((item, index) => {
+              <CourseCard
+                popUp={popUp}
+                setPopUp={setPopUp}
+                listArray={listArray}
+              />
+            </Slider> */}
+
+            {/* {bestSellerArray?.map((item, index) => {
                 return (
                   <SwiperSlide
                     key={index}
@@ -169,7 +184,7 @@ const BestCourses = () => {
                               {item.title}
                             </h3>
                             <div className="mt-2 flex gap-[10px] items-center">
-                              <span className=""> 
+                              <span className="">
                                 <Image
                                   src={item?.degreeIcon}
                                   alt="rating"
@@ -180,7 +195,7 @@ const BestCourses = () => {
                               <span className="text-[14px]">{item.degree}</span>
                             </div>
                             <div className="mt-2 flex gap-[10px] items-center">
-                              <span className=""> 
+                              <span className="">
                                 <Image
                                   src={item?.monthsIcons}
                                   alt="rating"
@@ -189,7 +204,7 @@ const BestCourses = () => {
                                 />
                               </span>
                               <span className="text-[14px]">{item.months}</span>
-                            </div> 
+                            </div>
                           </div>
                           <div className="border-t-1 px-[30px] align-center text-center w-full py-2">
                             <div className="text-[#2467ec] cursor-pointer ">
@@ -203,7 +218,7 @@ const BestCourses = () => {
                           popUp === item.key ? "block" : "hidden"
                         }
                         max-w-[320px] sm:left-6 left-[2px] rounded-xl top-0 p-6 bg-white`}
-                      > 
+                      >
                         <h3 className="font-semibold ">
                           Write Better Emails: Tactics for Smarter Team
                           Communication
@@ -245,8 +260,7 @@ const BestCourses = () => {
                     </div>
                   </SwiperSlide>
                 );
-              })}
-            </Swiper> */}
+              })} */}
           </div>
         </div>
       </section>

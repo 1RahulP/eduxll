@@ -7,6 +7,23 @@ import { NextRequest, NextResponse } from "next/server";
 import { Anonymous_Pro } from "next/font/google";
 
 connect()
+
+
+export async function GET(request:NextRequest, response:NextResponse) {
+    try { 
+        const courses = await Courses.find()
+        return NextResponse.json(courses, {status: 200})
+
+        
+    } catch (error:any) {
+        return NextResponse.json({error: error.message}, {status: 500})
+    }
+
+}
+
+
+
+
 export async function POST(request:NextRequest, response:NextResponse) {
     try {
         const body = await request.json()

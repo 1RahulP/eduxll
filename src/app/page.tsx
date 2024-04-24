@@ -40,7 +40,7 @@ const page = async () => {
   const response: any = await getAllBlogs();
   const responseNews: any = await getAllNews();
 
-  console.log("responseNews", { responseNews });
+  
 
   return (
     <HeaderLayout>

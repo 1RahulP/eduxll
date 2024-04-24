@@ -10,6 +10,17 @@ interface LatestNewsProps {
 // eslint-disable-next-line @next/next/no-async-client-component
 const LatestNews = async ({ response }: LatestNewsProps) => {
   const latestNewsArray = response;
+const onlyThree = latestNewsArray?.slice(0, 4);
+
+
+const filterBlogData = latestNewsArray?.filter((item: any) => {
+  return item?.category === "blogs";
+}
+);
+
+const sliceData = filterBlogData?.slice(0, 3);
+console.log("onlyThree",sliceData?.length)
+  
 
   return (
     <>
@@ -27,15 +38,22 @@ const LatestNews = async ({ response }: LatestNewsProps) => {
         </div>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-          {latestNewsArray?.map((item: any, index: any) => {
+
+           
+         
+          {sliceData?.map((item: any, index: any) => {
+            
             return (
-              <>
-                {item?.category === "blogs" && (
+              
+           
+            
                   <div
                     className="max-w-[410px] rounded-xl bg-white shadow-md hover:shadow-xl cursor-pointer"
                     key={index}
                     // onClick={() => redirect(`/news/${item.slug}`)}
                   >
+                    
+
                     <Link href={`/news/${item.slug}`}>
                       <div>
                         <Image
@@ -74,9 +92,9 @@ const LatestNews = async ({ response }: LatestNewsProps) => {
                           </div>
                           <div>
                             <h3 className="font-semibold text-lg my-4">
-                              {item.title}
+                              {item?.title}
                             </h3>
-                            <Link href={`/news/${item.slug}`}>
+                            <Link href={`/news/${item?.slug}`}>
                               <Button
                                 text={"Read more"}
                                 className={
@@ -95,8 +113,8 @@ const LatestNews = async ({ response }: LatestNewsProps) => {
                       </div>
                     </Link>
                   </div>
-                )}
-              </>
+               
+            
             );
           })}
         </div>

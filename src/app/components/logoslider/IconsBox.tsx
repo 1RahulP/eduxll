@@ -1,9 +1,12 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import Blog from "@/app/models/blogModels";
 import { connect } from "@/app/dbConfig";
+import Slidernav1 from "../slidernav";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 
 // eslint-disable-next-line @next/next/no-async-client-component
 const IconsBox = ({ response, categories }: any) => {
@@ -12,15 +15,42 @@ const IconsBox = ({ response, categories }: any) => {
   const filterData = response?.filter(
     (item: any) => item?.category === categories
   );
+
+  const [popUp, setPopUp] = useState("");
+
+
+  console.log("filterData length",filterData?.length)
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="relative">
+        <Slidernav1 navfix="3" />
+
+        <Swiper
+              slidesPerView={3.2}
+              spaceBetween={15}
+              className="mySwiper3 width-100"
+              navigation={{
+                nextEl: ".review3-swiper-button-next",
+                prevEl: ".review3-swiper-button-prev",
+              }}
+              grid={{
+                rows: 2,
+              }}
+              modules={[Navigation]}
+            >
       {filterData?.length > 0 &&
         filterData?.map((item: any, index: any) => {
           return (
             <>
+
+<SwiperSlide
+            key={index}
+            className="relative"
+            onMouseEnter={() => setPopUp(item._id)}
+            onMouseLeave={() => setPopUp("")}
+          >
               <div
                 className="flex  items-center justify-center h-[100% ] "
-                key={item?._id}
+                
               >
                 {categories === "news" ? (
                   <>
@@ -52,10 +82,13 @@ const IconsBox = ({ response, categories }: any) => {
                   </>
                 )}
               </div>
+              </SwiperSlide>
             </>
           );
         })}
+        </Swiper>
     </div>
+    
   );
 };
 

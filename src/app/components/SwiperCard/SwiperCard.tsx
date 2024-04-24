@@ -1,100 +1,55 @@
 'use client'
-import Image from "next/image";
-import Badgechip from "../badge";
-import Button from "../button/Button";
-import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import Slidernav1 from "../slidernav";
-import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
-import BadgeChip from "../badge";
-import { randomUUID } from "crypto";
-import { useRouter } from "next/navigation";
-import { connect } from "@/app/dbConfig";
-import Courses from "@/app/models/coursesModels";
-import Link from "next/link";
+
+import React from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import axios from "axios";
-
-interface CourseCardProps {
-  listArray?: any;
-}
-
-
-const CourseCard = ({   listArray }: CourseCardProps) => {
-
-  const [data, setData] = useState<any>([]);
-  const [popUp, setPopUp] = useState("");
-
-  var settings = {
-    dots: true,
-    infinite: false,
-    speed: 1000,
-    slidesToShow: 3,
-    // slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  const getAllCourses = async ()=>{
-    const data = await axios.get('/api/course')
-    if(data.status === 200){
-      setData(data?.data)
-    }
-  }
-
-  useEffect(()=>{
-    getAllCourses()
-  }, [])
+import Image from 'next/image';
+import Link from 'next/link';
+import BadgeChip from '../badge';
+import Button from '../button/Button';
 
 
+
+const SwiperCard = ({data}:any) => {
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      };
+    
   return (
-    <>
-      
-      <div className="relative">
-        <Slidernav1 navfix="3" />
+    <Slider
+    autoplay
+    {...settings}
+    className="items-center justify-center mx-[-10px]"
+  >
 
-        <Swiper
-              slidesPerView={3.2}
-              spaceBetween={15}
-              className="mySwiper3 width-100"
-              navigation={{
-                nextEl: ".review3-swiper-button-next",
-                prevEl: ".review3-swiper-button-prev",
-              }}
-              grid={{
-                rows: 2,
-              }}
-              modules={[Navigation]}
-            >
-        {data?.map((item: any, index: any) => {
+    {data?.length > 0 && (
+        <>
+        {data.map((item: any, index: any) => {
+          console.log("course item nehat", { item });
           const slug = item.title.replace(/\s+/g, "-").toLowerCase();
           return (
-            <SwiperSlide
-            key={index}
-            className="relative"
-            onMouseEnter={() => setPopUp(item._id)}
-            onMouseLeave={() => setPopUp("")}
-          >
             <Link href={`/product/${slug}`} key={index}>
               <div className="cursor-pointer">
                 <div className="max-w-[350px] rounded-xl bg-white shadow-md hover:shadow-xl">
@@ -127,9 +82,9 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
                   <div>
                     <div className="contentbox p-[25px] pt-[10px]">
                       <div className="flex justify-between">
-                        <Badgechip className={"text-[#31bf82] bg-[#ebfcf7]"}>
+                        {/* <BadgeChip className={"text-[#31bf82] bg-[#ebfcf7]"}>
                           {item.category}
-                        </Badgechip>
+                        </Badgechip> */}
                         <div className="flex gap-2">
                           <div>
                             <Image
@@ -169,7 +124,7 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
                         </span>
                         <span className="text-[14px]">{item.duration}</span>
                       </div>
-                      {/* <div className="mt-2 flex gap-[10px] items-center">
+                      <div className="mt-2 flex gap-[10px] items-center">
                       <span className="">
                         <Image
                           src={item?.userImage}
@@ -179,7 +134,7 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
                         />
                       </span>
                       <span className="text-[14px]">{item.username}</span>
-                    </div> */}
+                    </div>
                     </div>
                     <div className="border-t-1 px-[30px] align-center text-center w-full py-2">
                       <div className="text-[#2467ec] cursor-pointer ">
@@ -189,12 +144,8 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
                   </div>
                 </div>
                 <div
-                   className={`absolute  z-[9]   ${
-                    popUp === item._id ? "block" : "hidden"
-                  }
-                        max-w-[320px] sm:left-6 left-[2px] rounded-xl top-0 p-6 bg-white`}
-                >
-                  {/* <h3 className="font-semibold ">
+                  className='absolute  z-[9]max-w-[320px] sm:left-6 left-[2px] rounded-xl top-0 p-6 bg-white'>
+                  <h3 className="font-semibold ">
                     Write Better Emails: Tactics for Smarter Team Communication
                   </h3>
                   <p className="my-2 text-md">
@@ -203,14 +154,10 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
                   <p className="text-sm">
                     Knowledge is power. Information is liberating. Education is
                     the premise of progress, in every society, in every family
-                  </p> */}
-
-                  <div dangerouslySetInnerHTML={
-                    {__html: item?.description.replace(/"/g, "")}
-                  }></div>
-                  
+                  </p>
                   <div className="">
-                    {listArray?.map((value: any, ind: any) => {
+
+                    {/* {listArray?.map((value: any, ind: any) => {
                       return (
                         <div className="flex gap-2 my-1" key={ind}>
                           <div>
@@ -224,7 +171,7 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
                           <span className="text-xs">{value.list}</span>
                         </div>
                       );
-                    })}
+                    })} */}
                   </div>
                   <div className="my-4 mb-">
                     <Button
@@ -237,14 +184,16 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
                 </div>
               </div>
             </Link>
-            </SwiperSlide>
           );
         })}
+        </>
 
-</Swiper>
-</div>
-       
-    </>
-  );
-};
-export default CourseCard;
+    )}
+
+
+
+  </Slider>
+  )
+}
+
+export default SwiperCard

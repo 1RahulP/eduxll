@@ -69,7 +69,7 @@ const BestCourses = () => {
             {speeializationtab.map((item, index) => {
               return (
                 <>
-                  <BadgeChip theme="default" size="medium">
+                  <BadgeChip theme="default" size="medium" key={index}>
                     {item.speeialglistItem}
                   </BadgeChip>
                 </>

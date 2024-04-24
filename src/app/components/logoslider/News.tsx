@@ -9,48 +9,42 @@ import IconsBox from "./IconsBox";
 
 const NewsSlider = ({ response }: any) => {
   var settings = {
-    dots: false,
-    infinite: true,
-    arrows: false,
+    dots: true,
+    infinite: false,
     speed: 1000,
     slidesToShow: 1,
+    //need arrows
+    arrows: true,
+
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-
-      {
-        breakpoint: 800,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToShow: 1,
+          // slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 450,
+        breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToShow: 1,
+          // slidesToScroll: 1,
         },
       },
     ],
   };
-  const filterData = response?.filter((item: any) => item?.category === "news");
+   
   return (
     <>
       <section className="bg-[#fff]   py-[30px]  border-r-2 border-[red] ">
         <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
           <div
             className="logoslider 
-          
           "
           >
-            {/* <Slider autoplay {...settings} className=""> */}
+            {/* <Slider {...settings}  
+            > */}
             <IconsBox response={response} categories="news" />
             {/* </Slider> */}
           </div>

@@ -443,6 +443,7 @@ const menuArray = [
       { navlink: "Blog" },
       {navlink: "Webinars"},
       { navlink: "Contact us" },
+      { navlink: "Webinar" },
     ],
   },
 ];
