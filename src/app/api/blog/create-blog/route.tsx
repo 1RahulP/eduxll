@@ -13,6 +13,8 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
+    const customCategory = JSON.parse(formData.get("customCategory") as string);
+  
     const featureImage = formData.get("featureImage");
 
     let featuredImageUrl = "";
@@ -27,10 +29,10 @@ export async function POST(request: NextRequest) {
       title: formData.get("title") as string,
       slug: slug,
       content: formData.get("content") as string,
-      category: formData.get("category") as string,
       featureImage: featuredImageUrl,
       mtitle: formData.get("mtitle") as string,
       mdescription: formData.get("mdescription") as string,
+      customCategory: customCategory,
       timestamps: formData.get("timestamps") as string,
     };
 

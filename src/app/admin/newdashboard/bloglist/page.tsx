@@ -5,6 +5,8 @@ import Blog from "@/app/models/blogModels";
 import { connect } from "@/app/dbConfig";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import DeleteBlogButton from "@/app/components/blog/DeleteBlogButton";
+import axios from "axios";
 const getAllBlogs = async () => {
   try {
     connect();
@@ -15,9 +17,10 @@ const getAllBlogs = async () => {
   }
 };
 
+
+
 const BlogList = async () => {
   const response: any = await getAllBlogs();
-
   return (
     <>
       <SideBarLayout>
@@ -118,9 +121,11 @@ const BlogList = async () => {
                                 </td>
                                 <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                   <div className="flex gap-[10px]">
-                                    <a
-                                      href="#"
-                                      className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
+                                    
+                                    <Link
+                                      href={`/admin/newdashboard/bloglist/edit-blog/${blogs?.slug}`}
+                                      className=" hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
+
                                     >
                                       <Image
                                         src="/edit-box-line.svg"
@@ -128,10 +133,12 @@ const BlogList = async () => {
                                         height={15}
                                         alt="edit"
                                       />
-                                    </a>
-                                    <a
+                                    </Link>
+
+                                    <DeleteBlogButton id={blogs?._id} model='blog'/>
+                                    {/* <a
                                       href="#"
-                                      className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
+                                      className=" hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
                                     >
                                       <Image
                                         src="/delete-bin-line.svg"
@@ -139,7 +146,7 @@ const BlogList = async () => {
                                         height={15}
                                         alt="delete"
                                       />
-                                    </a>
+                                    </a> */}
                                   </div>
                                 </td>
                               </tr>

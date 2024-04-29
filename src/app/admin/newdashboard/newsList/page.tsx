@@ -5,6 +5,7 @@ import { connect } from "@/app/dbConfig";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import News from "@/app/models/newsModels";
+import DeleteNewsButton from "@/app/components/news/DeleteNewsButton";
 const getAllNews = async () => {
   try {
     connect();
@@ -71,8 +72,8 @@ const NewsList = async () => {
                         </thead>
                         <tbody>
                           {response?.map((blogs: any, index: any) => (
-                            <>
-                              <tr className="bg-white border-b border-dashed dark:bg-dark-card dark:border-gray-700">
+                            
+                              <tr key ={blogs?._id} className="bg-white border-b border-dashed dark:bg-dark-card dark:border-gray-700">
                                 <td
                                   className="p-3 text-sm font-medium whitespace-nowrap dark:text-white"
                                   key={index}
@@ -96,9 +97,10 @@ const NewsList = async () => {
                                 </td>
                                 <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                   <div className="flex gap-[10px]">
-                                    <a
-                                      href="#"
-                                      className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
+                                  <Link
+                                      href={`/admin/newdashboard/newsList/edit-news/${blogs?.slug}`}
+                                      className=" hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
+
                                     >
                                       <Image
                                         src="/edit-box-line.svg"
@@ -106,8 +108,9 @@ const NewsList = async () => {
                                         height={15}
                                         alt="edit"
                                       />
-                                    </a>
-                                    <a
+                                    </Link>
+                                    <DeleteNewsButton id={blogs?._id} model='news'/>
+                                    {/* <a
                                       href="#"
                                       className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
                                     >
@@ -117,11 +120,11 @@ const NewsList = async () => {
                                         height={15}
                                         alt="delete"
                                       />
-                                    </a>
+                                    </a> */}
                                   </div>
                                 </td>
                               </tr>
-                            </>
+                            
                           ))}
                           {response?.map((blog: any, index: any) => {
                             console.log("blog  list", { blog });

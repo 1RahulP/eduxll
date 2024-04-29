@@ -1,26 +1,27 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BadgeChip from "../badge";
 import Button from "../button/Button";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
+import axios from "axios";
 
-const WebniarBox = ({ response, category }: any) => {
-  const filterData = response?.filter(
-    (item: any) => item?.category === category
-  );
+
+interface webinarProp{
+  abroadCards?:boolean
+}
+const WebniarBox = ({ category,abroadCards , data }: any) => {
+  
 
   const router = useRouter();
 
-  // const webinarSlug = (item: any) => {
-  //   // console.log(globalState,"ggggggg");
-  //   // setGlobalState(item);
-  //   router.push(`/webinars/free-classes/${item?.slug}`);
+  const filterData = data?.filter(
+    (item: any) => item?.customCategory[0]?.value    === category
+  );
 
-  // };
+  console.log("data hai", {data});
 
-  console.log("websniar response", { response });
 
   return (
     <>
@@ -70,12 +71,22 @@ const WebniarBox = ({ response, category }: any) => {
                     </div>
                     <div className="p-4">
                       <div>
+                        {abroadCards===true ?
                         <BadgeChip
+                        theme="success"
+                        className="w-fit rounded-md text-sm"
+                      >
+                        Past
+                      </BadgeChip>
+                      :
+                          <BadgeChip
                           theme="success"
                           className="w-fit rounded-md text-sm"
                         >
                           UPCOMING
                         </BadgeChip>
+                      }
+                        
                         {category === "Masterclasses" ? (
                           <>
                             <h3 className="text-xl font-semibold my-2">
@@ -106,10 +117,18 @@ const WebniarBox = ({ response, category }: any) => {
                           </>
                         )}
                       </div>
+                      {abroadCards===true ? 
+                       <Button
+                       text={"View Recording"}
+                       className={"!block w-fit text-red-500 !rounded-md mt-6"}
+                     />
+                     :
+
                       <Button
                         text={"Register Now"}
                         className={"!block w-fit text-red-500 !rounded-md mt-6"}
                       />
+                    }
                     </div>
                   </div>
                 </div>

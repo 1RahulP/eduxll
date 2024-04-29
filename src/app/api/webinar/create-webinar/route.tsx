@@ -15,6 +15,8 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const featureImage = formData.get("featureImage");
+    const customCategory = JSON.parse(formData.get("customCategory") as string);
+
 
     let featuredImageUrl = "";
     const slug = generateSlug(formData.get("name") as string);
@@ -41,7 +43,7 @@ export async function POST(request: NextRequest) {
       time: formData.get("time") as string,
       ylink: formData.get("ylink") as string,
       featureImage: featuredImageUrl,
-      category: formData.get("category") as string,
+      customCategory: customCategory,
       image: userImageUrl,
       slug: slug,
       mtitle: formData.get("mtitle") as string,

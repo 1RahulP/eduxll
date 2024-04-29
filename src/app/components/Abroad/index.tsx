@@ -11,8 +11,12 @@ import Slidernav1 from "../slidernav";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import BadgeChip from "../badge";
+import Link from "next/link";
+interface coursesCardsProp {
+  onlyCards?: boolean;
+}
 
-const BestCourses = () => {
+const BestCourses = ({ onlyCards }: coursesCardsProp) => {
   const [popUp, setPopUp] = useState("");
   const [filteractive, setfilteractive] = useState<any>("View All");
   console.log("filteractive", { filteractive });
@@ -34,48 +38,55 @@ const BestCourses = () => {
     <>
       <section className="bg-[#f6f8fb] py-[50px] lg:px-0 px-6">
         <div className=" md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
-          <div className="flex justify-between items-center">
-            <h2 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[20px]">
-              Study Abroad
-            </h2>
-            <Button
-              text={"VIEW ALL  "}
-              className={
-                "px-6 py-2 border text-[#000] !border-[#000]  !rounded-[0px] hover:bg-[#000] hover:text-[#fff]"
-              }
-            />
-          </div>
-          <div className="md:flex hidden grid grid-cols-3 gap-[45px] mb-[10px]">
-            {Coursesfilter.map((item, index) => {
-              return (
-                <>
-                  <div
-                    key={index}
-                    onClick={() => activeTab(item)}
-                    className={`${
-                      filteractive?.tabname === item.tabname
-                        ? "  after:w-full    after:transition-all transition-all  after:h-[2px] after:bg-[#ed1d26] after:absolute relative after:left-[0] after:bottom-[0px] text-[#ed1d26]"
-                        : ""
-                    } `}
-                  >
-                    {item.tabname}
-                  </div>
-                </>
-              );
-            })}
-          </div>
+          {onlyCards === false && (
+            <>
+              <div className="flex justify-between items-center">
+                <h2 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[20px]">
+                  Study Abroad  
+                </h2>
+                <Link href="/study-abroad">
 
-          <div className="flex flex-wrap   gap-[10px] gap-y-[5px] my-[10px]">
-            {speeializationtab.map((item, index) => {
-              return (
-                <>
-                  <BadgeChip theme="default" size="medium" key={index}>
-                    {item.speeialglistItem}
-                  </BadgeChip>
-                </>
-              );
-            })}
-          </div>
+                <Button
+                  text={"VIEW ALL  "}
+                  className={
+                    "px-6 py-2 border text-[#000] !border-[#000]  !rounded-[0px] hover:bg-[#000] hover:text-[#fff]"
+                  }
+                  />
+                  </Link>
+              </div>
+              <div className="md:flex hidden grid grid-cols-3 gap-[45px] mb-[10px]">
+                {Coursesfilter.map((item, index) => {
+                  return (
+                    <>
+                      <div
+                        key={index}
+                        onClick={() => activeTab(item)}
+                        className={`${
+                          filteractive?.tabname === item.tabname
+                            ? "  after:w-full    after:transition-all transition-all  after:h-[2px] after:bg-[#ed1d26] after:absolute relative after:left-[0] after:bottom-[0px] text-[#ed1d26]"
+                            : ""
+                        } `}
+                      >
+                        {item.tabname}
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
+
+              <div className="flex flex-wrap   gap-[10px] gap-y-[5px] my-[10px]">
+                {speeializationtab.map((item, index) => {
+                  return (
+                    <>
+                      <BadgeChip theme="default" size="medium" key={index}>
+                        {item.speeialglistItem}
+                      </BadgeChip>
+                    </>
+                  );
+                })}
+              </div>
+            </>
+          )}
 
           <div className="relative">
             <Slidernav1 navfix="3" />

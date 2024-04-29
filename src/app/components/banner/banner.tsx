@@ -10,12 +10,10 @@ const Banner = () => {
           <div className="grid lg:grid-cols-[1.5fr_1fr] justify-between items-center gap-8 p-12 py-[30px] ">
             <div>
               <h2 className="sm:text-[2.1rem] text-2xl leading-[1.2em] font-bold text-[#21225F] tracking-wider">
-                Start learning from the world’s best institutions
+              Discover Learning Without Borders
               </h2>
               <p className="my-[20px] text-[14px] text-[#808292]">
-                Flexible easy to access learning opportunities can bring a
-                significant change in how individuals prefer to learn! The Edla
-                can offer you to enjoy the beauty of eLearning!
+              Bridge the Distance and Join the Revolution <br />Connect with Top-Tier Educators and Innovative Curricula from Around the World
               </p>
               <div className="sm:flex">
                 <input

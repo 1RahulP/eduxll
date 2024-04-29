@@ -8,13 +8,16 @@ import {
   uploadBytesResumable,
 } from "@firebase/storage";
 import { NextRequest, NextResponse } from "next/server";
+
 connect();
 
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const featureImage = formData.get("featureImage");
+    const customCategory = JSON.parse(formData.get("customCategory") as string);
 
+    
     let featuredImageUrl = "";
     const slug = generateSlug(formData.get("title") as string);
 
@@ -26,9 +29,9 @@ export async function POST(request: NextRequest) {
     const newsData = {
       title: formData.get("title") as string,
       slug: slug,
-      category: formData.get("category") as string,
       featureImage: featuredImageUrl,
       link: formData.get("link") as string,
+      customCategory: customCategory,
     };
 
     const n = new News(newsData);
@@ -51,18 +54,7 @@ const uploadImagetoFirebase = async (image: File) => {
   return downloadUrl;
 };
 
-const findBlogAndUpdateImage = async (id: string, imageUrl: string) => {
-  try {
-    const blog = await News.findById(id);
-    if (blog) {
-      blog.featureImage = imageUrl;
-      await blog.save();
-    }
-    return blog;
-  } catch (error) {
-    return error;
-  }
-};
+
 
 function generateSlug(str: string) {
   return str

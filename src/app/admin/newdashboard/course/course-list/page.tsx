@@ -7,20 +7,21 @@ import FreeMaster from "@/app/models/freeMaster";
 import { format } from "date-fns";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Courses from "@/app/models/coursesModels";
+import DeleteBlogButton from "@/app/components/blog/DeleteBlogButton";
 
-const getAllClassess = async () => {
+const getAllCourses = async () => {
   try {
     connect();
-    const freeMaterClassess = await FreeMaster.find();
-    return freeMaterClassess;
+    const courses = await Courses.find();
+    return courses;
   } catch (error) {
     return error;
   }
 };
 
 const Page = async () => {
-  const response: any = await getAllClassess();
-
+  const response: any = await getAllCourses();
   return (
     <>
       <SideBarLayout>
@@ -47,66 +48,43 @@ const Page = async () => {
                           <tr>
                             <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
                               <a href="#" className="dataTable-sorter">
-                                Feature Image
+                                Course Image
                               </a>
                             </th>
                             <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
                               <a href="#" className="dataTable-sorter">
-                                Webniar Date and time
+                              Course Title
                               </a>
                             </th>
-                            <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
-                              <a href="#" className="dataTable-sorter">
-                                Webniar author name
-                              </a>
-                            </th>
-                            <th className="p-3 text-xs font-medium tracking-wider text-start text-gray-700 dark:text-gray-400 uppercase">
-                              <a href="#" className="dataTable-sorter">
-                                Webniar author desc
-                              </a>
-                            </th>
+
+                           
+
                           </tr>
                         </thead>
                         <tbody>
-                          {response?.map((webinar: any, index: any) => {
-                            console.log("websniar item", { webinar });
-                            const formattedDate = format(
-                              new Date(webinar?.date),
-                              " do MMM '|' EEEE,"
-                            );
-                            const time = webinar?.time;
-                            const hours = time.split(":")[0];
-                            const minutes = time.split(":")[1];
-                            const AMPM = hours >= 12 ? "PM" : "AM";
-                            const newHours = hours % 12 || 12;
-                            const formattedTime = `${newHours}:${minutes} ${AMPM}`;
-                            console.log("formattedTime", formattedTime);
-                            const content = webinar?.content.replace(/"/g, "");
+                          {response?.map((course: any, index: any) => {
+                            const id = course?._id.toString()
+                            
                             return (
-                              <>
+                              <React.Fragment key={course?._id}>
                                 <tr className="bg-white border-b border-dashed dark:bg-dark-card dark:border-gray-700">
                                   <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
                                     <Image
-                                      src={webinar?.featureImage}
+                                      src={course?.courseImage}
                                       width={50}
                                       height={50}
                                       alt="blog"
                                     />
                                   </td>
                                   <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-black">
-                                    {formattedDate} | {formattedTime}
+                                   {course?.title}
                                   </td>
-                                  <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-black">
-                                    {webinar?.name}
-                                  </td>
-                                  <td className="p-3 text-sm font-medium whitespace-nowrap dark:text-black">
-                                    {webinar?.description}
-                                  </td>
+                                
                                   <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                     <div className="flex gap-[10px]">
-                                      <a
-                                        href="#"
-                                        className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
+                                      <Link
+                                        href={`/admin/newdashboard/course/update-course/${course?.id}`}
+                                        className=" hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
                                       >
                                         <Image
                                           src="/edit-box-line.svg"
@@ -114,22 +92,13 @@ const Page = async () => {
                                           height={15}
                                           alt="edit"
                                         />
-                                      </a>
-                                      <a
-                                        href="#"
-                                        className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
-                                      >
-                                        <Image
-                                          src="/delete-bin-line.svg"
-                                          width={15}
-                                          height={15}
-                                          alt="delete"
-                                        />
-                                      </a>
+                                      </Link>
+
+                                      <DeleteBlogButton id={id} model='course'  />   
                                     </div>
                                   </td>
                                 </tr>
-                              </>
+                              </React.Fragment>
                             );
                           })}
                         </tbody>

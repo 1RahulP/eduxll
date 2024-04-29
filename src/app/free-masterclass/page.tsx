@@ -6,18 +6,18 @@ import WebinarSlider from "../components/upcoming-webinar/webinar-slider";
 import { connect } from "../dbConfig";
 import FreeMaster from "../models/freeMaster";
 
-const getAllClassess = async () => {
-  try {
-    connect();
-    const freeMaterClassess = await FreeMaster.find();
-    return freeMaterClassess;
-  } catch (error) {
-    return error;
-  }
-};
+// const getAllClassess = async () => {
+//   try {
+//     connect();
+//     const freeMaterClassess = await FreeMaster.find();
+//     return freeMaterClassess;
+//   } catch (error) {
+//     return error;
+//   }
+// };
 
 const FreeMasterClass = async () => {
-  const response: any = await getAllClassess();
+  // const response: any = await getAllClassess();
 
   return (
     <HeaderLayout>
@@ -59,7 +59,7 @@ const FreeMasterClass = async () => {
       
       <div className="sm:my-16 my-12 lg:pr-12 lg:pl-32 lg-8">
         <h3 className="sm:text-4xl text-xl font-semibold md:pl-20 md:text-left text-center">Free Masterclasses</h3>
-        <MasterSlider response={response} />
+        <MasterSlider  />
         <div>
           <Button
             text={"VIEW OUR MASTERCLASSES"}

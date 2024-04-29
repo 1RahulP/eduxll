@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 
+const customCategorySchema = new mongoose.Schema({
+  value:{
+    type: String,
+  },
+  label:{
+    type: String,
+  }
+  
+})
+
 const NewsSchma = new mongoose.Schema({
   title: {
     type: String,
@@ -13,15 +23,15 @@ const NewsSchma = new mongoose.Schema({
   featureImage: {
     type: String,
   },
-  category: {
-    type: String,
-  },
   images: {
     type: [String],
   },
   link: {
     type: String,
     required: [true, "Please provide a meta link"],
+  },
+  customCategory: {
+    type: [customCategorySchema],
   },
 });
 

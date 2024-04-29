@@ -7,17 +7,35 @@ const CourseModuleSchema = new Schema({
   modulDescription: { type: String, trim: true },
 });
 
+
+
+const customCategorySchema = new mongoose.Schema({
+  value:{
+    type: String,
+  },
+  label:{
+    type: String,
+  }
+  
+})
+const featureCategorySchema = new mongoose.Schema({
+  value:{
+    type: String,
+  },
+  label:{
+    type: String,
+  }
+  
+})
+
+
 const coursesSchema = new Schema({
   title: {
     type: String,
     required: true,
     trim: true,
   },
-  category: {
-    type: String,
-    required: true,
-    default: "",
-  },
+
 
   duration: {
     type: String,
@@ -70,6 +88,15 @@ const coursesSchema = new Schema({
 
   courseModule: {
     type: [CourseModuleSchema],
+    default: [],
+  },
+
+  customCategory: {
+    type: [customCategorySchema],
+    default: [],
+  },
+  featureCategoryInsert: {
+    type: [featureCategorySchema],
     default: [],
   },
 });

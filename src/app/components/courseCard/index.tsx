@@ -88,7 +88,11 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
             >
         {data?.map((item: any, index: any) => {
           const slug = item.title.replace(/\s+/g, "-").toLowerCase();
+          // const filterLatestCards = item?.featureCategoryInsert
+          console.log("test",{item})
           return (
+            <>
+            {item?.featureCategoryInsert[0]?.value === "latest-card" ? <>
             <SwiperSlide
             key={index}
             className="relative"
@@ -128,7 +132,7 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
                     <div className="contentbox p-[25px] pt-[10px]">
                       <div className="flex justify-between">
                         <Badgechip className={"text-[#31bf82] bg-[#ebfcf7]"}>
-                          {item.category}
+                          {item?.customCategory[0]?.label}
                         </Badgechip>
                         <div className="flex gap-2">
                           <div>
@@ -238,6 +242,9 @@ const CourseCard = ({   listArray }: CourseCardProps) => {
               </div>
             </Link>
             </SwiperSlide>
+            </> : <></> }
+           
+            </>
           );
         })}
 

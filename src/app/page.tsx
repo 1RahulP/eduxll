@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./components/button/Button";
 import LogoSlider from "./components/logoslider";
 import BestCourses from "./components/bestCourses";
@@ -15,30 +16,24 @@ import HeaderLayout from "./components/headerLayout/HeaderLayout";
 import Blog from "@/app/models/blogModels";
 import { connect } from "./dbConfig";
 import News from "./models/newsModels";
+import Link from "next/link";
+import axios from "axios";
 
-const getAllBlogs = async () => {
-  try {
-    connect();
-    const blogs = await Blog.find();
-    return blogs;
-  } catch (error) {
-    return error;
-  }
-};
+const page = () => {
 
-const getAllNews = async () => {
-  try {
-    connect();
-    const news = await News.find();
-    return news;
-  } catch (error) {
-    return error;
-  }
-};
+  // const [resNews, setResNews] = useState<any>([]);
 
-const page = async () => {
-  const response: any = await getAllBlogs();
-  const responseNews: any = await getAllNews();
+  // const getAllNews= async ()=>{
+  //   const data = await axios.get('/api/news')
+  //   if(data.status === 200){
+  //     setResNews(data?.data)
+  //   }
+  // }
+
+  // useEffect(()=>{
+  //   getAllNews()
+  // }, [])
+
 
   return (
     <HeaderLayout>
@@ -49,7 +44,7 @@ const page = async () => {
       <LogoSlider />
       <BestCourses />
 
-      <AbroadCourses />
+      <AbroadCourses onlyCards={false}  />
       <div className="bg-[url('/blue-bg.png')] bg-contain">
         <div className="md:max-w-[1230px] w-[100%] mx-auto px-[15px] py-12 grid lg:grid-cols-3 md:grid-cols-2     gap-10">
           <div className="flex gap-6 items-center">
@@ -151,17 +146,19 @@ const page = async () => {
             content taught by <br /> academic and industry experts
           </p>
           <FreeCoursesSlider />
-          <div>
-            <Button
-              text={"View All Free Courses"}
+          <div className="w-full text-center">
+            <Link
+            href={"/free-courses"}
+              // text={"View All Free Courses"}
               className={
                 "px-6 py-4 border text-[#fff] !border-[#000] bg-black !rounded-md m-auto"
               }
-            />
+             
+            >View All Free Courses</Link>
           </div>
         </div>
         <div>
-          <LatestNews response={response} />
+          <LatestNews  />
         </div>
       </div>
 
@@ -175,7 +172,7 @@ const page = async () => {
             <h2 className="text-3xl font-semibold mb-[16px] text-center">
               edu<span className="text-[red]">XLL</span> in the News
             </h2>
-            <NewsSlider response={responseNews} />
+            <NewsSlider />
           </div>
         </div>
         <div className="w-[100%]">
@@ -183,7 +180,7 @@ const page = async () => {
             <h2 className="text-3xl font-semibold mb-[16px] text-center">
               Our Top Recruiters
             </h2>
-            <RecruitersSlider response={responseNews} />
+            <RecruitersSlider />
           </div>
         </div>
       </div>

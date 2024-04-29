@@ -1,9 +1,11 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import dynamic from "next/dynamic";
 import LinkModelBox from "@/app/components/linkmodelbox/linkmodelbox";
+import Select from 'react-select'
+import makeAnimated from "react-select/animated";
 
 const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
@@ -13,13 +15,26 @@ const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
 const CreateNewsForm = () => {
   const router = useRouter();
   const [loading, setLoadig] = React.useState<Boolean>(false);
+  const options = [
+    { value: "news", label: "News" },
+    { value: "recruiters", label: "Recruiters" },
+  ];
+
+const animatedComponents = makeAnimated();
+const [category, setCategory] = useState([]);
+const handleCategory = (value:any)=>{
+  setCategory(value);
+}
+
+
 
   const [blogPopup, setBlogPopup] = React.useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoadig(true);
     e.preventDefault();
     const form = e.currentTarget;
-    const formData = new FormData(form);
+    const formData = new FormData(form); 
+    formData.append("customCategory", JSON.stringify(category));
     const response = await axios.post("/api/news/create-news", formData);
     console.log(response);
     router.refresh();
@@ -34,7 +49,7 @@ const CreateNewsForm = () => {
   const onChangeState = (key: any, value: any) => {
     setState((prev) => ({ ...prev, [key]: value }));
   };
-  console.log("state", { state });
+  
   return (
     <>
       {blogPopup && (
@@ -73,13 +88,13 @@ const CreateNewsForm = () => {
                 <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
                   News Category
                 </label>
-                <input
-                  type="text"
-                  placeholder="Category"
-                  name="category"
-                  className="form-input w-full rounded-md mt-1 border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                  required
-                />
+                <Select 
+                    options={options}
+                    isMulti
+                    components={animatedComponents}
+                    onChange={(value)=>handleCategory(value)}
+                    value={category}
+                    />
               </div>
               <div className="mb-4 w-[100%]">
                 <label className="font-medium text-sm text-slate-600 dark:text-slate-400">

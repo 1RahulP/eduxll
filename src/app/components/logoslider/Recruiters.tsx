@@ -45,13 +45,9 @@ const RecruitersSlider = ({ response }: any) => {
       <section className="bg-[#fff]   py-[30px] ">
         <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
           <div className="logoslider">
-            <Slider
-              autoplay
-              {...settings}
-              className="items-center justify-center"
-            >
+             
               <IconsBox response={response} categories="recruiters" />
-            </Slider>
+            
           </div>
         </div>
       </section>

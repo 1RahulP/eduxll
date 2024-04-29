@@ -1,5 +1,17 @@
 import mongoose from "mongoose";
 
+
+const customCategorySchema = new mongoose.Schema({
+  value:{
+    type: String,
+  },
+  label:{
+    type: String,
+  }
+  
+})
+
+
 const FreeMasterSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -37,8 +49,8 @@ const FreeMasterSchema = new mongoose.Schema({
   featureImage: {
     type: String,
   },
-  category: {
-    type: String,
+  customCategory: {
+    type: [customCategorySchema],
   },
   images: {
     type: String,

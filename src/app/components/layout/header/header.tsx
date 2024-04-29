@@ -22,19 +22,21 @@ const Header = () => {
   const [pagePartition, setPagePartition] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
 
-  const [moreMenu,setMoreMenu] = useState("")
+  const [moreMenu, setMoreMenu] = useState("");
   // const handleToggle = () => {
   //   setIsToggled(!isToggled);
   // };
 
-  const toggleMore = (item:string) =>{
+  const toggleMore = (item: string) => {
     // console.log(item,"console");
-      item=== "Free Master Class" && router.push("/free-masterclass");
-      item=== "Webinars" && router.push("/webinars");
-      item=== "Blog" && router.push("/blogs");
-      item=== "about us" && router.push("/about-us");
-      item=== "Contact us" && router.push("/contact-us");
-  }
+    item === "Free Master Class" && router.push("/free-masterclass");
+    item === "Webinars" && router.push("/webinars");
+    item === "Blog" && router.push("/blogs");
+    item === "about us" && router.push("/about-us");
+    item === "Contact us" && router.push("/contact-us");
+    item === "Study Abroad" && router.push("/study-abroad");
+
+  };
   const toggleSidebar = (val: any) => {
     setColor(val);
     setPagePartition(true);
@@ -128,11 +130,11 @@ const Header = () => {
                                             key={ind}
                                             className="py-1 hover:bg-[#f9f9f9] text-gray-700 block px-4 py-2 text-sm"
                                             role="none"
-                                            onClick={()=>toggleMore(item.navlink)}
+                                            onClick={() =>
+                                              toggleMore(item.navlink)
+                                            }
                                           >
-                                          
-                                              {item.navlink}
-                                            
+                                            {item.navlink}
                                           </li>
                                         );
                                       })}
@@ -143,7 +145,7 @@ const Header = () => {
                             </div>
                           </div>
                         ) : (
-                          <div>{item.menu}</div>
+                          <div onClick={()=>toggleMore(item.menu)}>{item.menu}</div>
                         )}
                       </li>
                     </>
@@ -441,9 +443,8 @@ const menuArray = [
       { navlink: "about us" },
       { navlink: "Free Master Class" },
       { navlink: "Blog" },
-      {navlink: "Webinars"},
+      { navlink: "Webinars" },
       { navlink: "Contact us" },
-      { navlink: "Webinar" },
     ],
   },
 ];
@@ -511,87 +512,38 @@ const mobileMenuArray = [
 ];
 const sideBarArray = [
   {
-    title: "By Goal",
+    title: "Explore Courses",
     list: [
-      {
-        key: false,
-        listItem: "Take a course",
-      },
+      
       {
         key: true,
-        listItem: "Earn a certificate",
+        listItem: "Masters",
       },
       {
         key: true,
 
-        listItem: "Earn a degree",
+        listItem: "Bachelors ",
+      },	
+      {
+        key: true,
+        listItem: "Certificate",
+      },
+      {
+        key: true,
+        listItem: "Free Courses",
       },
     ],
   },
-  {
-    title: "By Topic",
-    list: [
-      {
-        key: true,
-
-        listItem: "Artificial Intelligence",
-      },
-      {
-        key: true,
-
-        listItem: "Data Science",
-      },
-      {
-        key: true,
-
-        listItem: "Finance",
-      },
-      {
-        key: true,
-
-        listItem: "Business Administration",
-      },
-      {
-        key: true,
-
-        listItem: "Cybersecurity",
-      },
-      {
-        key: true,
-
-        listItem: "Computer Science",
-      },
-      {
-        key: true,
-
-        listItem: "View all topics",
-      },
-    ],
-  },
-  {
-    title: "",
-    list: [
-      {
-        key: true,
-
-        listItem: "Career resources",
-      },
-      {
-        key: false,
-        listItem: "Schools & Partners",
-      },
-    ],
-  },
+   
+  
 ];
 
 const speeializationtab = [
-  { speeialglistItem: "Artificial Intelligence" },
-  { speeialglistItem: "Data Science" },
-  { speeialglistItem: "Finance" },
-  { speeialglistItem: "Business Administration" },
-  { speeialglistItem: "Cybersecurity" },
-  { speeialglistItem: "Computer Science" },
-  { speeialglistItem: "View all topics" },
+  { speeialglistItem: "Master of Business Administration (MBA) |" },
+  { speeialglistItem: "PGDM in Banking and Insurance |" },
+  { speeialglistItem: "MA in Journalism and Mass Communication (MAJMC) |" },
+  { speeialglistItem: "Master of Computer Application (MCA) |" },
+   
 ];
 
 const degreearry = [

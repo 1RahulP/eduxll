@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import HeaderLayout from "../components/headerLayout/HeaderLayout";
 import Image from "next/image";
@@ -5,65 +6,142 @@ import Button from "../components/button/Button";
 import LatestNews from "../components/latest-news/latest-news";
 import { connect } from "../dbConfig";
 import Blog from "../models/blogModels";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
+const Blogs =  () => {
+  const [blogData, setBlogData] = useState<any>([]);
 
-
-const Blogs =async () => {
-// eslint-disable-next-line @next/next/no-async-client-component
-const getAllBlogs = async () => {
-    try {
-      connect();
-      const blogs = await Blog.find();
-      return blogs;
-    } catch (error) {
-      return error;
+  const getAllBlogsData= async ()=>{
+    const data = await axios.get('/api/blog')
+    if(data.status === 200){
+      setBlogData(data?.data)
     }
-  };
-const response: any = await getAllBlogs();
+  }
 
-  
+  useEffect(()=>{
+    getAllBlogsData()
+  }, [])
+
+  const filterBlogData = blogData?.filter((item: any) => {
+    return item?.customCategory[0]?.value === "blogs";
+  });
 
   return (
     <HeaderLayout>
-       <div className="h-[400px] master-banner relative bg-[url('/master.webp')] bg-no-repeat bg-cover">
+      <div className="h-[400px] master-banner relative bg-[url('/master.webp')] bg-no-repeat bg-cover">
         <div className="sm:pr-12 pr-4 lg:pl-32 pl-4 py-8 bg-gradient-to-r from-black to-transparent h-full">
-        <div className="flex gap-2 text-white">
-          <Link href={"/"} className="cursor-pointer text-[#dbd8d8]">
-            Home
-          </Link>
-          <span> {">"} </span>
-          <span>Free Masterclass</span>
-        </div>
-        <div className="sm:absolute bottom-[-30px] z-[9]">
-          <div className="text-white max-w-[720px] lg:px-20 sm:pl-8 pl-2 sm:mt-0 mt-4 grid sm:gap-6 gap-2">
-            <h2 className="sm:text-3xl text-xl font-semibold">
-              LIVE LEARNING FOR CAREER GROWTH
-            </h2>
-            <p className="sm:text-md text-sm">
-              Are you someone who is - Feeling stuck in your job? Ambitious to
-              continue learning? Not sure what’s next for you in your career?
-              Our FREE masterclasses with leading industry leaders is exactly
-              what you need!
-            </p>
-            <button className="bg-red-500 w-fit sm:px-16 px-4 sm:py-4 py-2 rounded-md sm:font-semibold tracking-wide">
-              REGISTER NOW
-            </button>
+          <div className="flex gap-2 text-white">
+            <Link href={"/"} className="cursor-pointer text-[#dbd8d8]">
+              Home
+            </Link>
+            <span> {">"} </span>
+            <span>Blogs</span>
           </div>
-          <div className="bg-white max-w-[1140px] lg:ml-20 sm:mx-8 mx-2 md:h-[100px] rounded-md shadow-md text-black grid md:grid-cols-4 grid-cols-2 gap-4 py-4 md:px-8 px-4 font-semibold mt-4 md:text-[16px] text-xs">
-            <span>FREE registration</span>
-            <span>
-              Best-in-class industry  experts
-            </span>
-            <span>Live hands-on learning</span>
-            <span>1-1 career counselling</span>
+          <div className="sm:absolute bottom-[-30px] z-[9]">
+            <div className="text-white max-w-[720px] lg:px-20 sm:pl-8 pl-2 sm:mt-0 mt-4 grid sm:gap-6 gap-2">
+              <h2 className="sm:text-3xl text-xl font-semibold">
+                LIVE LEARNING FOR CAREER GROWTH
+              </h2>
+              <p className="sm:text-md text-sm">
+                Are you someone who is - Feeling stuck in your job? Ambitious to
+                continue learning? Not sure what’s next for you in your career?
+                Our FREE masterclasses with leading industry leaders is exactly
+                what you need!
+              </p>
+              <button className="bg-red-500 w-fit sm:px-16 px-4 sm:py-4 py-2 rounded-md sm:font-semibold tracking-wide">
+                REGISTER NOW
+              </button>
+            </div>
+            <div className="bg-white max-w-[1140px] lg:ml-20 sm:mx-8 mx-2 md:h-[100px] rounded-md shadow-md text-black grid md:grid-cols-4 grid-cols-2 gap-4 py-4 md:px-8 px-4 font-semibold mt-4 md:text-[16px] text-xs">
+              <span>FREE registration</span>
+              <span>Best-in-class industry experts</span>
+              <span>Live hands-on learning</span>
+              <span>1-1 career counselling</span>
+            </div>
           </div>
-        </div>
         </div>
       </div>
       <div className="my-16">
-      <LatestNews response={response} />
-      </div>
+        {/* <LatestNews response={response} /> */}
+        <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
+          <div className="relative">
+            <h2 className="text-3xl font-semibold my-8 text-center">
+              Read Our Latest Blogs
+            </h2>
+          </div>
 
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+            {filterBlogData?.map((item: any, index: any) => {
+              return (
+                <div
+                  className="max-w-[410px] rounded-xl bg-white shadow-md hover:shadow-xl cursor-pointer"
+                  key={index}
+                >
+                  <Link href={`/news/${item.slug}`}>
+                    <div>
+                      <Image
+                        className="rounded-xl"
+                        src={item.featureImage}
+                        alt={"image"}
+                        width={410}
+                        height={260}
+                      />
+                    </div>
+                    <div>
+                      <div className="contentbox p-[30px]">
+                        <div className="flex justify-between">
+                          <div className="flex gap-2">
+                            <div>
+                              <Image
+                                src={"/calendar.png"}
+                                alt="calendar"
+                                width={20}
+                                height={20}
+                              />
+                            </div>
+                            <span className="text-sm">20 Jan 2022</span>
+                          </div>
+                          <div className="flex gap-2">
+                            <div>
+                              <Image
+                                src={"/png/user.png"}
+                                alt="user"
+                                width={20}
+                                height={20}
+                              />
+                            </div>
+                            <span className="text-sm">Mark Hanry</span>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-lg my-4">
+                            {item?.title}
+                          </h3>
+                          <Link href={`/news/${item?.slug}`}>
+                            <Button
+                              text={"Read more"}
+                              className={
+                                "text-blue-500 border !border-blue-500"
+                              }
+                            />
+                          </Link>
+                          {/* 
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: item?.content as string,
+                              }}
+                            /> */}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </HeaderLayout>
   );
 };

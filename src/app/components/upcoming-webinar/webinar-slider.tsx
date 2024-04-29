@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,10 +9,10 @@ import Button from "../button/Button";
 import BadgeChip from "../badge";
 import { useRouter } from "next/navigation";
 import WebniarBox from "./webinar-box";
+import axios from "axios";
 
-const WebinarSlider = ({ response }: any) => {
+const WebinarSlider = () => {
   const router = useRouter();
-  console.log("inner response", { response });
   var settings = {
     dots: false,
     infinite: true,
@@ -36,6 +36,19 @@ const WebinarSlider = ({ response }: any) => {
       },
     ],
   };
+
+  const [data, setData] = useState<any>([]);
+
+  const getAllWebinar= async ()=>{
+    const data = await axios.get('/api/webinar')
+    if(data.status === 200){
+      setData(data?.data)
+    }
+  }
+
+  useEffect(()=>{
+    getAllWebinar()
+  }, [])
   return (
     <>
       <section className="bg-[#fff] py-[50px]">
@@ -46,7 +59,7 @@ const WebinarSlider = ({ response }: any) => {
               {...settings}
               className="items-center justify-center mx-[-10px]"
             > */}
-            <WebniarBox response={response} category="webinar" />
+            <WebniarBox  category="webinar" data={data} />
             {/* </Slider> */}
           </div>
         </div>

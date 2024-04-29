@@ -1,3 +1,4 @@
+"use client";
 import HeaderLayout from "@/app/components/headerLayout/HeaderLayout";
 import WebinarSlider from "@/app/components/upcoming-webinar/webinar-slider";
 import Image from "next/image";
@@ -7,19 +8,19 @@ import Link from "next/link";
 import Webinar from "../models/webinar";
 import Web from "../models/webinar";
 
-const getAllClassess = async () => {
-  try {
-    connect();
-    const freeMaterClassess = await Web.find();
-    console.log(freeMaterClassess, "hii");
-    return freeMaterClassess;
-  } catch (error) {
-    return error;
-  }
-};
-const Webinars = async () => {
-  const response: any = await getAllClassess();
-  console.log(response, "hii");
+// const getAllClassess = async () => {
+//   try {
+//     connect();
+//     const freeMaterClassess = await Web.find();
+//     console.log(freeMaterClassess, "hii");
+//     return freeMaterClassess;
+//   } catch (error) {
+//     return error;
+//   }
+// };
+const Webinars = () => {
+  // const response: any = await getAllClassess();
+  // console.log(response, "hii");
 
   return (
     <HeaderLayout>
@@ -62,7 +63,7 @@ const Webinars = async () => {
         <h3 className="text-3xl font-semibold text-center">
           Register for Upcoming Webinars
         </h3>
-        <WebinarSlider response={response} />
+        <WebinarSlider/>
       </div>
     </HeaderLayout>
   );

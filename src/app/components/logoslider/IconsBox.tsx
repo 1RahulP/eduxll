@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Blog from "@/app/models/blogModels";
 import { connect } from "@/app/dbConfig";
 import Slidernav1 from "../slidernav";
@@ -12,13 +12,26 @@ import "swiper/css/pagination";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from "axios";
 
-// eslint-disable-next-line @next/next/no-async-client-component
-const IconsBox = ({ response, categories }: any) => {
-  console.log("icon box", { response });
 
-  const filterData = response?.filter(
-    (item: any) => item?.category === categories
+const IconsBox = ({  categories }: any) => {
+
+  const [resNews, setResNews] = useState<any>([]);
+
+  const getAllNews= async ()=>{
+    const data = await axios.get('/api/news')
+    if(data.status === 200){
+      setResNews(data?.data)
+    }
+  }
+
+  useEffect(()=>{
+    getAllNews()
+  }, [])
+
+  const filterData = resNews?.filter(
+    (item: any) => item?.customCategory[0]?.value === categories
   );
 
   const [popUp, setPopUp] = useState("");
@@ -32,6 +45,8 @@ const IconsBox = ({ response, categories }: any) => {
     slidesToShow: 3,
     slidesToScroll: 1,
   };
+console.log("resNews",{resNews})
+  
   return (
     <Slider {...settings}>
       {filterData?.length > 0 &&

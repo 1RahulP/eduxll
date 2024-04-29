@@ -51,8 +51,8 @@ const SideBarLayout = ({ children }: any) => {
               <ul className="sidebarlist px-[10px]">
                 {navlist?.map((item, index) => {
                   return (
-                    <>
-                      <li className="nav px-[15px] py-[10px] hover:bg-slate-200  rounded-[3px]">
+                    
+                      <li key={index} className="nav px-[15px] py-[10px] hover:bg-slate-200  rounded-[3px]">
                         <a
                           href={item.query}
                           className="flex items-center gap-[10px] "
@@ -75,7 +75,7 @@ const SideBarLayout = ({ children }: any) => {
                           )}
                         </a>
                       </li>
-                    </>
+                    
                   );
                 })}
               </ul>
@@ -150,7 +150,7 @@ const navlist = [
   },
   {
     SvgIcon: "/news-line.svg",
-    text: "News List",
+    text: "News List / Recruiters List" ,
     query: "/admin/newdashboard/newsList",
     active: ["home"],
     subMenu: [],

@@ -1,13 +1,14 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import IconsBox from "./IconsBox";
+import axios from "axios";
 
-const NewsSlider = ({ response }: any) => {
+const NewsSlider = () => {
   var settings = {
     dots: true,
     infinite: false,
@@ -34,6 +35,8 @@ const NewsSlider = ({ response }: any) => {
       },
     ],
   };
+
+  
    
   return (
     <>
@@ -45,7 +48,7 @@ const NewsSlider = ({ response }: any) => {
           >
             {/* <Slider {...settings}  
             > */}
-            <IconsBox response={response} categories="news" />
+            <IconsBox  categories="news" />
             {/* </Slider> */}
           </div>
         </div>

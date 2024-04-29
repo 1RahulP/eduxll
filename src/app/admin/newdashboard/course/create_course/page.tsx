@@ -9,11 +9,21 @@ import { uploadFiletoFirebase } from "@/app/utils";
 import { createCourse, updateCourseFields } from "@/app/actions";
 import LinkModelBox from "@/app/components/linkmodelbox/linkmodelbox";
 import { useRouter } from "next/navigation";
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated';
 
 const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
   loading: () => null,
 });
+const options = [
+  { value: 'development', label: 'Development' },
+  { value: 'business', label: 'Business' },
+]
+const featureOptions = [
+  { value: 'latest-card', label: 'Latest Card' },
+]
+const animatedComponents = makeAnimated();
 
 const CreateCourse = () => {
   const [courseImage, setCourseImage] = useState<any>(null);
@@ -23,10 +33,11 @@ const CreateCourse = () => {
 
   const [loading, setLoadig] = useState<Boolean>(false);
   const router = useRouter();
+  const [category, setCategory] = React.useState([]);
+  const [featureCategory, setFeatureCategory] = React.useState([]);
 
   const [courses, setCourses] = useState({
     title: "",
-    category: "",
     duration: "",
     description: "",
     certificateDescription: "",
@@ -47,7 +58,7 @@ const CreateCourse = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoadig(true);
     e.preventDefault();
-    const courseData = { ...courses, courseModule: courseModule };
+    const courseData = { ...courses, customCategory:category, featureCategoryInsert:featureCategory,  courseModule: courseModule };
     const response = await axios.post("/api/course", courseData);
 
     if (response.status === 200) {
@@ -145,17 +156,31 @@ const CreateCourse = () => {
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
                         Course Category
                       </label>
-                      <input
-                        type="text"
-                        placeholder="Category"
-                        name="category"
-                        className="text-[14px] text-[#686868] form-input w-full rounded-md  border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                        required
-                        value={courses.category}
-                        onChange={(e) =>
-                          setCourses({ ...courses, category: e.target.value })
-                        }
-                      />
+
+
+                      <Select 
+                        options={options}
+                        isMulti
+                        components={animatedComponents}
+                        onChange={(value:any)=>setCategory(value)}
+                        value={category}
+                    />
+ 
+                    </div>
+                    <div className=" w-full">
+                      <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                        Featured Category
+                      </label>
+
+
+                      <Select 
+                        options={featureOptions}
+                        isMulti
+                        components={animatedComponents}
+                        onChange={(value:any)=>setFeatureCategory(value)}
+                        value={featureCategory}
+                    />
+ 
                     </div>
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">

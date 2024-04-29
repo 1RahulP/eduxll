@@ -1,14 +1,15 @@
 "use client";
 import Image from "next/image";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Button from "../button/Button";
 import WebniarBox from "../upcoming-webinar/webinar-box";
+import axios from "axios";
 
-const MasterSlider = ({ response }: any) => {
+const MasterSlider = () => {
   var settings = {
     dots: false,
     infinite: true,
@@ -32,6 +33,19 @@ const MasterSlider = ({ response }: any) => {
       },
     ],
   };
+
+  const [data, setData] = useState<any>([]);
+
+  const getAllWebinar= async ()=>{
+    const data = await axios.get('/api/freeclass')
+    if(data.status === 200){
+      setData(data?.data)
+    }
+  }
+
+  useEffect(()=>{
+    getAllWebinar()
+  }, [])
   return (
     <>
       <section className="bg-[#fff] py-[50px]">
@@ -44,7 +58,7 @@ const MasterSlider = ({ response }: any) => {
             > */}
 
             <>
-              <WebniarBox response={response} category="Masterclasses" />
+              <WebniarBox category="Masterclasses" data={data} />
             </>
 
             {/* </Slider> */}

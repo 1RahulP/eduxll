@@ -6,6 +6,7 @@ import { connect } from "@/app/dbConfig";
 import FreeMaster from "@/app/models/freeMaster";
 import { format } from "date-fns";
 import Link from "next/link";
+import DeleteFreeMasterButton from "@/app/components/freeMaster/DeleteFreeMasterButton";
 
 const getAllClassess = async () => {
   try {
@@ -103,28 +104,19 @@ const Page = async () => {
                                   </td>
                                   <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                     <div className="flex gap-[10px]">
-                                      <a
-                                        href="#"
-                                        className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
-                                      >
+                                    <Link
+                                      href={`/admin/newdashboard/freeMaster/freemasterlist/edit-freemaster/${webinar?.slug}`}
+                                      className=" hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
+
+                                    >
                                         <Image
                                           src="/edit-box-line.svg"
                                           width={15}
                                           height={15}
                                           alt="edit"
                                         />
-                                      </a>
-                                      <a
-                                        href="#"
-                                        className="cursor-pointer hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
-                                      >
-                                        <Image
-                                          src="/delete-bin-line.svg"
-                                          width={15}
-                                          height={15}
-                                          alt="delete"
-                                        />
-                                      </a>
+                                      </Link>
+                                      <DeleteFreeMasterButton id={webinar?._id} model='freeclass'/>
                                     </div>
                                   </td>
                                 </tr>

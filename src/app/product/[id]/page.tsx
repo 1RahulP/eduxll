@@ -2,6 +2,7 @@
 import Button from "@/app/components/button/Button";
 import HeaderLayout from "@/app/components/headerLayout/HeaderLayout";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 const ProductPage = () => {
   const [toggleSylabbus, setToggleSyllabus] = useState("");
@@ -137,70 +138,134 @@ const ProductPage = () => {
               </div>
             )}
           </div>
-          <div className="md:mx-20 sm:pt-6 pt-4 sm:px-16 px-4">
-            <div className="grid sm:grid-cols-[2fr_1fr] items-center">
+
+          <section className="bg-[#d32f2f] py-[20px] sticky top-[66px]">
+            <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
+              <ul className="flex gap-[10px]">
+                {tabsarry?.map((nav, index) => {
+                  return (
+                    <>
+                      <li>
+                        <Link
+                          href="#"
+                          className="text-[#fff] text-[16px] leading-[1.5em] cursor-pointer"
+                        >
+                          {nav.link}
+                        </Link>
+                      </li>
+                    </>
+                  );
+                })}
+              </ul>
+            </div>
+          </section>
+
+          <div className="md:mx-20  pt-[30px]  px-4">
+            <div className="grid sm:grid-cols-[2fr_1fr] gap-[30px]">
               <div className="lg:pl-16">
-                <h3 className="sm:text-2xl text-lg my-4 sm:text-left text-center">
-                  Overview
-                </h3>
-                <p className="sm:text-lg text-sm">
+                <h3 className="text-[20px] font-[600] mb-[10px]">Overview</h3>
+                <p className="text-[16px] leading-[1.5em] text-[#383838] mb-[16px]">
                   The Step into Robotic Process Automation (RPA) course intends
                   to introduce RPA to students. The course assumes no prior
                   knowledge of RPA and takes a use-case based approach. It
                   begins by defining a real-world, generic problem and how
                   it&apos;s solved in a non-RPA environment.
                 </p>
-                <p className="sm:text-lg text-sm sm:mt-0 mt-2">
+                <p className="text-[16px] leading-[1.5em] text-[#383838]">
                   The course teaches skills that enable the students to create a
                   robot using free UiPath software (Academic Alliance Edition)
                   to automate the solution.
                 </p>
               </div>
               <div>
-                <Image
-                  src={"/overview.png"}
-                  alt="overview"
-                  width={316}
-                  height={342}
-                  className="m-auto"
-                />
+                <div className="forms ">
+                  <div className="max-w-[400px] rounded-[10px] border-[1px] border-slate-200 bg-slate-100  p-[20px]">
+                    <h3 className="text-[20px] font-[600] mb-[10px]">
+                      Get In Touch
+                    </h3>
+                    <div className="formbox flex flex-col gap-[10px]">
+                      <div className="max-w-sm space-y-3">
+                        <input
+                          type="text"
+                          className="py-[10px] px-[20px] block w-full border border-[#9f9f9f] rounded-[10px] text-sm "
+                          placeholder="Name :"
+                        />
+                      </div>
+                      <div className="max-w-sm space-y-3">
+                        <input
+                          type="text"
+                          className="py-[10px] px-[20px] block w-full border border-[#9f9f9f] rounded-[10px] text-sm"
+                          placeholder="Mobile No :"
+                        />
+                      </div>
+                      <div className="max-w-sm space-y-3">
+                        <input
+                          type="email"
+                          className="py-[10px] px-[20px] block w-full border border-[#9f9f9f] rounded-[10px] text-sm"
+                          placeholder="Email id :"
+                        />
+                      </div>
+                      <div className="max-w-sm space-y-3">
+                        <input
+                          type="text"
+                          className="py-[10px] px-[20px] block w-full border border-[#9f9f9f] rounded-[10px] text-sm"
+                          placeholder="Course :"
+                        />
+                      </div>
+                      <div className="max-w-sm space-y-3">
+                        <textarea
+                          className="py-[10px] px-[20px] block w-full border border-[#9f9f9f] rounded-[10px] text-sm"
+                          placeholder="Massage :"
+                        />
+                      </div>
+                      <div className="flex justify-center">
+                        <button
+                          type="button"
+                          className=" focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="mt-8 lg:px-16">
-              <h3 className="sm:text-2xl text-lg mb-4 tracking-wide sm:text-left text-center">
+              <h3 className="text-[20px] font-[600] mb-[10px]">
                 Top Skills you will learn
               </h3>
               <div>
                 <div className="flex gap-2 mb-2">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
                   />
-                  <p className="sm:text-lg text-sm">
+                  <p className="text-[16px] leading-[1.5em] text-[#383838]">
                     Understand the basics of Robotic Process Automation
                   </p>
                 </div>
                 <div className="flex gap-2 mb-2">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
                   />
-                  <p className="sm:text-lg text-sm">
+                  <p className="text-[16px] leading-[1.5em] text-[#383838]">
                     Identify processes that can be automated
                   </p>
                 </div>
                 <div className="flex gap-2">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
                   />
-                  <p className="sm:text-lg text-sm">
+                  <p className="text-[16px] leading-[1.5em] text-[#383838]">
                     Develop and deploy basic robots independently using UiPath
                     RPA Platform (Academic Alliance Edition)
                   </p>
@@ -208,66 +273,68 @@ const ProductPage = () => {
               </div>
             </div>
             <div className="sm:mt-16 mt-8 lg:px-16">
-              <h3 className="sm:text-2xl text-lg mb-4 tracking-wide sm:text-left text-center">
-                Highlights
-              </h3>
+              <h3 className="text-[20px] font-[600] mb-[10px]">Highlights</h3>
               <div className="grid sm:grid-cols-2">
                 <div className="flex gap-2 mb-2">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
                   />
-                  <p className="sm:text-lg text-sm">
+                  <p className="text-[16px] leading-[1.5em] text-[#383838]">
                     Self Paced – 100% Online Learning
                   </p>
                 </div>
                 <div className="flex gap-2 mb-2">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
                   />
-                  <p className="sm:text-lg text-sm">GUVI Forum Support</p>
+                  <p className="text-[16px] leading-[1.5em] text-[#383838]">
+                    GUVI Forum Support
+                  </p>
                 </div>
                 <div className="flex gap-2 mb-2">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
                   />
-                  <p className="sm:text-lg text-sm">Lifetime Access</p>
+                  <p className="text-[16px] leading-[1.5em] text-[#383838]">
+                    Lifetime Access
+                  </p>
                 </div>
                 <div className="flex gap-2 mb-2">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
                   />
-                  <p className="sm:text-lg text-sm">
+                  <p className="text-[16px] leading-[1.5em] text-[#383838]">
                     Codekata – Gamified coding Arena
                   </p>
                 </div>
               </div>
             </div>
             <div className="sm:mt-16 mt-8 lg:px-16">
-              <h3 className="sm:text-2xl text-lg mb-4 tracking-wide sm:text-left text-center">
+              <h3 className="text-[20px] font-[600] mb-[10px]">
                 Who should Enroll
               </h3>
               <div className="flex gap-2 mb-2">
                 <div className="flex-none mt-[4px]">
                   <Image
-                    src={"/svg/bullet.svg"}
+                    src={"/check-double-line.svg"}
                     alt="bullet"
                     width={16}
                     height={16}
                   />
                 </div>
-                <p className="sm:text-lg text-sm">
+                <p className="text-[16px] leading-[1.5em] text-[#383838]">
                   To understand and complete the course successfully the student
                   must have basic knowledge of computers.
                 </p>
@@ -275,13 +342,13 @@ const ProductPage = () => {
               <div className="flex gap-2 flex-start">
                 <div className="flex-none mt-[4px]">
                   <Image
-                    src={"/svg/bullet.svg"}
+                    src={"/check-double-line.svg"}
                     alt="bullet"
                     width={16}
                     height={16}
                   />
                 </div>
-                <p className="sm:text-lg text-sm">
+                <p className="text-[16px] leading-[1.5em] text-[#383838]">
                   This course is intended for industry professionals and
                   University Engineering students who want to acquire the skills
                   of designing and developing robots for process automation.
@@ -289,24 +356,26 @@ const ProductPage = () => {
               </div>
             </div>
             <div className="sm:mt-16 mt-8 lg:px-16">
-              <h3 className="mb-4 sm:text-2xl text-lg mb-4 tracking-wide sm:text-left text-center">
+              <h3 className="text-[20px] font-[600] mb-[10px]">
                 Course Syllabus
               </h3>
-              <div>
+              <div className="flex flex-col gap-[10px]">
                 {courseCollection?.map((value, index) => {
                   return (
                     <div
                       key={index}
-                      className="shadow-xl sm:p-6 p-2 border rounded-md bg-white items-center mb-4"
+                      className="  border border-dashed rounded-md overflow-hidden"
                     >
                       <div
-                        className={`grid sm:grid-cols-3 grid-cols-[3fr_2fr_1fr] cursor-pointer ${
-                          toggleSylabbus === "" ? "" : "mb-4"
+                        className={`grid sm:grid-cols-3 grid-cols-[3fr_2fr_1fr] cursor-pointer   p-4 bg-[#f3f4f678] cursor-pointer ${
+                          toggleSylabbus === value.title ? "" : ""
                         }`}
                         onClick={() => syllabus(value.title)}
                       >
-                        <h4 className="sm:text-lg text-sm">{value.title}</h4>
-                        <span className="sm:text-lg text-sm">
+                        <h4 className="text-[15px] font-[500] text-[#000]">
+                          {value.title}
+                        </h4>
+                        <span className="text-[15px] font-[500] text-[#000]">
                           {value.lesson}
                         </span>
                         <div className="flex justify-end">
@@ -324,7 +393,7 @@ const ProductPage = () => {
                             return (
                               <div
                                 key={ind}
-                                className="flex gap-2 toggleSyllabus"
+                                className="flex gap-2 toggleSyllabus p-4"
                               >
                                 <div className="relative ">
                                   <Image
@@ -342,10 +411,10 @@ const ProductPage = () => {
                                   ) : item.list === "What Next" ? (
                                     ""
                                   ) : (
-                                    <span className="w-[2px] h-8 block bg-blue-400 ml-[10px]"></span>
+                                    <span className="w-[2px] h-[100%] block bg-blue-400 ml-[10px]"></span>
                                   )}
                                 </div>
-                                <p className="sm:text-lg text-sm">
+                                <p className=" sm:text-sm text-xs text-[#767676] font-[400]">
                                   {item.list}
                                 </p>
                               </div>
@@ -362,13 +431,92 @@ const ProductPage = () => {
               <h3 className="mb-4 sm:text-2xl text-lg mb-4 tracking-wide sm:text-left text-center">
                 Pre-requisites
               </h3>
-              <p className="sm:text-lg text-sm">
+              <p className="text-[16px] leading-[1.5em] text-[#383838]">
                 To understand and complete the course successfully the student
                 must have basic knowledge of computers.
               </p>
             </div>
           </div>
-          <div className="sm:mt-16 mt-8 bg-blue-800 text-white sm:p-16 p-8">
+
+          <section className=" py-[30px] border border-b-slate-50 border-t-slate-50 mt-[30px]">
+            <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
+              <div className="grid sm:grid-cols-2 gap-4 items-center">
+                <div className="certificatebigimage p-[20px] bg-[#e7e7e74f]">
+                  <div>
+                    <Image
+                      src="/university-image.jpg"
+                      width={600}
+                      height={500}
+                      alt="certificate"
+                      objectFit="cover"
+                    />
+                  </div>
+                  <div className="textbox flex flex-col gap-[10px] p-[10px]">
+                    <h4 className="text-[20px] font-[600] leading-[1.5em]">
+                      PGP - Data Science & Engineering from Great Lakes
+                    </h4>
+                    <p className="text-[16px] leading-[1.5em] text-[#383838]">
+                      Data Science Bootcamp designed by India best Faculty to
+                      deliver career outcome
+                    </p>
+                  </div>
+                </div>
+                <div className="contentbox">
+                  <div className="grid sm:grid-cols-2 gap-4 items-start ">
+                    <div className="certificate-detail-wrapper">
+                      <div>
+                        <Image
+                          src="/dseft-sample-certificate.jpg"
+                          width={400}
+                          height={400}
+                          alt="certificate"
+                        />
+                      </div>
+                      <div className="text-center mt-[20px]">
+                        <h4 className="text-[15px] font-[600] mb-[5px] text-[#343434]">
+                          Great Lakes Executive Learning
+                        </h4>
+                        <Link
+                          href="#"
+                          className="text-[red] text-[15px] font-[500] underline underline-offset-8 cursor-pointer"
+                        >
+                          View Sample Certificate
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="rank-detail-wrapper flex flex-col gap-[10px]">
+                      {rankdetailarry?.map((item, index) => {
+                        return (
+                          <>
+                            <div className="flex gap-[10px] ">
+                              <div className="rankimage w-[50px] h-[50px]">
+                                <Image
+                                  src={item.rankimage}
+                                  width={50}
+                                  height={50}
+                                  alt={item.rankheading}
+                                />
+                              </div>
+                              <div className="rankcontentbox flex-1">
+                                <h4 className="text-[15px] font-[600] mb-[10px] text-[#343434]">
+                                  {item.rankheading}
+                                </h4>
+                                <p className="text-[10px] font-[500] text-[#48485e]">
+                                  {item.ranksubheading}
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* <div className="sm:mt-16 mt-8 bg-blue-800 text-white sm:p-16 p-8">
             <div className="grid sm:grid-cols-2 gap-4 items-center">
               <div>
                 <Image
@@ -385,7 +533,7 @@ const ProductPage = () => {
                 </h3>
                 <div className="flex gap-2 items-start">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
@@ -396,7 +544,7 @@ const ProductPage = () => {
                 </div>
                 <div className="flex gap-2 items-start">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
@@ -407,7 +555,7 @@ const ProductPage = () => {
                 </div>
                 <div className="flex gap-2 items-start">
                   <Image
-                    src={"/svg/check.svg"}
+                    src={"/check-line.svg"}
                     alt="check"
                     width={20}
                     height={20}
@@ -419,13 +567,13 @@ const ProductPage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="sm:my-16 my-8 items-center grid sm:grid-cols-[2fr_1fr] sm:px-16 px-4 md:mx-16">
             <div>
               <h3 className="mb-4 sm:text-2xl text-lg mb-4 tracking-wide sm:text-left text-center">
                 Why GUVI?
               </h3>
-              <p className="sm:text-lg text-sm">
+              <p className="text-[16px] leading-[1.5em] text-[#383838]">
                 Guvi is an IIT-M , IIM-A incubated company located at IITM
                 Research Park, Chennai. We help students master any programming
                 skills so that they can learn and effectively practice the
@@ -445,6 +593,75 @@ const ProductPage = () => {
               />
             </div>
           </div>
+
+          <section className="bg-slate-200 p-[30px]">
+            <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
+              <div className="border-b border-slate-200  ">
+                <h4 className="text-[15px] font-[600] mb-[10px] text-[#343434]">
+                  Fee & scholarships
+                </h4>
+                <p className="text-[14px] leading-[1.5em] text-[#383838]">
+                  Our flexi-payment options allow students to pay fees in
+                  hassle-free installments.
+                </p>
+              </div>
+
+              <div className=" flex gap-[15px] mt-[15px] ">
+                <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-[20px] rounded-md flex-1 text-center flex flex-col justify-center">
+                  <h3 className="text-[13px] font-[600] mb-[10px] text-[#fff]">
+                    FULL COURSE FEE(FOUR SEMESTERS)
+                  </h3>
+                  <p className="text-[15px] font-[500]   text-[#fff]">
+                    <span>INR 2,80,000 </span> - 1,50,000
+                  </p>
+                  <p className="text-[10px] font-[500]   text-[#fff]">
+                    incluslve Of all taxes
+                  </p>
+                </div>
+
+                <div className="flex-1 flex flex-col gap-[15px]">
+                  <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-[20px] rounded-md flex-1">
+                    <div className="flex items-center justify-center gap-[10px]">
+                      <h3 className="text-[13px] font-[600]  text-[#fff]">
+                        EACH SEMESTERS
+                      </h3>
+                      <div>
+                        <p className="text-[15px] font-[500]   text-[#fff]">
+                          <span>INR 2,80,000 </span> - 1,50,000
+                        </p>
+                        <p className="text-[10px] font-[500]   text-[#fff]">
+                          incluslve Of all taxes
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-[20px] rounded-md flex-1">
+                    <div className="flex items-center justify-center gap-[10px]">
+                      <div className="w-[40px] h-[40px]">
+                        <Image
+                          src="/graduation-cap-line.svg"
+                          width={40}
+                          height={40}
+                          alt="graduation"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-[15px] font-[500]   text-[#fff]">
+                          What is Lorem Ipsum?
+                        </p>
+                        <p className="text-[10px] font-[500]   text-[#fff]">
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the
+                          industrys standard dummy text ever since the 1500s,
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <div className="sm:my-16 my-8 md:mx-16 sm:px-16 px-4">
             <h3 className="mb-4 sm:text-2xl text-lg mb-8 text-center font-semibold tracking-wide">
               Frequently Asked Questions
@@ -452,12 +669,15 @@ const ProductPage = () => {
             <div className="grid gap-4">
               {faqCollection?.map((item, index) => {
                 return (
-                  <div key={index} className="p-4 shadow-xl border rounded-md">
+                  <div
+                    key={index}
+                    className=" border border-dashed rounded-md overflow-hidden"
+                  >
                     <div
-                      className="flex justify-between cursor-pointer"
+                      className="flex justify-between cursor-pointer p-4 bg-[#f3f4f678] cursor-pointer"
                       onClick={() => faqToggle(item.ques)}
                     >
-                      <h4 className="sm:text-lg text-sm font-semibold">
+                      <h4 className="text-[15px] font-[500] text-[#000]">
                         {item.ques}
                       </h4>
                       <Image
@@ -468,7 +688,7 @@ const ProductPage = () => {
                       />
                     </div>
                     {showFaq === item.ques && (
-                      <p className="sm:mt-6 mt-2 sm:pl-4 pl-2 sm:text-sm text-xs">
+                      <p className="p-4   sm:text-sm text-xs text-[#767676] font-[400]">
                         {item.ans}
                       </p>
                     )}
@@ -636,5 +856,32 @@ const faqCollection = [
   {
     ques: "Is it 100% online learning or should I come in person for any specific course?",
     ans: "It is a 100% online learning course package and there won’t be any necessity for you to be present in person.",
+  },
+];
+
+const tabsarry = [
+  { link: "Overview" },
+  { link: "Highlights" },
+  { link: "Who should Enroll" },
+  { link: "Course Syllabus" },
+  { link: "Pre-requisites" },
+  { link: "Certificate" },
+];
+
+const rankdetailarry = [
+  {
+    rankimage: "/no-4.png",
+    rankheading: "Top Standalone Institution ",
+    ranksubheading: "*Outlook India",
+  },
+  {
+    rankimage: "/no-4.png",
+    rankheading: "Private B-Schools",
+    ranksubheading: "*Careers360",
+  },
+  {
+    rankimage: "/no-5.png",
+    rankheading: "Non-IIM/IIT Institute",
+    ranksubheading: "*NIRF",
   },
 ];
