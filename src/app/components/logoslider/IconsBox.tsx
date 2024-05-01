@@ -14,21 +14,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 
-
-const IconsBox = ({  categories }: any) => {
-
+const IconsBox = ({ categories }: any) => {
   const [resNews, setResNews] = useState<any>([]);
 
-  const getAllNews= async ()=>{
-    const data = await axios.get('/api/news')
-    if(data.status === 200){
-      setResNews(data?.data)
+  const getAllNews = async () => {
+    const data = await axios.get("/api/news");
+    if (data.status === 200) {
+      setResNews(data?.data);
     }
-  }
+  };
 
-  useEffect(()=>{
-    getAllNews()
-  }, [])
+  useEffect(() => {
+    getAllNews();
+  }, []);
 
   const filterData = resNews?.filter(
     (item: any) => item?.customCategory[0]?.value === categories
@@ -45,18 +43,22 @@ const IconsBox = ({  categories }: any) => {
     slidesToShow: 3,
     slidesToScroll: 1,
   };
-console.log("resNews",{resNews})
-  
+  console.log("resNews", { resNews });
+
   return (
     <Slider {...settings}>
       {filterData?.length > 0 &&
         filterData?.map((item: any, index: any) => {
           return (
             <>
-              <div className="flex  items-center justify-center h-[100% ] ">
+              <div className="flex  items-center justify-center   ">
                 {categories === "news" ? (
                   <>
-                    <a href={`${item?.link}`} target="_blank">
+                    <a
+                      href={`${item?.link}`}
+                      target="_blank"
+                      //className="py-[15px]"
+                    >
                       <Image
                         src={item?.featureImage}
                         width={100}
@@ -64,7 +66,7 @@ console.log("resNews",{resNews})
                         alt=""
                         objectFit="contain"
                         objectPosition="center"
-                        className="brightness-100 transition-all hover:transition-all cursor-pointer "
+                        className="brightness-100 transition-all hover:transition-all cursor-pointer border-[1px] flex items-center justify-center object-contain rounded-[10px] p-[10px] shadow-[3px 3px 3px] shadow-[#00000014] bg-[#fbfbfb] border-[#d9d9d9] w-[100px] h-[100px] "
                       />
                     </a>
                   </>
@@ -77,7 +79,7 @@ console.log("resNews",{resNews})
                       alt=""
                       objectFit="contain"
                       objectPosition="center"
-                      className="brightness-100 transition-all hover:transition-all "
+                      className="brightness-100 transition-all hover:transition-all cursor-pointer border-[1px] flex items-center justify-center object-contain rounded-[10px] p-[10px] shadow-[3px 3px 3px] shadow-[#00000014] bg-[#fbfbfb] border-[#d9d9d9] w-[100px] h-[100px] "
                     />
                   </>
                 ) : (

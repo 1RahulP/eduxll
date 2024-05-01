@@ -4,14 +4,32 @@ import { connect } from "@/app/dbConfig";
 import Courses from '../../models/coursesModels'
 
 import { NextRequest, NextResponse } from "next/server";
-import { Anonymous_Pro } from "next/font/google";
 
 connect()
 
 
 export async function GET(request:NextRequest, response:NextResponse) {
     try { 
-        const courses = await Courses.find()
+        const searchParams = request.nextUrl.searchParams
+        const query = searchParams.get('category')
+       
+       
+        let courses;
+
+        if(query){
+            const fetchedCourse = await Courses.find({
+                customCategory: {
+                  $elemMatch: {
+                    value: { $regex: new RegExp(query, 'i') } 
+                  }
+                }
+              });
+            courses = fetchedCourse
+
+        }else{
+            const fetchedCourse = await Courses.find()
+            courses = fetchedCourse
+        }
         return NextResponse.json(courses, {status: 200})
 
         

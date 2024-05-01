@@ -35,7 +35,6 @@ const Header = () => {
     item === "about us" && router.push("/about-us");
     item === "Contact us" && router.push("/contact-us");
     item === "Study Abroad" && router.push("/study-abroad");
-
   };
   const toggleSidebar = (val: any) => {
     setColor(val);
@@ -87,7 +86,9 @@ const Header = () => {
                 notesImage
                 dropdownImage
                 text={"Course"}
-                className={"bg-[#d35b5b] text-white rounded-xl lg:flex hidden"}
+                className={
+                  "bg-gradient-to-r from-[#ee2c3c] to-[#da202f] rounded-lg shadow-cta border-[0px] hover:border-[0px] hover: text-[#fff] hover:bg-red-700 !rounded-lg lg:flex hidden "
+                }
               />
             </div>
           </div>
@@ -104,7 +105,7 @@ const Header = () => {
                       >
                         {item.menu === "More" ? (
                           <div
-                            className="flex items-center"
+                            className="flex items-center text-[15px] font-[400] text-[#000]"
                             onClick={() => setIsToggled(!isToggled)}
                           >
                             {item.menu}
@@ -128,7 +129,7 @@ const Header = () => {
                                         return (
                                           <li
                                             key={ind}
-                                            className="py-1 hover:bg-[#f9f9f9] text-gray-700 block px-4 py-2 text-sm"
+                                            className="py-1 hover:bg-[#f9f9f9] text-[15px] font-[400] text-[#000]  block px-4 py-2  "
                                             role="none"
                                             onClick={() =>
                                               toggleMore(item.navlink)
@@ -145,7 +146,12 @@ const Header = () => {
                             </div>
                           </div>
                         ) : (
-                          <div onClick={()=>toggleMore(item.menu)}>{item.menu}</div>
+                          <a
+                            onClick={() => toggleMore(item.menu)}
+                            className="text-[15px] font-[400] text-[#000] !rounded-lg p-[10px] hover:bg-[#fcf1f5] hover:text-[#ee2c3c]"
+                          >
+                            {item.menu}
+                          </a>
                         )}
                       </li>
                     </>
@@ -250,17 +256,24 @@ const Header = () => {
               </div>
               {pagePartition === true && (
                 <div className="max-w-[900px] bg-red overflow-y relative">
-                  <Image
-                    src={"/close.svg"}
-                    alt="close"
-                    className="absolute top-4 right-4 cursor-pointer"
-                    width={18}
-                    height={18}
-                    onClick={() => setPagePartition(false)}
-                  />
+                  <div className="absolute bg-[#000] top-4 right-4 cursor-pointer w-[30px] h-[30px] p-[10px] rounded-[100px]">
+                    <Image
+                      src={"/close.svg"}
+                      alt="close"
+                      className=""
+                      width={20}
+                      height={20}
+                      onClick={() => setPagePartition(false)}
+                      style={{
+                        // background: "#000",
+                        borderRadius: "50%",
+                        color: "#fff",
+                      }}
+                    />
+                  </div>
 
                   <div>
-                    <div className="bg-[#1f453d] py-[20px] px-[20px]">
+                    {/* <div className="bg-[#1f453d] py-[20px] px-[20px]">
                       <h3 className="text-white text-2xl font-semibold">
                         Career resources
                       </h3>
@@ -272,9 +285,9 @@ const Header = () => {
                         text={"View all Degrees"}
                         className={"text-white bg-red-500 rounded-none mt-4"}
                       />
-                    </div>
+                    </div> */}
                     <div className="py-[20px] px-[20px]">
-                      <h3 className="text-black text-2xl font-semibold">
+                      <h3 className="text-black text-lg font-semibold">
                         Speeialization
                       </h3>
 
@@ -440,7 +453,7 @@ const menuArray = [
   {
     menu: "More",
     submenu: [
-      { navlink: "about us" },
+      { navlink: "About Us" },
       { navlink: "Free Master Class" },
       { navlink: "Blog" },
       { navlink: "Webinars" },
@@ -514,7 +527,6 @@ const sideBarArray = [
   {
     title: "Explore Courses",
     list: [
-      
       {
         key: true,
         listItem: "Masters",
@@ -523,7 +535,7 @@ const sideBarArray = [
         key: true,
 
         listItem: "Bachelors ",
-      },	
+      },
       {
         key: true,
         listItem: "Certificate",
@@ -534,8 +546,6 @@ const sideBarArray = [
       },
     ],
   },
-   
-  
 ];
 
 const speeializationtab = [
@@ -543,7 +553,6 @@ const speeializationtab = [
   { speeialglistItem: "PGDM in Banking and Insurance |" },
   { speeialglistItem: "MA in Journalism and Mass Communication (MAJMC) |" },
   { speeialglistItem: "Master of Computer Application (MCA) |" },
-   
 ];
 
 const degreearry = [

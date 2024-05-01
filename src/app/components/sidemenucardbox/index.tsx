@@ -28,7 +28,7 @@ const SideMenuCardbox = ({
           <h4 className="text-[15px] font-[500] text-[#000] p-0 m-0">
             {logoname}
           </h4>
-          <p className="text-[15px] font-[300] text-[#6e6d6d] p-0 m-0">
+          <p className="text-[13px] font-[300] text-[#6e6d6d] p-0 m-0">
             {titlename}
           </p>
         </div>

@@ -13,49 +13,29 @@ import Slidernav1 from "../slidernav";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Slider from "react-slick";
+import {
+  BachelorBranch,
+  CertificateBranch,
+  CourseCatgory,
+  CourseFilter,
+  FreeCoursesBranch,
+  MasterBranch,
+} from "@/constant/ConstantData";
 
 const BestCourses = () => {
   const [popUp, setPopUp] = useState("");
-  const [filteractive, setfilteractive] = useState<any>("View All");
-  const activeTab = (item: any) => {
-    setfilteractive(item);
-  };
-  const speeializationtab = [
-    { speeialglistItem: "Artificial Intelligence" },
-    { speeialglistItem: "Data Science" },
-    { speeialglistItem: "Finance" },
-    { speeialglistItem: "Business Administration" },
-    { speeialglistItem: "Cybersecurity" },
-    { speeialglistItem: "Computer Science" },
-    { speeialglistItem: "View all topics" },
-  ];
-
-  const router = useRouter();
-
-  const randomNumber = Math.floor(Math.random() * 100) + 1;
-  var settings = {
-    dots: false,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  const [activeTab, setActiveTab] = useState("view-all");
+  const [activeCourseBranch, setActiveCourseBranch] = useState("");
+  const nestedFilter =
+    activeTab === "master"
+      ? MasterBranch
+      : activeTab === "bachelor"
+      ? BachelorBranch
+      : activeTab === "certificate"
+      ? CertificateBranch
+      : activeTab === "free-courses"
+      ? FreeCoursesBranch
+      : [];
 
   return (
     <>
@@ -67,26 +47,29 @@ const BestCourses = () => {
               World&apos;s Best Courses
             </h2>
             <Button
-              text={"VIEW ALL  "}
+              text={"View All  "}
               className={
-                "px-6 py-2 border text-[#000] !border-[#000]  !rounded-[0px] hover:bg-[#000] hover:text-[#fff]"
+                "  whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] !rounded-lg   text-white font-medium px-spacing24    "
               }
             />
           </div>
           <div className="md:flex  grid grid-cols-3 gap-[45px] mb-[10px]">
-            {Coursesfilter.map((item, index) => {
+            {CourseFilter?.map((item, index) => {
               return (
                 <>
                   <div
                     key={index}
-                    onClick={() => activeTab(item)}
+                    onClick={() => {
+                      setActiveTab(item?.value), setActiveCourseBranch("");
+                    }}
+                    style={{ cursor: "pointer" }}
                     className={`${
-                      filteractive?.tabname === item.tabname
+                      activeTab == item?.value
                         ? "  after:w-full    after:transition-all transition-all  after:h-[2px] after:bg-[#ed1d26] after:absolute relative after:left-[0] after:bottom-[0px] text-[#ed1d26]"
                         : ""
                     } `}
                   >
-                    {item.tabname}
+                    {item?.label}
                   </div>
                 </>
               );
@@ -94,173 +77,27 @@ const BestCourses = () => {
           </div>
 
           <div className="flex flex-wrap   gap-[10px] gap-y-[5px] my-[10px]">
-            {speeializationtab.map((item, index) => {
+            {nestedFilter?.map((item, index) => {
               return (
-                <>
-                  <BadgeChip theme="default" size="medium">
-                    {item.speeialglistItem}
-                  </BadgeChip>
-                </>
+                <BadgeChip
+                  theme={
+                    item?.value == activeCourseBranch ? "success" : "default"
+                  }
+                  size="medium"
+                  key={item?.label}
+                  onClick={() => setActiveCourseBranch(item?.value)}
+                >
+                  {item?.label}
+                </BadgeChip>
               );
             })}
           </div>
 
           <div className="relative gap-[15px]">
-            {/* <Slidernav1 navfix="2" /> */}
-
-            <CourseCard  />
-            {/* <Slider
-              autoplay
-              {...settings}
-              className="items-center justify-center mx-[-10px]"
-            >
-              <CourseCard
-                popUp={popUp}
-                setPopUp={setPopUp}
-                listArray={listArray}
-              />
-            </Slider> */}
-
-            {/* {bestSellerArray?.map((item, index) => {
-                return (
-                  <SwiperSlide
-                    key={index}
-                    className="relative"
-                    onMouseEnter={() => setPopUp(item.key)}
-                    onMouseLeave={() => setPopUp("")}
-                  >
-                    <div
-                      onClick={() => router.push(`/product/${randomNumber}`)}
-                      className="cursor-pointer"
-                    >
-                      <div className="max-w-[350px] rounded-xl bg-white shadow-md hover:shadow-xl">
-                        <div className="relative after:bg-gradient-to-r after:from-black after:rounded-t-xl overflow-hidden	 after:absolute after:w-[100%] after:h-[100%]    after:top-[0px] after:left-[0px]">
-                          <Image
-                            className="rounded-t-xl h-[120px] w-full object-cover object-top"
-                            src={item.imageUrl}
-                            alt={"image"}
-                            width={380}
-                            height={60}
-                            objectFit="cover"
-                          />
-
-                          <div
-                            className="z-[1] absolute shadow-lg shadow-black-500/50 top-[40%] left-[20px] bg-[#fff] rounded-[5px] p-[3px] "
-                            style={{
-                              transform: "translate(0%, -30%)",
-                            }}
-                          >
-                            <Image
-                              className="rounded-[5px]"
-                              src={item.logo}
-                              alt={"image"}
-                              width={100}
-                              height={50}
-                              objectFit="cover"
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="contentbox p-[25px] pt-[10px]">
-                            <div className="flex justify-between">
-                              <Badgechip
-                                className={"text-[#31bf82] bg-[#ebfcf7]"}
-                              >
-                                {item.badge}
-                              </Badgechip>
-                              <div className="flex gap-2">
-                                <div>
-                                  <Image
-                                    src={"/png/rating.png"}
-                                    alt="rating"
-                                    width={15}
-                                    height={15}
-                                  />
-                                </div>
-                                <span className="text-[12px]">4.9 (25)</span>
-                              </div>
-                            </div>
-                            <h3 className="text-[16px] font-semibold mt-2 line-clamp-2">
-                              {item.title}
-                            </h3>
-                            <div className="mt-2 flex gap-[10px] items-center">
-                              <span className="">
-                                <Image
-                                  src={item?.degreeIcon}
-                                  alt="rating"
-                                  width={17}
-                                  height={17}
-                                />
-                              </span>
-                              <span className="text-[14px]">{item.degree}</span>
-                            </div>
-                            <div className="mt-2 flex gap-[10px] items-center">
-                              <span className="">
-                                <Image
-                                  src={item?.monthsIcons}
-                                  alt="rating"
-                                  width={17}
-                                  height={17}
-                                />
-                              </span>
-                              <span className="text-[14px]">{item.months}</span>
-                            </div>
-                          </div>
-                          <div className="border-t-1 px-[30px] align-center text-center w-full py-2">
-                            <div className="text-[#2467ec] cursor-pointer ">
-                              View Details
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className={`absolute  z-[9]   ${
-                          popUp === item.key ? "block" : "hidden"
-                        }
-                        max-w-[320px] sm:left-6 left-[2px] rounded-xl top-0 p-6 bg-white`}
-                      >
-                        <h3 className="font-semibold ">
-                          Write Better Emails: Tactics for Smarter Team
-                          Communication
-                        </h3>
-                        <p className="my-2 text-md">
-                          Level: <span className="text-blue-500">Beginner</span>
-                        </p>
-                        <p className="text-sm">
-                          Knowledge is power. Information is liberating.
-                          Education is the premise of progress, in every
-                          society, in every family
-                        </p>
-                        <div className="">
-                          {listArray?.map((value, ind) => {
-                            return (
-                              <div className="flex gap-2 my-1" key={ind}>
-                                <div>
-                                  <Image
-                                    src={"/check.png"}
-                                    alt="check"
-                                    width={12}
-                                    height={12}
-                                  />
-                                </div>
-                                <span className="text-xs">{value.list}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                        <div className="my-4 mb-">
-                          <Button
-                            text={"View Details"}
-                            className={
-                              "text-white bg-blue-500 border-none text-md !rounded-md mr-auto ml-auto"
-                            }
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })} */}
+            <CourseCard
+              activeTab={activeTab}
+              activeCourseBranch={activeCourseBranch}
+            />
           </div>
         </div>
       </section>
@@ -268,132 +105,3 @@ const BestCourses = () => {
   );
 };
 export default BestCourses;
-
-const Coursesfilter = [
-  { tabname: "View All" },
-  { tabname: "Data Science" },
-  { tabname: "Development" },
-  { tabname: "Business" },
-  { tabname: "Life Styles" },
-];
-
-const bestSellerArray = [
-  {
-    key: "cardOne",
-    imageUrl: "/best-seller/01.jpg",
-    logo: "/logoslider/1.webp",
-    badge: "Development",
-    title: "WordPress Development Course for Plugins & Themes",
-    degreeIcon: "/svg/news-line.svg",
-    degree: "Master's Degree",
-    discountPrice: 47.0,
-    monthsIcons: "/svg/calendar-todo-fill.svg",
-    months: "6 Months",
-    basicPrice: 75.5,
-    userImage: "/svg/id-card-line.svg",
-    username: "Mark Hanry",
-    lessons: 12,
-  },
-  {
-    key: "cardTwo",
-    imageUrl: "/best-seller/02.jpg",
-    logo: "/logoslider/2.webp",
-    badge: "Development",
-    title: "Master Google Docs: Free online documents for personal use",
-    degreeIcon: "/svg/refund-line.svg",
-    degree: "Executive PG Program",
-    monthsIcons: "/svg/calendar-todo-fill.svg",
-    months: "12 Months",
-    discountPrice: 47.0,
-    basicPrice: null,
-    userImage: "/svg/id-card-line.svg",
-    username: "Mark Hanry",
-    lessons: 12,
-  },
-  {
-    key: "cardThree",
-
-    imageUrl: "/best-seller/03.jpg",
-    logo: "/logoslider/3.webp",
-    badge: "Business",
-    title: "Write Better Emails: Tactics for Smarter Team Communication",
-    discountPrice: "FREE",
-    degreeIcon: "/svg/graduation-cap-line.svg",
-    degree: "Certification",
-    monthsIcons: "/svg/calendar-todo-fill.svg",
-    months: "4 Months",
-    basicPrice: null,
-    userImage: "/svg/id-card-line.svg",
-
-    username: "Mark Hanry",
-    lessons: 12,
-  },
-  {
-    key: "cardFourth",
-
-    imageUrl: "/best-seller/04.jpg",
-    logo: "/logoslider/4.webp",
-    badge: "Development",
-    title: "Python and Django Full Stack Web Developer Bootcamp",
-    discountPrice: 47.0,
-    degreeIcon: "/svg/news-line.svg",
-    degree: "Certification",
-    monthsIcons: "/svg/calendar-todo-fill.svg",
-    months: "18 Months",
-    basicPrice: null,
-    userImage: "/svg/id-card-line.svg",
-
-    username: "Mark Hanry",
-    lessons: 12,
-  },
-  {
-    key: "cardFifth",
-
-    imageUrl: "/best-seller/05.jpg",
-    logo: "/logoslider/5.webp",
-    badge: "Data Science",
-    title: "Data Science Real-Life Data Science Exercises Included",
-    discountPrice: 47.0,
-    degreeIcon: "/svg/refund-line.svg",
-    degree: "Executive PG Program",
-    monthsIcons: "/svg/calendar-todo-fill.svg",
-    months: "8 Months",
-    basicPrice: null,
-    userImage: "/svg/id-card-line.svg",
-
-    username: "Mark Hanry",
-    lessons: 12,
-  },
-  {
-    key: "cardSixth",
-
-    imageUrl: "/best-seller/06.jpg",
-    logo: "/logoslider/6.webp",
-    badge: "Life Style",
-    title: "Become a Super Human: Naturally & Safely Boost",
-    discountPrice: 47.0,
-    degreeIcon: "/svg/graduation-cap-line.svg",
-    degree: "Master's Degree",
-    monthsIcons: "/svg/calendar-todo-fill.svg",
-    months: "12 Months",
-    basicPrice: null,
-    userImage: "/svg/id-card-line.svg",
-
-    username: "Danial",
-    lessons: 12,
-  },
-];
-const listArray = [
-  {
-    list: "Scratch to HTML",
-  },
-  {
-    list: "Learn how to code in Python",
-  },
-  {
-    list: "Unlimited backend database creation",
-  },
-  {
-    list: "Adobe XD Tutorials",
-  },
-];

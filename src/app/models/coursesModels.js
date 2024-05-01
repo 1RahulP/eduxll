@@ -7,26 +7,33 @@ const CourseModuleSchema = new Schema({
   modulDescription: { type: String, trim: true },
 });
 
-
-
 const customCategorySchema = new mongoose.Schema({
-  value:{
+  value: {
     type: String,
   },
-  label:{
+  label: {
     type: String,
-  }
-  
-})
+  },
+});
+
 const featureCategorySchema = new mongoose.Schema({
-  value:{
+  value: {
     type: String,
   },
-  label:{
+  label: {
     type: String,
-  }
-  
-})
+  },
+});
+
+const CourseBranchSchema = new mongoose.Schema({
+  value: {
+    type: String,
+  },
+  label: {
+    type: String,
+  },
+});
+
 
 
 const coursesSchema = new Schema({
@@ -35,7 +42,6 @@ const coursesSchema = new Schema({
     required: true,
     trim: true,
   },
-
 
   duration: {
     type: String,
@@ -95,6 +101,12 @@ const coursesSchema = new Schema({
     type: [customCategorySchema],
     default: [],
   },
+
+  courseBranch: {
+    type: [CourseBranchSchema],
+    default: [],
+  },
+
   featureCategoryInsert: {
     type: [featureCategorySchema],
     default: [],

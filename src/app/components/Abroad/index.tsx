@@ -42,17 +42,16 @@ const BestCourses = ({ onlyCards }: coursesCardsProp) => {
             <>
               <div className="flex justify-between items-center">
                 <h2 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[20px]">
-                  Study Abroad  
+                  Study Abroad
                 </h2>
                 <Link href="/study-abroad">
-
-                <Button
-                  text={"VIEW ALL  "}
-                  className={
-                    "px-6 py-2 border text-[#000] !border-[#000]  !rounded-[0px] hover:bg-[#000] hover:text-[#fff]"
-                  }
+                  <Button
+                    text={"View All  "}
+                    className={
+                      "justify-center items-center gap-spacing8 inline-flex whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] rounded-lg shadow-cta text-white font-medium px-spacing24 py-spacing14 md:py-spacing10 z-10 min-w-124px"
+                    }
                   />
-                  </Link>
+                </Link>
               </div>
               <div className="md:flex hidden grid grid-cols-3 gap-[45px] mb-[10px]">
                 {Coursesfilter.map((item, index) => {

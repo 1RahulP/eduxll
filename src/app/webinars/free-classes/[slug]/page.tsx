@@ -18,6 +18,7 @@ const getWebinar = async (slug: string) => {
   }
 };
 const FreeClasses = async ({ params }: any) => {
+  console.log("params only s", { params });
   const paramA = params.slug;
   const response = await getWebinar(paramA);
   console.log(response, "got it on slug page..!!");

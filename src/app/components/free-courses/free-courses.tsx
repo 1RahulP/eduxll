@@ -23,7 +23,7 @@ const FreeCoursesSlider = () => {
 
   return (
     <>
-      <section className=" py-[50px] lg:px-0 px-6">
+      <section className="   lg:px-0 px-6">
         <div className=" md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
           <div className="flex justify-between items-center"></div>
           <div className="md:flex hidden grid grid-cols-3 gap-[45px] mb-[10px]">
@@ -66,12 +66,12 @@ const FreeCoursesSlider = () => {
                 return (
                   <SwiperSlide
                     key={index}
-                    className="relative shadow-md mb-[20px]"
+                    className="relative   mb-[20px]"
                     onMouseEnter={() => setPopUp(item.key)}
                     onMouseLeave={() => setPopUp("")}
                   >
                     <div>
-                      <div className="max-w-[350px] rounded-xl bg-white shadow-md hover:shadow-xl">
+                      <div className=" rounded-xl overflow-hidden bg-white shadow-md hover:shadow-md">
                         <div className="relative after:bg-gradient-to-r after:from-black after:rounded-t-xl overflow-hidden	 after:absolute after:w-[100%] after:h-[100%]    after:top-[0px] after:left-[0px]">
                           <Image
                             className="rounded-t-xl h-[120px] w-full object-cover object-top"
@@ -100,7 +100,7 @@ const FreeCoursesSlider = () => {
                         </div>
                         <div>
                           <div className="contentbox p-[25px] pt-[10px]">
-                            <h3 className="text-[20px] font-semibold mt-2 line-clamp-2">
+                            <h3 className="text-[16px] font-semibold mt-2 line-clamp-2">
                               {item.title}
                             </h3>
                             <p className="text-sm mt-2">{item.content}</p>

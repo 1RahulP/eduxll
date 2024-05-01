@@ -20,7 +20,6 @@ import Link from "next/link";
 import axios from "axios";
 
 const page = () => {
-
   // const [resNews, setResNews] = useState<any>([]);
 
   // const getAllNews= async ()=>{
@@ -34,7 +33,6 @@ const page = () => {
   //   getAllNews()
   // }, [])
 
-
   return (
     <HeaderLayout>
       <div>
@@ -44,7 +42,7 @@ const page = () => {
       <LogoSlider />
       <BestCourses />
 
-      <AbroadCourses onlyCards={false}  />
+      <AbroadCourses onlyCards={false} />
       <div className="bg-[url('/blue-bg.png')] bg-contain">
         <div className="md:max-w-[1230px] w-[100%] mx-auto px-[15px] py-12 grid lg:grid-cols-3 md:grid-cols-2     gap-10">
           <div className="flex gap-6 items-center">
@@ -81,18 +79,19 @@ const page = () => {
       <div className="  my-12 lg:px-0 px-6">
         <div className="md:flex justify-between mb-8 md:max-w-[1200px] w-[100%] mx-auto px-[15px]">
           <div>
-            <h2 className="text-3xl font-semibold text-[#21225F] mb-4">
+            <h2 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[10px]">
               Top categories
             </h2>
-            <p>
+            <p className="text-[16px] font-[500]">
               Explore all of our courses and pick your suitable ones to enroll
               and start learning with us!
             </p>
           </div>
           <div className="md:mt-0 mt-8">
-            <button className="px-6 py-2 border text-[#000] border-[#000]  !rounded-[0px] hover:bg-[#000] hover:text-[#fff]">
-              View All Categories
-            </button>
+            <Button
+              text={"View All Categories"}
+              className="justify-center items-center gap-spacing8 inline-flex whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] rounded-lg shadow-cta text-white font-medium px-spacing24 py-spacing14 md:py-spacing10 z-10 min-w-124px"
+            ></Button>
           </div>
         </div>
         <section className="my-12">
@@ -106,10 +105,10 @@ const page = () => {
                 <span className="font-semibold text-md text-[#2467ec]">
                   Start from today
                 </span>
-                <h3 className="font-semibold md:text-xl text-md md:mt-4 mt-2 md:mb-6 mb-2">
+                <h3 className="text-[16px] font-semibold md:mt-4 mt-2 md:mb-6 mb-2">
                   Become an instructor and <br /> spread your knowledge
                 </h3>
-                <button className="bg-[#2467EC] text-white px-6 py-2 rounded-md">
+                <button className=" bg-gradient-to-r from-[#ee2c3c] to-[#da202f] text-white font-medium   text-white px-6 py-2 rounded-md">
                   View details
                 </button>
               </div>
@@ -120,7 +119,7 @@ const page = () => {
                 <span className="font-semibold text-md text-[#2467ec]">
                   Discover your gain
                 </span>
-                <h3 className="font-semibold md:text-xl text-md md:mt-4 mt-2 md:mb-6 mb-2">
+                <h3 className="text-[16px] font-semibold md:mt-4 mt-2 md:mb-6 mb-2">
                   Keep your skilled centers of <br /> excellence competitive
                 </h3>
                 <button className="bg-[#2467EC] text-white px-6 py-2 rounded-md">
@@ -137,28 +136,31 @@ const page = () => {
           </h2>
           <ReviewSlider />
         </div>
-        <div className="my-12 md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
-          <h2 className="text-center text-3xl font-semibold">
-            Start with our Free Courses
-          </h2>
-          <p className="my-2 text-center">
-            Earn certifications by upskilling with 750+ Hours of learning
-            content taught by <br /> academic and industry experts
-          </p>
-          <FreeCoursesSlider />
-          <div className="w-full text-center">
-            <Link
-            href={"/free-courses"}
-              // text={"View All Free Courses"}
-              className={
-                "px-6 py-4 border text-[#fff] !border-[#000] bg-black !rounded-md m-auto"
-              }
-             
-            >View All Free Courses</Link>
+        <section className="py-[50px] bg-[#fcf1f5]">
+          <div className="  md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
+            <h2 className="text-center text-3xl font-semibold">
+              Start with our Free Courses
+            </h2>
+            <p className="my-2 text-center">
+              Earn certifications by upskilling with 750+ Hours of learning
+              content taught by <br /> academic and industry experts
+            </p>
+            <FreeCoursesSlider />
+            <div className="mt-[20px] w-full text-center">
+              <Link
+                href={"/free-courses"}
+                // text={"View All Free Courses"}
+                className={
+                  " bg-gradient-to-r from-[#ee2c3c] to-[#da202f] rounded-lg shadow-cta text-white font-medium px-spacing24 py-spacing14 md:py-spacing10 z-10 min-w-124px py-[8px] px-[16px] "
+                }
+              >
+                View All Free Courses
+              </Link>
+            </div>
           </div>
-        </div>
+        </section>
         <div>
-          <LatestNews  />
+          <LatestNews />
         </div>
       </div>
 

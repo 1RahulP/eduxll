@@ -9,19 +9,19 @@ import Blog from "../models/blogModels";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Blogs =  () => {
+const Blogs = () => {
   const [blogData, setBlogData] = useState<any>([]);
 
-  const getAllBlogsData= async ()=>{
-    const data = await axios.get('/api/blog')
-    if(data.status === 200){
-      setBlogData(data?.data)
+  const getAllBlogsData = async () => {
+    const data = await axios.get("/api/blog");
+    if (data.status === 200) {
+      setBlogData(data?.data);
     }
-  }
+  };
 
-  useEffect(()=>{
-    getAllBlogsData()
-  }, [])
+  useEffect(() => {
+    getAllBlogsData();
+  }, []);
 
   const filterBlogData = blogData?.filter((item: any) => {
     return item?.customCategory[0]?.value === "blogs";
@@ -38,10 +38,10 @@ const Blogs =  () => {
             <span> {">"} </span>
             <span>Blogs</span>
           </div>
-          <div className="sm:absolute bottom-[-30px] z-[9]">
+          <div className="sm:absolute  mt-[100px] z-[9]">
             <div className="text-white max-w-[720px] lg:px-20 sm:pl-8 pl-2 sm:mt-0 mt-4 grid sm:gap-6 gap-2">
               <h2 className="sm:text-3xl text-xl font-semibold">
-                LIVE LEARNING FOR CAREER GROWTH
+                Read Our Latest Blogs
               </h2>
               <p className="sm:text-md text-sm">
                 Are you someone who is - Feeling stuck in your job? Ambitious to
@@ -49,16 +49,16 @@ const Blogs =  () => {
                 Our FREE masterclasses with leading industry leaders is exactly
                 what you need!
               </p>
-              <button className="bg-red-500 w-fit sm:px-16 px-4 sm:py-4 py-2 rounded-md sm:font-semibold tracking-wide">
+              {/* <button className="bg-red-500 w-fit sm:px-16 px-4 sm:py-4 py-2 rounded-md sm:font-semibold tracking-wide">
                 REGISTER NOW
-              </button>
+              </button> */}
             </div>
-            <div className="bg-white max-w-[1140px] lg:ml-20 sm:mx-8 mx-2 md:h-[100px] rounded-md shadow-md text-black grid md:grid-cols-4 grid-cols-2 gap-4 py-4 md:px-8 px-4 font-semibold mt-4 md:text-[16px] text-xs">
+            {/* <div className="bg-white max-w-[1140px] lg:ml-20 sm:mx-8 mx-2 md:h-[100px] rounded-md shadow-md text-black grid md:grid-cols-4 grid-cols-2 gap-4 py-4 md:px-8 px-4 font-semibold mt-4 md:text-[16px] text-xs">
               <span>FREE registration</span>
               <span>Best-in-class industry experts</span>
               <span>Live hands-on learning</span>
               <span>1-1 career counselling</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -78,14 +78,15 @@ const Blogs =  () => {
                   className="max-w-[410px] rounded-xl bg-white shadow-md hover:shadow-xl cursor-pointer"
                   key={index}
                 >
-                  <Link href={`/news/${item.slug}`}>
-                    <div>
+                  <Link href={`/blogs/${item.slug}`}>
+                    <div className="h-[230px]">
                       <Image
-                        className="rounded-xl"
+                        className="rounded-xl h-[230px] object-cover"
                         src={item.featureImage}
                         alt={"image"}
                         width={410}
-                        height={260}
+                        height={230}
+                        objectFit="cover"
                       />
                     </div>
                     <div>

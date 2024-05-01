@@ -181,7 +181,7 @@ const ProductPage = () => {
                 <div className="forms ">
                   <div className="max-w-[400px] rounded-[10px] border-[1px] border-slate-200 bg-slate-100  p-[20px]">
                     <h3 className="text-[20px] font-[600] mb-[10px]">
-                      Get In Touch
+                      Get Free Consultation
                     </h3>
                     <div className="formbox flex flex-col gap-[10px]">
                       <div className="max-w-sm space-y-3">
@@ -438,7 +438,7 @@ const ProductPage = () => {
             </div>
           </div>
 
-          <section className=" py-[30px] border border-b-slate-50 border-t-slate-50 mt-[30px]">
+          <section className=" py-[30px] border border-b-slate-50 bg-slate-50 border-t-slate-50 mt-[30px]">
             <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
               <div className="grid sm:grid-cols-2 gap-4 items-center">
                 <div className="certificatebigimage p-[20px] bg-[#e7e7e74f]">

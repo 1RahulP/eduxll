@@ -11,15 +11,20 @@ import LinkModelBox from "@/app/components/linkmodelbox/linkmodelbox";
 import { useRouter } from "next/navigation";
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
+import { BachelorBranch, CertificateBranch, CourseCategoryBranch, CourseCatgory, FreeCoursesBranch, MasterBranch } from "@/constant/ConstantData";
 
 const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
   loading: () => null,
 });
-const options = [
-  { value: 'development', label: 'Development' },
-  { value: 'business', label: 'Business' },
-]
+
+
+
+
+
+
+
+
 const featureOptions = [
   { value: 'latest-card', label: 'Latest Card' },
 ]
@@ -35,6 +40,17 @@ const CreateCourse = () => {
   const router = useRouter();
   const [category, setCategory] = React.useState([]);
   const [featureCategory, setFeatureCategory] = React.useState([]);
+  const [courseBranch, setCourseBranch] = React.useState([]);
+
+
+  console.log("category nehat", category);
+
+  const branchOptions = category?.value ===  'master' ? MasterBranch : category?.value === 'bachelor' ? BachelorBranch : category?.value === 'certificate' ? CertificateBranch : category?.value === 'free-courses' ? FreeCoursesBranch : []
+
+
+
+
+  
 
   const [courses, setCourses] = useState({
     title: "",
@@ -58,7 +74,7 @@ const CreateCourse = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoadig(true);
     e.preventDefault();
-    const courseData = { ...courses, customCategory:category, featureCategoryInsert:featureCategory,  courseModule: courseModule };
+    const courseData = { ...courses, customCategory:category, featureCategoryInsert:featureCategory, courseBranch:courseBranch, courseModule: courseModule };
     const response = await axios.post("/api/course", courseData);
 
     if (response.status === 200) {
@@ -159,10 +175,9 @@ const CreateCourse = () => {
 
 
                       <Select 
-                        options={options}
-                        isMulti
+                        options={CourseCatgory}
                         components={animatedComponents}
-                        onChange={(value:any)=>setCategory(value)}
+                        onChange={(value:any)=>{setCategory(value), setCourseBranch([])}}
                         value={category}
                     />
  
@@ -175,13 +190,35 @@ const CreateCourse = () => {
 
                       <Select 
                         options={featureOptions}
-                        isMulti
                         components={animatedComponents}
                         onChange={(value:any)=>setFeatureCategory(value)}
                         value={featureCategory}
                     />
  
                     </div>
+
+                    {category?.id &&  (
+                      <div className=" w-full">
+                        <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                          Course Branch
+                        </label>
+
+
+                        <Select 
+                          options={branchOptions}
+                          components={animatedComponents}
+                          onChange={(value:any)=>setCourseBranch(value)}
+                          value={courseBranch}
+                      />
+  
+                      </div>
+                    )}
+
+
+
+
+
+
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
                         Course Duration

@@ -10,12 +10,14 @@ const Banner = () => {
           <div className="grid lg:grid-cols-[1.5fr_1fr] justify-between items-center gap-8 p-12 py-[30px] ">
             <div>
               <h2 className="sm:text-[2.1rem] text-2xl leading-[1.2em] font-bold text-[#21225F] tracking-wider">
-              Discover Learning Without Borders
+                Discover Learning Without Borders
               </h2>
               <p className="my-[20px] text-[14px] text-[#808292]">
-              Bridge the Distance and Join the Revolution <br />Connect with Top-Tier Educators and Innovative Curricula from Around the World
+                Bridge the Distance and Join the Revolution <br />
+                Connect with Top-Tier Educators and Innovative Curricula from
+                Around the World
               </p>
-              <div className="sm:flex">
+              {/* <div className="sm:flex">
                 <input
                   type="text"
                   placeholder="What do you want to learn today?"
@@ -28,7 +30,7 @@ const Banner = () => {
                     "whitespace-nowrap rounded-none bg-[#08A9E6] text-white border-none !p-5   sm:mt-0 mt-4  text-center"
                   }
                 />
-              </div>
+              </div> */}
               <div className="my-[15px] sm:flex gap-6 items-center">
                 {/* <div className="flex">
                   <Image

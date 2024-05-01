@@ -38,17 +38,16 @@ const ReviewSlider = () => {
             <Slider
               autoplay
               {...settings}
-              className="items-center justify-center mx-[-10px]"
+              className="items-center justify-center mx-[-10px] "
             >
               {reviewArray?.map((item, index) => {
                 return (
                   <div
                     key={index}
                     className="  bg-[#f8f9fb] p-8 rounded-md mr-6"
-                    //style={{ marginRight: "20px" }}
                   >
                     <div>
-                      <div className="flex gap-4">
+                      <div className=" flex flex-col items-center gap-[10px]">
                         <div>
                           <Image
                             src={item.image}
@@ -58,17 +57,15 @@ const ReviewSlider = () => {
                           />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold">{item.name}</h3>
-                          <span>{item.title}</span>
+                          <h3 className="text-[16px] font-semibold text-center">
+                            {item.name}
+                          </h3>
                         </div>
                       </div>
                     </div>
                     <div>
-                      <h4 className="text-xl text-[#2467EC] mt-8 mb-6">
-                        {item.exp}
-                      </h4>
-                      <p>{item.desc}</p>
-                      <div className="flex mt-4">
+                      <p className="text-center">{item.desc}</p>
+                      <div className="flex mt-4 justify-center">
                         <Image
                           src={"/png/rating.png"}
                           alt="image"

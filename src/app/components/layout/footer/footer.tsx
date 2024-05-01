@@ -179,19 +179,12 @@ const Aboutlink = [
   { link: "Course" },
   { link: "Instructor" },
   { link: "Events" },
-  { link: "Become an Instructor" },
 ];
 const Resourseslink = [
   { link: "Home" },
   { link: "Membership" },
   { link: "Privacy Policy" },
   { link: "Terms & Conditions" },
-  { link: "Purchase Guide" },
+  // { link: "Purchase Guide" },
 ];
-const QuickLink = [
-  { link: "News" },
-  { link: "Blogs" },
-  { link: "Course" },
-  { link: "Shop" },
-  { link: "Profile" },
-];
+const QuickLink = [{ link: "News" }, { link: "Blogs" }, { link: "Course" }];
