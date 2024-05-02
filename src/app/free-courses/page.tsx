@@ -22,7 +22,7 @@ const FreeCourses = () => {
             <Input placeholder="Enter your mobile number" />
           </div>
           <p className="text-xs mt-2 text-gray-500">
-            We'll send an OTP for verification.
+            We&apos;ll send an OTP for verification.
           </p>
           <Button
             text={"Join for free"}
