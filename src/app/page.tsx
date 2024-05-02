@@ -50,7 +50,7 @@ const page = () => {
               <Image src="/learn.png" alt="learn" width={60} height={60} />
             </div>
             <h3 className="sm:text-2xl text-md tracking-wide font-semibold text-white flex-1">
-              Learn with skills over <br /> 2,420 courses
+              Learn new skills from a wide array of courses
             </h3>
           </div>
           <div className="flex gap-6 items-center">
@@ -63,7 +63,7 @@ const page = () => {
               />
             </div>
             <h3 className="sm:text-2xl text-md tracking-wide font-semibold text-white flex-1">
-              Earn certificates and degrees
+              Gain accredited degrees and certificates
             </h3>
           </div>
           <div className="flex gap-6 items-center">
@@ -71,7 +71,7 @@ const page = () => {
               <Image src="/anywhere.png" alt="learn" width={60} height={60} />
             </div>
             <h3 className="sm:text-2xl text-md tracking-wide font-semibold text-white flex-1">
-              Learn from anywhere, any time
+              Educate yourself anywhere, anytime, 24/7
             </h3>
           </div>
         </div>
@@ -83,8 +83,8 @@ const page = () => {
               Top categories
             </h2>
             <p className="text-[16px] font-[500]">
-              Explore all of our courses and pick your suitable ones to enroll
-              and start learning with us!
+              Browse our courses, select your favourites, and start learning
+              with us!
             </p>
           </div>
           <div className="md:mt-0 mt-8">
@@ -103,10 +103,10 @@ const page = () => {
               <Image src={"/girl.jpg"} alt="image" width={630} height={270} />
               <div className="absolute sm:top-[20%] top-[2%] left-[3%] ">
                 <span className="font-semibold text-md text-[#2467ec]">
-                  Start from today
+                  Start Now
                 </span>
                 <h3 className="text-[16px] font-semibold md:mt-4 mt-2 md:mb-6 mb-2">
-                  Become an instructor and <br /> spread your knowledge
+                  Become a mentor and disseminate <br /> your knowledge.
                 </h3>
                 <button className=" bg-gradient-to-r from-[#ee2c3c] to-[#da202f] text-white font-medium   text-white px-6 py-2 rounded-md">
                   View details
@@ -117,10 +117,10 @@ const page = () => {
               <Image src={"/cpl.jpg"} alt="image" width={630} height={270} />
               <div className="absolute sm:top-[20%] top-[2%] left-[3%] ">
                 <span className="font-semibold text-md text-[#2467ec]">
-                  Discover your gain
+                  Explore your rewards!
                 </span>
                 <h3 className="text-[16px] font-semibold md:mt-4 mt-2 md:mb-6 mb-2">
-                  Keep your skilled centers of <br /> excellence competitive
+                  Sustain competitiveness in <br /> your centers of excellence
                 </h3>
                 <button className="bg-[#2467EC] text-white px-6 py-2 rounded-md">
                   Browse courses

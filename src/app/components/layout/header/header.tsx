@@ -55,7 +55,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="relative bg-[#eaeaea] py-2">
+      {/* <div className="relative bg-[#eaeaea] py-2">
         <h2 className="text-center text-sm font-semibold">
           Aage ki sochni hai? Enjoy Complimentary Career Counselling{" "}
           <span className="text-red-500 cursor-pointer">Claim Now!</span>
@@ -67,7 +67,7 @@ const Header = () => {
           height={14}
           className="absolute right-3 top-2 cursor-pointer"
         />
-      </div>
+      </div> */}
       <div className="sticky top-0 z-[99]">
         <div className="flex p-2 px-8 justify-between items-center  shadow-md custom-bg z-[9] border-b">
           <div className="flex items-center gap-8">

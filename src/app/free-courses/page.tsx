@@ -102,6 +102,7 @@ const FreeCourses = () => {
           <h2 className="text-center text-3xl font-semibold">
            Success Stories
           </h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
           <ReviewSlider />
         </div>
       </div>

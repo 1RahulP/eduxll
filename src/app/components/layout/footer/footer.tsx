@@ -17,9 +17,10 @@ const Footer = () => {
                     height={50}
                   />
                 </div>
-                <p className="text-[15px] text-[#808292] font-medium  leading-[1.5em]">
-                  Lorem ipsum dolor sit amet, consectetur, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua minim
+                <p className="text-[15px] text-[#808292] font-medium  leading-[1.5em] pr-[15px]">
+                  EduXLL is a higher education platform which delivers an
+                  INNOVATIVE Methodology and latest and niche courses for
+                  students and working professionals.
                 </p>
                 <ul className="flex gap-[10px] mt-[20px]">
                   {serarry?.map((item, index) => {
@@ -112,26 +113,21 @@ const Footer = () => {
                 <ul>
                   <li className="text-[15px] text-[#808292] mb-[8px] font-medium">
                     <a href="#" className="pointer">
-                      <span className="text-[#21225f]">Address:</span> 2750
-                      Quadra Street Victoria, Canada.
+                      <span className="text-[#21225f]">Address:</span> 603, 6th
+                      Floor, ILD Trade Centre, Sector 47, Sohna Road, Gurugram –
+                      122018, Haryana
                     </a>
                   </li>
                   <li className="text-[15px] text-[#808292] mb-[8px] font-medium">
                     <a href="#" className="pointer">
                       <span className="text-[#21225f]">Email:</span>{" "}
-                      hello@edla.com
+                      info@eduxll.com
                     </a>
                   </li>
                   <li className="text-[15px] text-[#808292] mb-[8px] font-medium">
                     <a href="#" className="pointer">
                       <span className="text-[#21225f]">Phone:</span>
-                      +1-485-456-0102
-                    </a>
-                  </li>
-                  <li className="text-[15px] text-[#808292] mb-[8px] font-medium">
-                    <a href="#" className="pointer">
-                      <span className="text-[#21225f]">Fax:</span>+1-0785
-                      4578964
+                      +91 8448 198 656 <br /> +91 9773 774 209
                     </a>
                   </li>
                 </ul>
@@ -177,14 +173,18 @@ const serarry = [
 const Aboutlink = [
   { link: "About Us" },
   { link: "Course" },
-  { link: "Instructor" },
   { link: "Events" },
+  { link: "Become an Instructor" },
 ];
 const Resourseslink = [
   { link: "Home" },
-  { link: "Membership" },
+  { link: "Free Course" },
   { link: "Privacy Policy" },
   { link: "Terms & Conditions" },
-  // { link: "Purchase Guide" },
 ];
-const QuickLink = [{ link: "News" }, { link: "Blogs" }, { link: "Course" }];
+const QuickLink = [
+  { link: "News" },
+  { link: "Blogs" },
+  { link: "Course" },
+  { link: "webinars" },
+];

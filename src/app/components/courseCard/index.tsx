@@ -124,9 +124,13 @@ const CourseCard = ({
                   onMouseEnter={() => setPopUp(item._id)}
                   onMouseLeave={() => setPopUp("")}
                 >
-                  <Link href={`/product/${slug}`} key={index}>
-                    <div className="cursor-pointer relative">
-                      <div className="  rounded-xl bg-white shadow-md hover:shadow-xl">
+                  <Link
+                    href={`/product/${slug}`}
+                    key={index}
+                    className="h-[300px] block"
+                  >
+                    <div className="cursor-pointer relative h-[100%] block pb-[20px]">
+                      <div className="  rounded-xl bg-white shadow-md  h-[100%] ">
                         <div className="relative after:bg-gradient-to-r after:from-black after:rounded-t-xl overflow-hidden	 after:absolute after:w-[100%] after:h-[100%]    after:top-[0px] after:left-[0px]">
                           <Image
                             className="rounded-t-xl h-[120px] w-full object-cover object-top"
@@ -203,11 +207,11 @@ const CourseCard = ({
                               </span>
                             </div>
                           </div>
-                          <div className="border-t-1 px-[30px] align-center text-center w-full py-2">
+                          {/* <div className="border-t-1 px-[30px] align-center text-center w-full py-2">
                             <div className="text-[#2467ec] cursor-pointer ">
                               View Details
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                       <div
