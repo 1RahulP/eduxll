@@ -92,7 +92,7 @@ const CreateCourse = () => {
       courseBranch: courseBranch,
       courseModule: courseModule,
     };
-    const response = await axios.post("/api/course", courseData);
+    const response = await axios.post("/api/study", courseData);
 
     if (response.status === 200) {
       if (courseImage) {
@@ -102,7 +102,7 @@ const CreateCourse = () => {
           url: url,
           courseId: response.data.newCourse._id,
         };
-        const response2 = await axios.put("/api/course", data);
+        const response2 = await axios.put("/api/study", data);
       }
       if (universityImage) {
         const url = await uploadFiletoFirebase(universityImage);
@@ -111,7 +111,7 @@ const CreateCourse = () => {
           url: url,
           courseId: response.data.newCourse._id,
         };
-        const response2 = await axios.put("/api/course", data);
+        const response2 = await axios.put("/api/study", data);
       }
       if (logoOne) {
         const url = await uploadFiletoFirebase(logoOne);
@@ -120,7 +120,7 @@ const CreateCourse = () => {
           url: url,
           courseId: response.data.newCourse._id,
         };
-        const response2 = await axios.put("/api/course", data);
+        const response2 = await axios.put("/api/study", data);
       }
 
       if (logoTwo) {
@@ -130,7 +130,7 @@ const CreateCourse = () => {
           url: url,
           courseId: response.data.newCourse._id,
         };
-        const response2 = await axios.put("/api/course", data);
+        const response2 = await axios.put("/api/study", data);
       }
 
       if (courseBrochure) {
@@ -141,7 +141,7 @@ const CreateCourse = () => {
             url: url,
             courseId: response.data.newCourse._id,
           };
-          const response2 = await axios.put("/api/course", data);
+          const response2 = await axios.put("/api/study", data);
         }
       }
 
@@ -152,7 +152,7 @@ const CreateCourse = () => {
           url: url,
           courseId: response.data.newCourse._id,
         };
-        const response2 = await axios.put("/api/course", data);
+        const response2 = await axios.put("/api/study", data);
       }
     }
     setBlogPopup(true);
@@ -176,15 +176,15 @@ const CreateCourse = () => {
           <LinkModelBox
             buttonclose={() => setBlogPopup(false)}
             buttonsave={() =>
-              router.push("/admin/newdashboard/course/course-list")
+              router.push("/admin/newdashboard/study/study-list")
             }
-            modelheading="Course"
+            modelheading="Study"
             itemicon="sussess"
-            modelcontent="Course Created Sussessfully"
+            modelcontent="Study Created Sussessfully"
           />
         )}
         <div className="flex items-center justify-between border-b-[1px] border-slate-200 px-[15px] pb-[15px] mb-[20px]">
-          <h2>Create Course</h2>
+          <h2>Study Aborad</h2>
         </div>
 
         <div className="bg-[#fff] rounded-[10px] p-8">

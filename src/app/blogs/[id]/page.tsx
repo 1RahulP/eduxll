@@ -28,10 +28,9 @@ const getSingleBlog = async (slug: string) => {
 };
 
 const News = async ({ params }: any) => {
-  console.log("params only", { params });
   const paramA = params.id;
   const response = await getSingleBlog(paramA);
-  console.log(response, "check kro bhai");
+  console.log(params, "check kro bhai");
 
   return (
     <>

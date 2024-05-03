@@ -27,7 +27,7 @@ interface CourseCardProps {
   activeCourseBranch?: string;
 }
 
-const CourseCard = ({
+const AboradCard = ({
   listArray,
   activeTab,
   activeCourseBranch,
@@ -62,12 +62,12 @@ const CourseCard = ({
   const getAllCourses = async () => {
     // if active tab is view all then fetch all courses
     if (activeTab === "view-all") {
-      const data = await axios.get("/api/course");
+      const data = await axios.get("/api/study");
       if (data.status === 200) {
         setData(data?.data);
       }
     } else {
-      const data = await axios.get(`/api/course?category=${activeTab}`);
+      const data = await axios.get(`/api/study?category=${activeTab}`);
       if (data.status === 200) {
         setData(data?.data);
       }
@@ -79,7 +79,7 @@ const CourseCard = ({
   }, [activeTab]);
 
   const getNestedCoursesbyBranch = async () => {
-    const data = await axios.get(`/api/course/branch/${activeCourseBranch}`);
+    const data = await axios.get(`/api/study/branch/${activeCourseBranch}`);
     console.log("test sgwg", data);
     if (data.status === 200) {
       setData(data?.data);
@@ -120,13 +120,13 @@ const CourseCard = ({
             return (
               <>
                 <SwiperSlide
-                  key={index}
+                  key={item?.slug}
                   className=""
                   onMouseEnter={() => setPopUp(item._id)}
                   onMouseLeave={() => setPopUp("")}
                 >
                   <Link
-                    href={`/product/${item?.slug}`}
+                    href={`/study/${item?.slug}`}
                     key={index}
                     className="h-[300px] block"
                   >
@@ -267,4 +267,4 @@ const CourseCard = ({
     </>
   );
 };
-export default CourseCard;
+export default AboradCard;

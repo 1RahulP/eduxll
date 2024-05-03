@@ -14,6 +14,14 @@ import { Navigation } from "swiper/modules";
 import Slidernav1 from "../../slidernav";
 import SideMenuCardbox from "../../sidemenucardbox";
 import { useRouter } from "next/navigation";
+import {
+  BachelorBranch,
+  CertificateBranch,
+  CourseFilter,
+  FreeCoursesBranch,
+  MasterBranch,
+} from "@/constant/ConstantData";
+import CourseCard from "../../courseCard";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -48,26 +56,27 @@ const Header = () => {
     "Artificial Intelligence"
   );
   console.log("bablu", { filteractive });
-  const activeTab = (item: any) => {
-    setfilteractive(item);
-  };
+  // const activeTab = (item: any) => {
+  //   setfilteractive(item);
+  // };
   const router = useRouter();
+
+  const [activeTab, setActiveTab] = useState("");
+  const [activeCourseBranch, setActiveCourseBranch] = useState("");
+
+  const nestedFilter =
+    activeTab === "master"
+      ? MasterBranch
+      : activeTab === "bachelor"
+      ? BachelorBranch
+      : activeTab === "certificate"
+      ? CertificateBranch
+      : activeTab === "free-courses"
+      ? FreeCoursesBranch
+      : [];
 
   return (
     <>
-      {/* <div className="relative bg-[#eaeaea] py-2">
-        <h2 className="text-center text-sm font-semibold">
-          Aage ki sochni hai? Enjoy Complimentary Career Counselling{" "}
-          <span className="text-red-500 cursor-pointer">Claim Now!</span>
-        </h2>
-        <Image
-          src={"/svg/close.svg"}
-          alt="close"
-          width={14}
-          height={14}
-          className="absolute right-3 top-2 cursor-pointer"
-        />
-      </div> */}
       <div className="sticky top-0 z-[99]">
         <div className="flex p-2 px-8 justify-between items-center  shadow-md custom-bg z-[9] border-b">
           <div className="flex items-center gap-8">
@@ -101,7 +110,7 @@ const Header = () => {
                       <li
                         key={index}
                         className="cursor-pointer text-lg font-normal flex items-center "
-                        onClick={() => setIsToggled(!isToggled)}
+                        // onClick={() => setIsToggled(!isToggled)}
                       >
                         {item.menu === "More" ? (
                           <div
@@ -191,43 +200,49 @@ const Header = () => {
                         <h3 className="text-lg font-semibold my-4 px-4">
                           {item?.title}
                         </h3>
-                        {item?.list.map((val, ind) => {
+                        {CourseFilter.map((item, index) => {
                           return (
                             <div
-                              key={ind}
-                              className={`flex justify-between cursor-pointer   px-4 ${
-                                color === val.listItem
-                                  ? " bg-[#fdbebf] text-[#ea1d22]  hoverimagecolorchnge"
-                                  : ""
-                              }`}
-                              onMouseEnter={() => toggleSidebar(val.listItem)}
+                              key={index}
+                              className={
+                                activeTab === item?.value
+                                  ? "bg-[#fdbebf] text-[#ea1d22] px-4 flex justify-between cursor-pointer hoverimagecolorchnge"
+                                  : "px-4 flex justify-between cursor-pointer"
+                              }
+                              onClick={() => {
+                                setActiveTab(item?.value),
+                                  setActiveCourseBranch("");
+                                toggleSidebar(item?.value);
+                              }}
                               onMouseLeave={() => sideBarClose("")}
                             >
-                              <p className="py-[12px]">{val.listItem}</p>
-                              {val.key === true &&
-                                (color === val.listItem ? (
-                                  <>
-                                    {" "}
-                                    <Image
-                                      src={
-                                        "/svg/arrow-drop-right-linewhite.svg"
-                                      }
-                                      alt="greater"
-                                      width={20}
-                                      height={20}
-                                    />
-                                  </>
-                                ) : (
-                                  <>
-                                    {" "}
-                                    <Image
-                                      src={"/svg/arrow-drop-right-line.svg"}
-                                      alt="greater"
-                                      width={20}
-                                      height={20}
-                                    />
-                                  </>
-                                ))}
+                              <p className="py-[12px]">{item.label}</p>
+                              {activeTab === item?.value ? (
+                                <Image
+                                  src={"/svg/arrow-drop-right-linewhite.svg"}
+                                  alt="greater"
+                                  width={20}
+                                  height={20}
+                                />
+                              ) : activeTab === "" ? (
+                                <>
+                                  <Image
+                                    src={"/svg/arrow-drop-right-line.svg"}
+                                    alt="greater"
+                                    width={20}
+                                    height={20}
+                                  />
+                                </>
+                              ) : (
+                                <>
+                                  <Image
+                                    src={"/svg/arrow-drop-right-line.svg"}
+                                    alt="greater"
+                                    width={20}
+                                    height={20}
+                                  />
+                                </>
+                              )}{" "}
                             </div>
                           );
                         })}
@@ -273,117 +288,57 @@ const Header = () => {
                   </div>
 
                   <div>
-                    {/* <div className="bg-[#1f453d] py-[20px] px-[20px]">
-                      <h3 className="text-white text-2xl font-semibold">
-                        Career resources
-                      </h3>
-                      <p className="text-white my-2 text-sm">
-                        Degree programs from top institutions around the world
-                        to enable your career transformation and advancement.
-                      </p>
-                      <Button
-                        text={"View all Degrees"}
-                        className={"text-white bg-red-500 rounded-none mt-4"}
-                      />
-                    </div> */}
                     <div className="py-[20px] px-[20px]">
                       <h3 className="text-black text-lg font-semibold">
                         Speeialization
                       </h3>
 
-                      <div className=" px-[20px] mt-[10px] mb-[20px]">
-                        <div className=" relative tabsliderlayout ">
-                          <Slidernav1 navsize="25" navfix="2" />
-
-                          <Swiper
-                            slidesPerView="auto"
-                            spaceBetween={15}
-                            className="mySwiper2 width-100 !px-[15px]"
-                            navigation={{
-                              nextEl: ".review2-swiper-button-next",
-                              prevEl: ".review2-swiper-button-prev",
-                            }}
-                            modules={[Navigation]}
-                          >
-                            {speeializationtab.map((item, index) => {
-                              return (
-                                <>
-                                  <SwiperSlide>
-                                    <div
-                                      key={index}
-                                      onClick={() => activeTab(item)}
-                                      className={`${
-                                        filteractive?.speeialglistItem ===
-                                        item.speeialglistItem
-                                          ? "  after:w-full    after:transition-all transition-all  after:h-[2px] after:bg-[#ed1d26] after:absolute relative after:left-[0] after:bottom-[0px] text-[#ed1d26]"
-                                          : ""
-                                      } `}
-                                    >
-                                      {item.speeialglistItem}
-                                    </div>
-                                  </SwiperSlide>
-                                </>
-                              );
-                            })}
-                          </Swiper>
-                        </div>
-                      </div>
-
                       <div className="flex flex-wrap   gap-[10px] gap-y-[5px] my-[10px]">
-                        {speeializationtab.map((item, index) => {
+                        {nestedFilter.map((item, index) => {
+                          console.log("chip ko dikho", { item });
                           return (
                             <>
-                              <BadgeChip theme="default" size="medium">
-                                {item.speeialglistItem}
+                              <BadgeChip
+                                // need to active the chip by default if the value is same as activeCourseBranch value
+                                theme={
+                                  item?.value == activeCourseBranch
+                                    ? "success"
+                                    : "default"
+                                }
+                                size="medium"
+                                key={item?.label}
+                                onClick={() =>
+                                  setActiveCourseBranch(item?.value)
+                                }
+                                className="cursor-pointer"
+                              >
+                                {item?.label}
                               </BadgeChip>
                             </>
                           );
                         })}
                       </div>
 
-                      <div className="DegreeCertifications grid grid-cols-2 gap-[10px]">
+                      <div className="DegreeCertifications ">
                         <div className="Degree">
                           <h4 className="text-[15px] font-[500] mb-[10px] mt-[15px] text-[#000]">
                             Degree
                           </h4>
 
-                          <div className=" grid grid-cols-1 gap-[10px]">
+                          <div className=" grid grid-cols-2 gap-[10px]">
                             {degreearry?.map((item, index) => {
                               return (
                                 <>
                                   <SideMenuCardbox
                                     key={index}
-                                    logoimage={item.logo}
-                                    logoname={item.logoname}
-                                    titlename={item.titlename}
+                                    activeTab={activeTab}
+                                    activeCourseBranch={activeCourseBranch}
                                   />
                                 </>
                               );
                             })}
                           </div>
 
-                          <a className=" block text-center text-[#ed1e27] text-[15px] font-[500] mt-[15px] align-center">
-                            View All
-                          </a>
-                        </div>
-                        <div className="Certifications">
-                          <h4 className="text-[15px] font-[500] mb-[10px] mt-[15px] text-[#000]">
-                            Certifications
-                          </h4>
-                          <div className=" grid grid-cols-1 gap-[10px]">
-                            {certificationsearry?.map((item, index) => {
-                              return (
-                                <>
-                                  <SideMenuCardbox
-                                    key={index}
-                                    logoimage={item.logo}
-                                    logoname={item.logoname}
-                                    titlename={item.titlename}
-                                  />
-                                </>
-                              );
-                            })}
-                          </div>
                           <a className=" block text-center text-[#ed1e27] text-[15px] font-[500] mt-[15px] align-center">
                             View All
                           </a>
@@ -548,36 +503,7 @@ const sideBarArray = [
   },
 ];
 
-const speeializationtab = [
-  { speeialglistItem: "Master of Business Administration (MBA) |" },
-  { speeialglistItem: "PGDM in Banking and Insurance |" },
-  { speeialglistItem: "MA in Journalism and Mass Communication (MAJMC) |" },
-  { speeialglistItem: "Master of Computer Application (MCA) |" },
-];
-
 const degreearry = [
-  {
-    logo: "/logo/IBM-Logo-Blk---Square.png",
-    logoname: "IBM",
-    titlename: "Python for Data Science, AI & Development",
-  },
-  {
-    logo: "/logo/uc-chile360x360.png",
-    logoname: "Pontificia Universidad Católica de Chile",
-    titlename: "English for Common Interactions in the Workplace: Basic Level",
-  },
-  {
-    logo: "/logo/square_logo_large.png",
-    logoname: "Yale University",
-    titlename: "Introduction to Psychology",
-  },
-  {
-    logo: "/logo/JHU-Logo-Square-Mini_180px.png",
-    logoname: "Johns Hopkins University",
-    titlename: "Business Analytics with Excel: Elementary to Advanced",
-  },
-];
-const certificationsearry = [
   {
     logo: "/logo/IBM-Logo-Blk---Square.png",
     logoname: "IBM",

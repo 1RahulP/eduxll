@@ -24,7 +24,7 @@ const Slidernav1 = ({ navlaout, navsize, navfix }: Slidernav1Prop) => {
   return (
     <>
       <div
-        className={`review${navfix}-swiper-button-next newswiper3-button-next absolute flex justify-center items-center ${sizeClass}  bg-[#e1e1e1] rounded-[100px] cursor-pointer   right-[-20px]`}
+        className={`review${navfix}-swiper-button-next shadow-lg hover:shadow-red-500/40 newswiper3-button-next absolute flex justify-center items-center ${sizeClass}  bg-[#fcf1f5] hover:bg-[#da202f] rounded-[100px] cursor-pointer   right-[-20px]`}
         style={{
           zIndex: "9",
           top: "50%",
@@ -41,7 +41,7 @@ const Slidernav1 = ({ navlaout, navsize, navfix }: Slidernav1Prop) => {
         </span>
       </div>
       <div
-        className={`review${navfix}-swiper-button-prev newswiper3-button-prev  flex justify-center items-center ${sizeClass} bg-[#e1e1e1] rounded-[100px]  absolute cursor-pointer left-[-20px]`}
+        className={`review${navfix}-swiper-button-prev shadow-lg hover:shadow-red-500/40 newswiper3-button-prev  flex justify-center items-center ${sizeClass} bg-[#fcf1f5] hover:bg-[#da202f]  rounded-[100px]  absolute cursor-pointer left-[-20px]`}
         style={{
           zIndex: "9",
           top: "50%",

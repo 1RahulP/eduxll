@@ -1,7 +1,7 @@
 import Image from "next/image";
 import HeaderLayout from "../components/headerLayout/HeaderLayout";
 import Link from "next/link";
-import BestCourses from "../components/Abroad";
+import AbroadCourses from "../components/Abroad";
 import ProgramsDropdown from "../components/programs-dropdown/program-dropdown";
 import SuccessStories from "../components/success-stories/success-stories";
 import AbroadUniveritySlider from "../components/abroad-university-slider/abroad-university-slider";
@@ -131,7 +131,7 @@ const Courses = async () => {
             <span className="font-[450] mr-2">Domain:</span>
             <ProgramsDropdown />
           </div>
-          <BestCourses onlyCards={true} />
+          <AbroadCourses onlyCards={true} />
         </div>
         <div className="my-12">
           <h2 className="text-4xl font-semibold mb-2">
@@ -197,11 +197,14 @@ const Courses = async () => {
           </div>
         </div>
       </div>
-      <div className="max-w-[1200px] m-auto mb-12">
-        <h2 className="text-4xl font-semibold mb-6">
-          Frequently Asked Questions
-        </h2>
-        <FaqComponent faqCollection={faqCollection} />
+      <div className="bg-[#f4f4f4] py-8 mb-8">
+        <div className="max-w-[1200px] m-auto mb-12">
+          <h2 className="text-4xl font-semibold mb-6">
+            Frequently Asked Questions
+          </h2>
+
+          <FaqComponent faqCollection={faqCollection} />
+        </div>
       </div>
       <div className="max-w-[1200px] m-auto">
         <div>
@@ -209,8 +212,13 @@ const Courses = async () => {
           <AbroadWebinarSlider />
         </div>
         <div className="mb-12">
-          <h2 className="text-4xl font-semibold mb-2">Explore Study Abroad Blogs</h2>
-          <p className="mb-12">Read our blog collection to find the answers of your most asked questions</p>
+          <h2 className="text-4xl font-semibold mb-2">
+            Explore Study Abroad Blogs
+          </h2>
+          <p className="mb-12">
+            Read our blog collection to find the answers of your most asked
+            questions
+          </p>
           <BlogsSlider />
         </div>
       </div>

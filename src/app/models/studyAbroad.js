@@ -159,7 +159,6 @@ const coursesSchema = new Schema({
   },
 });
 
-const Courses =
-  mongoose?.models?.courses || mongoose.model("courses", coursesSchema);
+const Study = mongoose?.models?.study || mongoose.model("study", coursesSchema);
 
-export default Courses;
+export default Study;

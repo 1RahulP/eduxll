@@ -1,5 +1,5 @@
 import { connect } from "@/app/dbConfig";
-import Courses from "../../models/coursesModels";
+import Study from "../../models/studyAbroad";
 
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,22 +10,22 @@ export async function GET(request: NextRequest, response: NextResponse) {
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get("category");
 
-    let courses;
+    let study;
 
     if (query) {
-      const fetchedCourse = await Courses.find({
+      const fetchedStudy = await Study.find({
         customCategory: {
           $elemMatch: {
             value: { $regex: new RegExp(query, "i") },
           },
         },
       });
-      courses = fetchedCourse;
+      study = fetchedStudy;
     } else {
-      const fetchedCourse = await Courses.find();
-      courses = fetchedCourse;
+      const fetchedStudy = await Study.find();
+      study = fetchedStudy;
     }
-    return NextResponse.json(courses, { status: 200 });
+    return NextResponse.json(study, { status: 200 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     const slug = generateSlug(body.title);
     body.slug = slug;
 
-    const course = new Courses(body);
+    const course = new Study(body);
     const newCourse = await course.save();
     return NextResponse.json({
       message: "Course created successfully",
@@ -56,12 +56,12 @@ export async function PUT(request: NextRequest, response: NextResponse) {
     const { field, url, courseId } = await request.json();
 
     const update = { [field]: url };
-    const course = await Courses.findByIdAndUpdate(courseId, update, {
+    const course = await Study.findByIdAndUpdate(courseId, update, {
       new: true,
     });
 
     return NextResponse.json({
-      message: "Course update successfully",
+      message: "Study update successfully",
       success: true,
       course,
     });

@@ -279,15 +279,14 @@ const ProductPage = async ({ params }: any) => {
                         />
                       </div>
                       <div className="text-center mt-[20px]">
-                        <h4
-                          className="text-[15px] font-[600] mb-[5px] text-[#343434]"
+                        <div
                           dangerouslySetInnerHTML={{
                             __html: response?.certificateDescription.replace(
                               /"/g,
                               ""
                             ),
                           }}
-                        ></h4>
+                        ></div>
 
                         <Link
                           href="#"

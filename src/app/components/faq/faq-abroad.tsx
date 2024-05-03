@@ -13,9 +13,9 @@ const FaqComponent = ({ faqCollection }: faqProp) => {
     <div className="grid gap-4">
       {faqCollection?.map((value: any, index: any) => {
         return (
-          <div key={index} className="p-2 bg-[#e5e5e5] rounded-md">
+          <div key={index} className="p-4 bg-white rounded-md">
             <h3
-              className="font-semibold flex justify-between"
+              className="font-semibold flex justify-between cursor-pointer"
               onClick={() => faqToggle(value?.question)}
             >
               <p>

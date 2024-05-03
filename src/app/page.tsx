@@ -42,7 +42,7 @@ const page = () => {
       <LogoSlider />
       <BestCourses />
 
-      <AbroadCourses onlyCards={false} />
+      <AbroadCourses />
       <div className="bg-[url('/blue-bg.png')] bg-contain">
         <div className="md:max-w-[1230px] w-[100%] mx-auto px-[15px] py-12 grid lg:grid-cols-3 md:grid-cols-2     gap-10">
           <div className="flex gap-6 items-center">
