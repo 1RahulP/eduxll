@@ -17,7 +17,7 @@ import {
   BachelorBranch,
   CertificateBranch,
   CourseCatgory,
-  CourseFilter,
+  // CourseFilter,
   FreeCoursesBranch,
   MasterBranch,
 } from "@/constant/ConstantData";
@@ -36,6 +36,30 @@ const BestCourses = () => {
       : activeTab === "free-courses"
       ? FreeCoursesBranch
       : [];
+
+  // don't show Free Courses in course filter
+  const CourseFilter = [
+    {
+      id: 0,
+      label: "View All",
+      value: "view-all",
+    },
+    {
+      id: 1,
+      label: "Master",
+      value: "master",
+    },
+    {
+      id: 2,
+      label: "Bachelor",
+      value: "bachelor",
+    },
+    {
+      id: 3,
+      label: "Certificate",
+      value: "certificate",
+    },
+  ];
 
   return (
     <>
@@ -76,19 +100,21 @@ const BestCourses = () => {
             })}
           </div>
 
-          <div className="flex flex-wrap   gap-[10px] gap-y-[5px] my-[10px]">
+          <div className="flex overflow-x-auto pb-2  gap-[10px] gap-y-[5px] my-[10px]" style={{scrollbarWidth:"thin"}}>
             {nestedFilter?.map((item, index) => {
               return (
-                <BadgeChip
-                  theme={
-                    item?.value == activeCourseBranch ? "success" : "default"
-                  }
-                  size="medium"
-                  key={item?.label}
-                  onClick={() => setActiveCourseBranch(item?.value)}
-                >
-                  {item?.label}
-                </BadgeChip>
+                <div className="w-full whitespace-nowrap cursor-pointer">
+                  <BadgeChip
+                    theme={
+                      item?.value == activeCourseBranch ? "success" : "default"
+                    }
+                    size="medium"
+                    key={item?.label}
+                    onClick={() => setActiveCourseBranch(item?.value)}
+                  >
+                    {item?.label}
+                  </BadgeChip>
+                </div>
               );
             })}
           </div>

@@ -66,36 +66,66 @@ const ReviewSlider = () => {
                     <div>
                       <p className="text-center">{item.desc}</p>
                       <div className="flex mt-4 justify-center">
-                        <Image
-                          src={"/png/rating.png"}
-                          alt="image"
-                          width={20}
-                          height={20}
-                        />
-                        <Image
-                          src={"/png/rating.png"}
-                          alt="image"
-                          width={20}
-                          height={20}
-                        />
-                        <Image
-                          src={"/png/rating.png"}
-                          alt="image"
-                          width={20}
-                          height={20}
-                        />
-                        <Image
-                          src={"/png/rating.png"}
-                          alt="image"
-                          width={20}
-                          height={20}
-                        />
-                        <Image
-                          src={"/png/rating.png"}
-                          alt="image"
-                          width={20}
-                          height={20}
-                        />
+                        {item.ratingstar === "1" ? (
+                          <>
+                            <Image
+                              src="/star/1star.png"
+                              width={117}
+                              height={18}
+                              alt={item.ratingstar}
+                            />
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {item.ratingstar === "2" ? (
+                          <>
+                            <Image
+                              src="/star/2star.png"
+                              width={117}
+                              height={18}
+                              alt={item.ratingstar}
+                            />
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {item.ratingstar === "3" ? (
+                          <>
+                            <Image
+                              src="/star/3star.png"
+                              width={117}
+                              height={18}
+                              alt={item.ratingstar}
+                            />
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {item.ratingstar === "4" ? (
+                          <>
+                            <Image
+                              src="/star/4star.png"
+                              width={117}
+                              height={18}
+                              alt={item.ratingstar}
+                            />
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {item.ratingstar === "5" ? (
+                          <>
+                            <Image
+                              src="/star/5star.png"
+                              width={117}
+                              height={18}
+                              alt={item.ratingstar}
+                            />
+                          </>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -117,6 +147,7 @@ const reviewArray = [
     title: "Student",
     exp: "Best Experience !",
     desc: "Joining EduXLL transformed my career prospects. The courses from international universities provided me with a unique perspective and real-world skills that set me apart in job interviews. Highly recommended for anyone looking to elevate their career!",
+    ratingstar: "5",
   },
   {
     image: "/png/user.png",
@@ -124,6 +155,7 @@ const reviewArray = [
     title: "Student",
     exp: "Best Experience !",
     desc: "EduXLL's flexible learning environment allowed me to balance my studies with my commitments. The quality of education and the support from global faculty were beyond my expectations. It's a game changer for online education!",
+    ratingstar: "5",
   },
   {
     image: "/png/user.png",
@@ -131,6 +163,7 @@ const reviewArray = [
     title: "Student",
     exp: "Best Experience !",
     desc: "Thanks to EduXLL, I could access courses from top-notch universities that were otherwise unreachable. The diverse programs and the interactive learning tools have significantly enhanced my knowledge and confidence.",
+    ratingstar: "4",
   },
   {
     image: "/png/user.png",
@@ -138,6 +171,7 @@ const reviewArray = [
     title: "Student",
     exp: "Best Experience !",
     desc: "EduXLL not only provided me with academic excellence but also exposed me to a network of students and professionals across the globe. This experience has been invaluable in broadening my horizons and building professional relationships.",
+    ratingstar: "5",
   },
   {
     image: "/png/user.png",
@@ -145,6 +179,7 @@ const reviewArray = [
     title: "Student",
     exp: "Best Experience !",
     desc: "The support and guidance from the faculty at EduXLL have been phenomenal. They really go the extra mile to ensure we understand the material and are able to apply it practically.",
+    ratingstar: "5",
   },
   {
     image: "/png/user.png",
@@ -152,26 +187,6 @@ const reviewArray = [
     title: "Student",
     exp: "Best Experience !",
     desc: "EduXLL’s approach to online education is unmatched. The interactive sessions and real-time feedback from instructors have made learning so much more effective and enjoyable for me.",
-  },
-  {
-    image: "/png/user.png",
-    name: "Richard Joseph",
-    title: "Student",
-    exp: "Best Experience !",
-    desc: "There are so many websites out there that have not considered the overall usability of their visually impaired users. When it comes to designing better links.",
-  },
-  {
-    image: "/png/user.png",
-    name: "Richard Joseph",
-    title: "Student",
-    exp: "Best Experience !",
-    desc: "There are so many websites out there that have not considered the overall usability of their visually impaired users. When it comes to designing better links.",
-  },
-  {
-    image: "/png/user.png",
-    name: "Richard Joseph",
-    title: "Student",
-    exp: "Best Experience !",
-    desc: "There are so many websites out there that have not considered the overall usability of their visually impaired users. When it comes to designing better links.",
+    ratingstar: "5",
   },
 ];

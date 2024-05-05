@@ -11,7 +11,10 @@ import AbroadWebinarSlider from "../components/abroad-webinar-slider/abroad-webi
 import { connect } from "../dbConfig";
 import Web from "../models/webinar";
 import BlogsSlider from "../components/blogs-slider/blogs-slider";
-
+import FormUI from "../components/form/page";
+import ReviewSlider from "../components/review-slider/review-slider";
+import StaticAbroad from "../components/StaticAbroad";
+import WebinarSlider from "../components/upcoming-webinar/webinar-slider";
 const getAllClassess = async () => {
   try {
     connect();
@@ -27,22 +30,24 @@ const Courses = async () => {
   console.log(response, "hii");
   return (
     <HeaderLayout>
-      <div className="bg-[#00000005]">
-        <div className="max-w-[1280px] m-auto grid grid-cols-2">
+      <div
+        className="  bg-cover bg-center studyabroadstyle "
+        style={{
+          backgroundImage: "../ranger-4df6c1b6.png",
+        }}
+      >
+        <div className="max-w-[1280px] m-auto grid grid-cols-2 items-center">
           <div className="p-8">
-            <div className="flex gap-2 items-center text-sm ">
-              <span>Great Learning</span>
-              <span>&gt;</span>
-              <span>Study Abroad Courses</span>
-            </div>
-            <h1 className="text-[42px] font-semibold mt-8 mb-4">
+            <h1 className="text-[42px] font-semibold mb-4">
               Study Abroad Programs
             </h1>
             <p>
-              Study Abroad Programs combine virtual learning with on-campus
-              learning in the USA or Germany. Get the best of both worlds and
-              gain invaluable knowledge and cultural experience. Enhance your
-              qualifications and make the most of your study abroad journey
+              Studying abroad exposes students to diverse cultures and global
+              education systems, enhancing personal and professional growth. It
+              broadens perspectives, improves language skills, and provides
+              networking opportunities with a diverse peer group, significantly
+              boosting employability and offering a competitive edge in career
+              advancements.
             </p>
             <div className="grid gap-2 mt-8">
               <div className="flex gap-2 items-center">
@@ -54,7 +59,7 @@ const Courses = async () => {
                     height={20}
                   />
                 </span>
-                <span>Save upto 1/3rd of your degree cost</span>
+                <span>Save on tuition and living expenses</span>
               </div>
               <div className="flex gap-2 items-center">
                 <span className="bg-[#34B742] w-6 h-6 p-[4px] rounded-full">
@@ -65,7 +70,7 @@ const Courses = async () => {
                     height={20}
                   />
                 </span>
-                <span>No GRE/TOEFL required</span>
+                <span>No GRE/TOEFL required for admission </span>
               </div>
               <div className="flex gap-2 items-center">
                 <span className="bg-[#4E3CD1] w-6 h-6 p-[4px] rounded-full">
@@ -76,7 +81,7 @@ const Courses = async () => {
                     height={20}
                   />
                 </span>
-                <span>Get Post Study Work visa in the USA or Germany</span>
+                <span>Assured Paid Internship Opportunities </span>
               </div>
               <div className="p-4 bg-white border rounded-md">
                 <div className="bg-[#FFBF00] text-xs flex w-fit p-2 gap-2">
@@ -110,20 +115,17 @@ const Courses = async () => {
             </div>
           </div>
           <div>
-            <div className="max-w-[716px] rounded-full h-[616px] bg-[#FFB333] block relative">
-              <Image
-                src={"/png/man.png"}
-                alt="man"
-                width={450}
-                height={650}
-                className="h-auto absolute bottom-0 left-0"
-              />
+            <div className="max-w-[716px] flex justify-center items-center rounded-full h-[616px] block relative">
+              <div className="flex-1 max-w-[400px]">
+                <FormUI />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="max-w-[1200px] m-auto">
-        <div className="my-12 mb-4">
+
+      <div className=" ">
+        {/* <div className="max-w-[1200px] m-auto">
           <h2 className="text-4xl font-semibold">
             Discover Study Abroad Programs
           </h2>
@@ -131,15 +133,18 @@ const Courses = async () => {
             <span className="font-[450] mr-2">Domain:</span>
             <ProgramsDropdown />
           </div>
-          <AbroadCourses onlyCards={true} />
-        </div>
+        </div> */}
+        <StaticAbroad onlyCards={true} />
+      </div>
+      <div className="max-w-[1200px] m-auto">
         <div className="my-12">
-          <h2 className="text-4xl font-semibold mb-2">
-            Growth and Success Stories
+          <h2 className="  text-3xl font-semibold">
+            What Students <br />
+            Think and Say About Eduman
           </h2>
-          <p>Know the upGrad Abroad impact</p>
+
           <div>
-            <SuccessStories />
+            <ReviewSlider />
           </div>
         </div>
         <div className="mb-12">
@@ -209,7 +214,7 @@ const Courses = async () => {
       <div className="max-w-[1200px] m-auto">
         <div>
           <h2 className="text-4xl font-semibold">Study Abroad Webinars</h2>
-          <AbroadWebinarSlider />
+          <WebinarSlider />
         </div>
         <div className="mb-12">
           <h2 className="text-4xl font-semibold mb-2">

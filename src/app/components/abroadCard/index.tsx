@@ -1,22 +1,14 @@
 "use client";
 import Image from "next/image";
 import Badgechip from "../badge";
-import Button from "../button/Button";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Slidernav1 from "../slidernav";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import BadgeChip from "../badge";
-import { randomUUID } from "crypto";
-import { useRouter, useSearchParams } from "next/navigation";
-import { connect } from "@/app/dbConfig";
-import Courses from "@/app/models/coursesModels";
 import Link from "next/link";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
@@ -40,7 +32,7 @@ const AboradCard = ({
     infinite: false,
     speed: 1000,
     slidesToShow: 3,
-    // slidesToScroll: 1,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1200,
@@ -98,7 +90,7 @@ const AboradCard = ({
 
   return (
     <>
-      <div className="relative">
+      <div className="relative  ">
         <Slidernav1 navfix="3" />
 
         <Swiper
@@ -148,14 +140,14 @@ const AboradCard = ({
                               transform: "translate(0%, -30%)",
                             }}
                           >
-                            <Image
+                           <Image
                               className="rounded-[5px]"
-                              src="/logoslider/1.webp"
+                              src={item?.universityLogo}
                               alt={"image"}
                               width={100}
                               height={50}
                               objectFit="cover"
-                            />
+                          />
                           </div>
                         </div>
                         <div>
@@ -179,6 +171,9 @@ const AboradCard = ({
                               </div>
                             </div>
                             <h3 className="text-[16px] font-semibold mt-2 line-clamp-2">
+                              {item?.courseBranch[0]?.label}
+                            </h3>
+                            <h3 className="text-[12px]  mt-2 line-clamp-2">
                               {item?.title}
                             </h3>
                             <div className="mt-2 flex gap-[10px] items-center">
@@ -215,7 +210,7 @@ const AboradCard = ({
                           </div> */}
                         </div>
                       </div>
-                      <div
+                      {/* <div
                         className={`absolute  z-[9]   ${
                           popUp === item._id ? "block" : "hidden"
                         }
@@ -255,7 +250,7 @@ const AboradCard = ({
                             />
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </Link>
                 </SwiperSlide>

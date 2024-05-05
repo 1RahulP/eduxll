@@ -49,7 +49,7 @@ const page = () => {
             <div>
               <Image src="/learn.png" alt="learn" width={60} height={60} />
             </div>
-            <h3 className="sm:text-2xl text-md tracking-wide font-semibold text-white flex-1">
+            <h3 className="sm:text-[20px]  leading-6 text-md tracking-wide font-semibold text-white flex-1">
               Learn new skills from a wide array of courses
             </h3>
           </div>
@@ -62,7 +62,7 @@ const page = () => {
                 height={60}
               />
             </div>
-            <h3 className="sm:text-2xl text-md tracking-wide font-semibold text-white flex-1">
+            <h3 className="sm:text-[20px]  	leading-6 text-md tracking-wide font-semibold text-white flex-1">
               Gain accredited degrees and certificates
             </h3>
           </div>
@@ -70,7 +70,7 @@ const page = () => {
             <div>
               <Image src="/anywhere.png" alt="learn" width={60} height={60} />
             </div>
-            <h3 className="sm:text-2xl text-md tracking-wide font-semibold text-white flex-1">
+            <h3 className="sm:text-[20px]  	leading-6 text-md tracking-wide font-semibold text-white flex-1">
               Educate yourself anywhere, anytime, 24/7
             </h3>
           </div>

@@ -40,7 +40,7 @@ const CourseCard = ({
     infinite: false,
     speed: 1000,
     slidesToShow: 3,
-    // slidesToScroll: 1,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1200,
@@ -132,7 +132,7 @@ const CourseCard = ({
                   >
                     <div className="cursor-pointer relative h-[100%] block pb-[20px]">
                       <div className="  rounded-xl bg-white shadow-md  h-[100%] ">
-                        <div className="relative after:bg-gradient-to-r after:from-black after:rounded-t-xl overflow-hidden	 after:absolute after:w-[100%] after:h-[100%]    after:top-[0px] after:left-[0px]">
+                        <div className="relative after:bg-gradient-to-r after:from-[#00000042] after:rounded-t-xl overflow-hidden	 after:absolute after:w-[100%] after:h-[100%]    after:top-[0px] after:left-[0px]">
                           <Image
                             className="rounded-t-xl h-[120px] w-full object-cover object-top"
                             src={item?.courseImage}
@@ -150,7 +150,7 @@ const CourseCard = ({
                           >
                             <Image
                               className="rounded-[5px]"
-                              src="/logoslider/1.webp"
+                              src={item?.universityLogo}
                               alt={"image"}
                               width={100}
                               height={50}
@@ -179,8 +179,12 @@ const CourseCard = ({
                               </div>
                             </div>
                             <h3 className="text-[16px] font-semibold mt-2 line-clamp-2">
+                              {item?.courseBranch[0]?.label}
+                            </h3>
+                            <h3 className="text-[12px]  mt-2 line-clamp-2">
                               {item?.title}
                             </h3>
+
                             <div className="mt-2 flex gap-[10px] items-center">
                               <span className="">
                                 <Image
@@ -215,7 +219,7 @@ const CourseCard = ({
                           </div> */}
                         </div>
                       </div>
-                      <div
+                      {/* <div
                         className={`absolute  z-[9]   ${
                           popUp === item._id ? "block" : "hidden"
                         }
@@ -255,7 +259,7 @@ const CourseCard = ({
                             />
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </Link>
                 </SwiperSlide>

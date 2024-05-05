@@ -4,14 +4,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { set } from "mongoose";
-import { uploadFiletoFirebase } from "@/app/utils";
-import { createCourse, updateCourseFields } from "@/app/actions";
 import LinkModelBox from "@/app/components/linkmodelbox/linkmodelbox";
 import { useParams, useRouter } from "next/navigation";
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 import SideBarLayout from "../../../ui/sidebarlayout/page";
+import { BachelorBranch, CertificateBranch, CourseCatgory, FreeCoursesBranch, MasterBranch } from "@/constant/ConstantData";
 
 const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
@@ -21,12 +19,12 @@ const options = [
   { value: 'development', label: 'Development' },
   { value: 'business', label: 'Business' },
 ]
-const featureOptions = [
-  { value: 'latest-card', label: 'Latest Card' },
-]
+const featureOptions = [{ value: "latest-card", label: "Latest Card" }];
 const animatedComponents = makeAnimated();
 
 const CreateCourse = () => {
+
+ 
   const [courseImage, setCourseImage] = useState<any>(null);
   const [courseBrochure, setCourseBrochure] = useState<any>(null);
   const [courseCertificate, setCourseCertificate] = useState<any>(null);
@@ -34,10 +32,21 @@ const CreateCourse = () => {
 
   const [loading, setLoadig] = useState<Boolean>(false);
   const router = useRouter();
-  const [category, setCategory] = React.useState([]);
+  const [category, setCategory] = React.useState<any>([]);
   const [featureCategory, setFeatureCategory] = React.useState([]);
+  const [courseBranch, setCourseBranch] = React.useState([]);
 
 
+  const branchOptions =
+  category?.value === "master"
+    ? MasterBranch
+    : category?.value === "bachelor"
+    ? BachelorBranch
+    : category?.value === "certificate"
+    ? CertificateBranch
+    : category?.value === "free-courses"
+    ? FreeCoursesBranch
+    : [];
 
 const params = useParams()
 
@@ -50,6 +59,14 @@ const id = params.id as string
     certificateDescription: "",
     metaTitle: "",
     metaDescription: "",
+    coursePrice: "",
+    priceContent: "",
+    universityDescription: "",
+    logoOnedescription: "",
+    logoTwodescription: "",
+
+    
+semesterPrice: "",
   });
   const [courseModule, setCourseModule] = useState([
     {
@@ -62,7 +79,8 @@ const id = params.id as string
 
   const fetchCourse = async ()=>{
     try {
-      const response = await axios.get(`/api/course/${id}`)
+      const response = await axios.get(`/api/study/${id}`)
+      
       if(response?.data){
           setCourses({
             title: response.data.title,
@@ -71,10 +89,18 @@ const id = params.id as string
             certificateDescription: response.data.certificateDescription,
             metaTitle: response.data.metaTitle,
             metaDescription: response.data.metaDescription,
-          })
-          setCategory(response.data.customCategory)
+            coursePrice: response.data.coursePrice,
+            semesterPrice: response.data.semesterPrice,
+            priceContent: response.data.priceContent,
+            universityDescription: response.data.universityDescription,
+            logoOnedescription: response.data.logoOnedescription,
+            logoTwodescription: response.data.logoTwodescription,
+          }) 
           setFeatureCategory(response.data.featureCategoryInsert)
           setCourseModule(response.data.courseModule)
+          setCourseBranch(response.data.courseBranch)
+          setCategory(response.data.customCategory)
+
       }
       
     } catch (error) {
@@ -100,8 +126,14 @@ const id = params.id as string
     e.preventDefault();
 
 
-    const courseData = { ...courses, customCategory:category, featureCategoryInsert:featureCategory,  courseModule: courseModule };
-    const response = await axios.patch(`/api/course/${id}`, courseData);
+    const courseData = { ...courses, 
+      customCategory: category,
+      featureCategoryInsert: featureCategory,
+      courseBranch: courseBranch,
+      courseModule: courseModule,
+
+     };
+    const response = await axios.patch(`/api/study/${id}`, courseData);
 
     if (response.status === 200) {
       console.log(response?.data)
@@ -128,15 +160,15 @@ const id = params.id as string
           <LinkModelBox
             buttonclose={() => setBlogPopup(false)}
             buttonsave={() =>
-              router.push("/admin/newdashboard/course/course-list")
+              router.push("/admin/newdashboard/study/study-list")
             }
-            modelheading="Course"
+            modelheading="Study"
             itemicon="sussess"
-            modelcontent="Course Update Successfully"
+            modelcontent="Study Update Successfully"
           />
         )}
         <div className="flex items-center justify-between border-b-[1px] border-slate-200 px-[15px] pb-[15px] mb-[20px]">
-          <h2>Create Course</h2>
+          <h2>Update Study</h2>
         </div>
 
         <div className="bg-[#fff] rounded-[10px] p-8">
@@ -150,7 +182,7 @@ const id = params.id as string
                   <div className="flex flex-col gap-[10px] justify-center">
                     <div className="w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                        Course Title
+                        Study Title
                       </label>
                       <input
                         type="text"
@@ -167,17 +199,18 @@ const id = params.id as string
 
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                        Course Category
+                      Study Category
                       </label>
 
 
-                      <Select 
-                        options={options}
-                        isMulti
+                       
+
+<Select
+                        options={CourseCatgory}
                         components={animatedComponents}
-                        onChange={(value:any)=>setCategory(value)}
+                        onChange={(value: any) => setCategory(value)}
                         value={category}
-                    />
+                      />
 
                     </div>
                     <div className=" w-full">
@@ -186,18 +219,35 @@ const id = params.id as string
                       </label>
 
 
-                      <Select 
-                        options={featureOptions}
-                        isMulti
-                        components={animatedComponents}
-                        onChange={(value:any)=>setFeatureCategory(value)}
-                        value={featureCategory}
-                    />
+                     
+
+                      <Select
+                          options={featureOptions}
+                          components={animatedComponents}
+                          onChange={(value: any) => setFeatureCategory(value)}
+                          value={featureCategory}
+                        />
 
                     </div>
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                        Course Duration
+                      Study Branch
+                      </label>
+
+
+                     
+
+                      <Select
+                          options={branchOptions}
+                          components={animatedComponents}
+                          onChange={(value: any) => setCourseBranch(value)}
+                          value={courseBranch}
+                        />
+
+                    </div>
+                    <div className=" w-full">
+                      <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                      Study Duration
                       </label>
                       <input
                         type="text"
@@ -213,7 +263,65 @@ const id = params.id as string
                     </div>
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                        Course Description
+                        Full Study fee
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Course Duration"
+                        name="coursePrice"
+                        className="text-[14px] text-[#686868] form-input w-full rounded-md  border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                        required
+                        value={courses.coursePrice}
+                        onChange={(e) =>
+                          setCourses({
+                            ...courses,
+                            coursePrice: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+                    <div className=" w-full">
+                      <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                        Each semester fee
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Course Duration"
+                        name="semesterPrice"
+                        className="text-[14px] text-[#686868] form-input w-full rounded-md  border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                        required
+                        value={courses.semesterPrice}
+                        onChange={(e) =>
+                          setCourses({
+                            ...courses,
+                            semesterPrice: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+
+                    <div className=" w-full">
+                      <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                        Price content
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Course Duration"
+                        name="priceContent"
+                        className="text-[14px] text-[#686868] form-input w-full rounded-md  border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                        required
+                        value={courses.priceContent}
+                        onChange={(e) =>
+                          setCourses({
+                            ...courses,
+                            priceContent: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+                    <div className=" w-full">
+                      <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                      Study Description
                       </label>
                       <IRichTextEditor
                         id="rte"
@@ -232,7 +340,7 @@ const id = params.id as string
                     </div>
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                        Course Certificate Description
+                      Study Certificate Description
                       </label>
                       <IRichTextEditor
                         id="rte"
@@ -248,6 +356,75 @@ const id = params.id as string
                           setCourses({
                             ...courses,
                             certificateDescription: value,
+                          })
+                        }
+                      />
+                    </div>
+
+
+                    <div className=" w-full">
+                      <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                        Univesity Description
+                      </label>
+                      <IRichTextEditor
+                        id="rte"
+                        sticky={false}
+                        controls={[
+                          ["bold", "italic", "underline"],
+                          ["link", "image", "video", "blockquote", "code"],
+                          ["unorderedList", "h1", "h2", "h3"],
+                          ["alignLeft", "alignCenter", "alignRight"],
+                        ]}
+                        value={courses.universityDescription}
+                        onChange={(value) =>
+                          setCourses({
+                            ...courses,
+                            universityDescription: value,
+                          })
+                        }
+                      />
+                    </div>
+
+                    <div className=" w-full">
+                      <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                        Logo One Description
+                      </label>
+                      <IRichTextEditor
+                        id="rte"
+                        sticky={false}
+                        controls={[
+                          ["bold", "italic", "underline"],
+                          ["link", "image", "video", "blockquote", "code"],
+                          ["unorderedList", "h1", "h2", "h3"],
+                          ["alignLeft", "alignCenter", "alignRight"],
+                        ]}
+                        value={courses.logoOnedescription}
+                        onChange={(value) =>
+                          setCourses({
+                            ...courses,
+                            logoOnedescription: value,
+                          })
+                        }
+                      />
+                    </div>
+                    <div className=" w-full">
+                      <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                        Logo Two Description
+                      </label>
+                      <IRichTextEditor
+                        id="rte"
+                        sticky={false}
+                        controls={[
+                          ["bold", "italic", "underline"],
+                          ["link", "image", "video", "blockquote", "code"],
+                          ["unorderedList", "h1", "h2", "h3"],
+                          ["alignLeft", "alignCenter", "alignRight"],
+                        ]}
+                        value={courses.logoTwodescription}
+                        onChange={(value) =>
+                          setCourses({
+                            ...courses,
+                            logoTwodescription: value,
                           })
                         }
                       />
@@ -294,7 +471,32 @@ const id = params.id as string
                                 <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
                                   Modul Description
                                 </label>
-                                <textarea
+                                <IRichTextEditor
+                        id="rte"
+                        sticky={false}
+                        controls={[
+                          ["bold", "italic", "underline"],
+                          ["link", "image", "video", "blockquote", "code"],
+                          ["unorderedList", "h1", "h2", "h3"],
+                          ["alignLeft", "alignCenter", "alignRight"],
+                        ]}
+                        value={item.modulDescription}
+                        onChange={(value) =>
+                          setCourseModule(
+                            courseModule.map((module) =>
+                              module.id === item.id
+                                ? {
+                                    ...module,
+                                    modulDescription: value,
+                                  }
+                                : module
+                            )
+  
+                          )
+  
+                         }
+                      />
+                                {/* <textarea
                                   placeholder="Modul Description"
                                   name="modulDescription"
                                   className=" text-[14px] text-[#686868] form-input w-full rounded-md  border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
@@ -311,16 +513,16 @@ const id = params.id as string
                                       )
                                     );
                                   }}
-                                />
+                                /> */}
                               </div>
                             </React.Fragment>
                           );
                         })}
                       </div>
 
-                      <button
+                      <div
                         onClick={() => addMoreModuee()}
-                        className="text-[15px] flex items-center rounded-md gap-[10px] justify-center	 px-[20px] py-[10px] text-[#fff] transition-all hover:transition-all bg-indigo-500 hover:bg-indigo-700"
+                        className="text-[15px] cursor-pointer flex items-center rounded-md gap-[10px] justify-center	 px-[20px] py-[10px] text-[#fff] transition-all hover:transition-all bg-indigo-500 hover:bg-indigo-700"
                       >
                         <Image
                           src="/add-line.svg"
@@ -329,7 +531,7 @@ const id = params.id as string
                           alt="add"
                         />
                         Add More
-                      </button>
+                      </div>
                     </div>
                   </div>
                 </div>

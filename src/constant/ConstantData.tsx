@@ -85,7 +85,7 @@ export const MasterBranch = [
 export const BachelorBranch = [
     {
         id: 1,
-        label: 'B.A International Hospitality ',  
+        label: 'B.A International Hospitality',  
         value: 'b-a-international-hospitality'
     }, 
     {

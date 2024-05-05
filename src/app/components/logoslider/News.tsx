@@ -36,8 +36,6 @@ const NewsSlider = () => {
     ],
   };
 
-  
-   
   return (
     <>
       <section className="bg-[#fff]   py-[30px]  border-r-2 border-[red] ">
@@ -48,7 +46,7 @@ const NewsSlider = () => {
           >
             {/* <Slider {...settings}  
             > */}
-            <IconsBox  categories="news" />
+            <IconsBox categories="news" />
             {/* </Slider> */}
           </div>
         </div>

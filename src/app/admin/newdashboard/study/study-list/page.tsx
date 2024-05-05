@@ -81,7 +81,7 @@ const Page = async () => {
                                   <td className="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                     <div className="flex gap-[10px]">
                                       <Link
-                                        href={`/admin/newdashboard/course/update-course/${course?.id}`}
+                                        href={`/admin/newdashboard/study/update-study/${course?.id}`}
                                         className=" hover:bg-slate-200 rounded-[50px] w-[30px] h-[30px] flex items-center justify-center cursor-pointer"
                                       >
                                         <Image
@@ -94,7 +94,7 @@ const Page = async () => {
 
                                       <DeleteBlogButton
                                         id={id}
-                                        model="course"
+                                        model="study"
                                       />
                                     </div>
                                   </td>

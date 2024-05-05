@@ -30,6 +30,7 @@ const LinkModelBox = ({
                 type="button"
                 className="box-content absolute right-[10px] top-[10px] w-4 h-4 p-1 bg-slate-700/60 rounded-full text-slate-300 leading-4 text-xl close"
                 aria-label="Close"
+                onClick={buttonclose}
               >
                 ×
               </button>

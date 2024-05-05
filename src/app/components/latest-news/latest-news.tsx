@@ -28,7 +28,7 @@ const LatestNews = () => {
   const onlyThree = latestNewsArray?.slice(0, 4);
 
   const filterBlogData = latestNewsArray?.filter((item: any) => {
-    return item?.category === "blogs";
+    return item?.customCategory[0]?.value === "blogs";
   });
 
   const sliceData = filterBlogData?.slice(0, 3);
@@ -50,7 +50,7 @@ const LatestNews = () => {
             />
           </div>
 
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6   py-[30px]">
             {sliceData?.map((item: any, index: any) => {
               return (
                 <div

@@ -22,6 +22,7 @@ import {
   MasterBranch,
 } from "@/constant/ConstantData";
 import CourseCard from "../../courseCard";
+import { enumToValue } from "@/app/utils/enum";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -192,7 +193,7 @@ const Header = () => {
             className="absolute w-full backdrop-blur-sm"
           >
             <div className="bg-[#fff]  w-fit  z-[9]  flex  sidemenubar ">
-              <div className="w-[260px] py-4 overflow-y relative">
+              <div className="w-[260px] py-4 overflow-y relative border-r-1">
                 {sideBarArray?.map((item, index) => {
                   return (
                     <>
@@ -290,7 +291,7 @@ const Header = () => {
                   <div>
                     <div className="py-[20px] px-[20px]">
                       <h3 className="text-black text-lg font-semibold">
-                        Speeialization
+                        Specialization
                       </h3>
 
                       <div className="flex flex-wrap   gap-[10px] gap-y-[5px] my-[10px]">
@@ -306,13 +307,14 @@ const Header = () => {
                                     : "default"
                                 }
                                 size="medium"
-                                key={item?.label}
+                                key={index}
                                 onClick={() =>
                                   setActiveCourseBranch(item?.value)
                                 }
                                 className="cursor-pointer"
                               >
-                                {item?.label}
+                                {/* {item?.label} */}
+                                {enumToValue(item?.label)}
                               </BadgeChip>
                             </>
                           );
@@ -326,17 +328,10 @@ const Header = () => {
                           </h4>
 
                           <div className=" grid grid-cols-2 gap-[10px]">
-                            {degreearry?.map((item, index) => {
-                              return (
-                                <>
-                                  <SideMenuCardbox
-                                    key={index}
-                                    activeTab={activeTab}
-                                    activeCourseBranch={activeCourseBranch}
-                                  />
-                                </>
-                              );
-                            })}
+                            <SideMenuCardbox
+                              activeTab={activeTab}
+                              activeCourseBranch={activeCourseBranch}
+                            />
                           </div>
 
                           <a className=" block text-center text-[#ed1e27] text-[15px] font-[500] mt-[15px] align-center">

@@ -63,24 +63,27 @@ const SideMenuCardbox = ({
         return (
           <div
             key={index}
-            className="hover:bg-slate-50 flex items-center gap-[10px] border border-[#000] rounded-[5px] border-t border-slate-100 dark:border-slate-400/10 p-[10px] cursor-pointer"
-            onClick={() => router.push(`/product/${slug}`)}
+            className="hover:bg-[#d5d5d5] bg-[#ebebeb] flex items-center gap-[10px] border border-[#000] rounded-[5px] border-t border-slate-100 dark:border-slate-400/10 p-[10px] cursor-pointer"
+            onClick={() => router.push(`/product/${item?.slug}`)}
           >
-            <div className="logo">
+            <div className="logo h-[100px] w-[100px]">
               <Image
                 src={item.courseImage || "/logo/IBM-Logo-Blk---Square.png"}
-                width={40}
-                height={40}
+                width={100}
+                height={100}
                 alt=""
-                objectFit="contain"
-                className="logocur rounded-[5px]"
+                objectFit="cover"
+                className=" rounded-[5px] object-cover h-[100px] w-[100px]"
               />
             </div>
             <div className="contentbox flex-1">
               <h4 className="text-[15px] font-[500] text-[#000] p-0 m-0">
+                {item.courseBranch[0]?.label}
+              </h4>
+              <h4 className="text-[13px] font-[400] text-[#000] p-0 m-0 mt-[5px]">
                 {item.title.substring(0, 40)}
               </h4>
-              <p className="text-[13px] font-[300] text-[#6e6d6d] p-0 m-0">
+              <p className="text-[13px] font-[400] text-[#6e6d6d] p-0 m-0">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: item.description

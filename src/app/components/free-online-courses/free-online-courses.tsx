@@ -8,9 +8,13 @@ import "swiper/css/pagination";
 import Slidernav1 from "../slidernav";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import FormUI from "../form/page";
+import { useState } from "react";
 
 
 const FreeOnlineCourses = () => {
+  const [registerPopup, setRegisterPopup] = useState("button")
+  const [card,setCard]= useState("")
   return (
     <div className="relative free-online-courses my-12">
       <Slidernav1 navfix="3" />
@@ -35,7 +39,7 @@ const FreeOnlineCourses = () => {
             className="relative"
            
           >
-            <div className="w-[300px] h-[375px] p-2 border shadow-xl mb-8 rounded-xl cursor-pointer">
+            <div className="w-[300px] h-[375px] p-2 border shadow-xl mb-8 rounded-xl cursor-pointer online-cards" onMouseEnter={()=>setCard(item?.title)}>
               <div className="relative">
                 <div>
                   <Image
@@ -46,6 +50,7 @@ const FreeOnlineCourses = () => {
                     className="!w-[285px] !h-[260px]"
                   />
                 </div>
+                <div className={"absolute top-[40%] w-full flex justify-evenly hidden register-button"}><Button onClick={()=>setRegisterPopup(item?.title)} text={"Register"} className={"!bg-red-700 !rounded-md text-white"} /></div>
                 {/* <div className="absolute top-[40%] left-[2%]">
                   {item?.imageContent}
                 </div> */}
@@ -89,6 +94,13 @@ const FreeOnlineCourses = () => {
           );
         })}
       </Swiper>
+        {
+        registerPopup===card ?
+         <div className="forms fixed top-0 left-0 grid items-center justify-center h-screen w-screen z-[9] backdrop-blur-md">
+         <FormUI crossIcon={true} onClick={()=>setRegisterPopup("")} />
+       </div>
+       :""
+        }
     </div>
   );
 };
@@ -123,7 +135,7 @@ const coursesCollection = [
   },
   {
     imageUrl: "/free-courses/04.jpg",
-    title: "Getting Started with Bard",
+    title: "Getting Started with Bards",
     imageContent: "Artificial Intelligence with Python",
     rating: "4.55",
     learners: "62.1K+ Learners",

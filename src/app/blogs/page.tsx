@@ -31,13 +31,13 @@ const Blogs = () => {
     <HeaderLayout>
       <div className="h-[400px] master-banner relative bg-[url('/master.webp')] bg-no-repeat bg-cover">
         <div className="sm:pr-12 pr-4 lg:pl-32 pl-4 py-8 bg-gradient-to-r from-black to-transparent h-full">
-          <div className="flex gap-2 text-white">
+          {/* <div className="flex gap-2 text-white">
             <Link href={"/"} className="cursor-pointer text-[#dbd8d8]">
               Home
             </Link>
             <span> {">"} </span>
             <span>Blogs</span>
-          </div>
+          </div> */}
           <div className="sm:absolute  mt-[100px] z-[9]">
             <div className="text-white max-w-[720px] lg:px-20 sm:pl-8 pl-2 sm:mt-0 mt-4 grid sm:gap-6 gap-2">
               <h2 className="sm:text-3xl text-xl font-semibold">
@@ -65,11 +65,7 @@ const Blogs = () => {
       <div className="my-16">
         {/* <LatestNews response={response} /> */}
         <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
-          <div className="relative">
-            <h2 className="text-3xl font-semibold my-8 text-center">
-              Read Our Latest Blogs
-            </h2>
-          </div>
+          <div className="relative"></div>
 
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
             {filterBlogData?.map((item: any, index: any) => {
@@ -91,7 +87,7 @@ const Blogs = () => {
                     </div>
                     <div>
                       <div className="contentbox p-[30px]">
-                        <div className="flex justify-between">
+                        {/* <div className="flex justify-between">
                           <div className="flex gap-2">
                             <div>
                               <Image
@@ -114,16 +110,16 @@ const Blogs = () => {
                             </div>
                             <span className="text-sm">Mark Hanry</span>
                           </div>
-                        </div>
+                        </div> */}
                         <div>
-                          <h3 className="font-semibold text-lg my-4">
+                          <h3 className="text-[16px] font-semibold mb-4">
                             {item?.title}
                           </h3>
-                          <Link href={`/news/${item?.slug}`}>
+                          <Link href={`/blogs/${item.slug}`}>
                             <Button
                               text={"Read more"}
                               className={
-                                "text-blue-500 border !border-blue-500"
+                                "   bg-gradient-to-r from-[#ee2c3c] to-[#da202f] rounded-lg   text-white font-medium     min-w-124px"
                               }
                             />
                           </Link>

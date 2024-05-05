@@ -119,6 +119,10 @@ const coursesSchema = new Schema({
     type: String,
     default: "",
   },
+  universityLogo: {
+    type: String,
+    default: "",
+  },
   logoOne: {
     type: String,
     default: "",
@@ -158,6 +162,35 @@ const coursesSchema = new Schema({
     default: [],
   },
 });
+
+coursesSchema.statics.getAllCourses = async function (){
+  const course = await this.find();
+  
+  const courseList = course?.map((course)=>({
+    ...course,
+    _id: course._id.toString(),
+
+    customCategory: course.customCategory.map((category)=>({
+      ...category,
+      _id: category._id.toString()
+    })),
+    courseBranch: course.courseBranch.map((branch)=>({
+      ...branch,
+      _id: branch._id.toString()
+    })),
+    featureCategoryInsert: course.featureCategoryInsert.map((feature)=>({
+      ...feature,
+      _id: feature._id.toString()
+    })),
+    courseModule: course.courseModule.map((module)=>({
+      ...module,
+      _id: module._id.toString()
+    }))
+
+  }))
+  return courseList;  
+}
+
 
 const Courses =
   mongoose?.models?.courses || mongoose.model("courses", coursesSchema);

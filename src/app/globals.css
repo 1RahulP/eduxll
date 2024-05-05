@@ -407,3 +407,55 @@ h4 {
   line-height: 1.3em;
   margin-bottom: 10px;
 }
+
+
+.rankcontentbox>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.rankcontentbox h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.rankcontentbox p {
+  font-size: 12px;
+  color: #7e7c7c;
+}
+
+.rankcontentbox {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+
+section, .section {
+
+  scroll-margin-top: 130px;
+  overflow: clip;
+}
+
+.certificate {
+  box-shadow: 0px 0px 10px #cfcbcb;
+}
+
+.certificate-detail-wrapper .inner {
+  border: 5px solid #707070;
+}
+
+.Fashion.Design ,.Cloud.Computing , .Machine.Learning {
+    padding-right: 66px;
+}
+
+.studyabroadstyle {
+  background: url('../../public/ranger-4df6c1b6.png');
+  background-size: cover;
+}
+.online-cards:hover .register-button{
+  display: flex;
+}

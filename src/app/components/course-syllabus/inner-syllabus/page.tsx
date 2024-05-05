@@ -2,25 +2,27 @@ import { connect } from "@/app/dbConfig";
 import Courses from "@/app/models/coursesModels";
 import Image from "next/image";
 
-const Inner = ({ toggleSylabbus, syllabus }: any) => {
+const Inner = ({ toggleSylabbus, syllabus , courseModule}: any) => {
   return (
     <div className="sm:my-16 my-8 max-w-[1200px] w-[100%] mx-auto px-[15px]">
-      <h3 className="text-[20px] font-[600] mb-[10px]">Course Syllabus</h3>
+      <h3 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[10px]">
+        Course Syllabus
+      </h3>
       <div className="flex flex-col gap-[10px]">
-        {courseCollection?.map((value, index) => {
+        {courseModule?.map((value:any) => {
           return (
             <div
-              key={index}
+              key={value._id}
               className="  border border-dashed rounded-md overflow-hidden"
             >
               <div
-                className={`grid sm:grid-cols-3 grid-cols-[3fr_2fr_1fr] cursor-pointer   p-4 bg-[#f3f4f678] cursor-pointer ${
+                className={`grid sm:grid-cols-3 grid-cols-[3fr_2fr_1fr] cursor-pointer   p-4 bg-[#f3f4f678] ${
                   toggleSylabbus === value.title ? "" : ""
                 }`}
-                onClick={() => syllabus(value.title)}
+                onClick={() => syllabus(value.modulTitle)}
               >
-                <h4 className="text-[15px] font-[500] text-[#000]">
-                  {value.title}
+                <h4 className="text-[15px] font-[500] text-[#000] mb-[0px]">
+                  {value.modulTitle}
                 </h4>
                 <span className="text-[15px] font-[500] text-[#000]">
                   {value.lesson}
@@ -34,9 +36,9 @@ const Inner = ({ toggleSylabbus, syllabus }: any) => {
                   />
                 </div>
               </div>
-              {toggleSylabbus === value.title && (
+              {toggleSylabbus === value.modulTitle && (
                 <>
-                  {value?.module?.map((item, ind) => {
+                  {/* {value?.module?.map((item, ind) => {
                     return (
                       <div key={ind} className="flex gap-2 toggleSyllabus p-4">
                         <div className="relative ">
@@ -63,7 +65,13 @@ const Inner = ({ toggleSylabbus, syllabus }: any) => {
                         </p>
                       </div>
                     );
-                  })}
+                  })} */}
+                  {/* <div dangerouslySetInnerHTML={{ __html: value?.modulDescription.replace(/"/g, "")}}></div> */}
+                  <div dangerouslySetInnerHTML={{ __html: value?.modulDescription
+                    // if there is <p> tag in the string, then remove it from <ul> tag <li> tag
+                    .replace(/<p>/g, "<li>")
+                  }}></div>
+                  
                 </>
               )}
             </div>

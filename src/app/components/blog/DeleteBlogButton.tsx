@@ -20,7 +20,7 @@ const DeleteBlogButton = ({id, model}:tProps) => {
         try {
             const response = await axios.delete(`/api/${model}/${id}`)
             if (response.status === 200) {
-                alert('Blog Deleted Successfully')
+                alert('Deleted Successfully')
                 router.refresh()
 
             }   

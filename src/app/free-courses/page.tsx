@@ -8,12 +8,15 @@ import ReviewSlider from "../components/review-slider/review-slider";
 import FaqComponent from "../components/faq/faq-abroad";
 
 const FreeCourses = () => {
+
+  const header2 = "Achieve your goals with World's leading educators"
+  const p = "We'll send an OTP for verification."
   return (
     <HeaderLayout>
       <div className="md:grid grid-cols-2 items-center gap-12 sm:py-12 py-2 max-w-[1140px] m-auto px-4">
         <div className="md:mb-0 mb-6">
           <h2 className="font-semibold sm:text-5xl text-2xl sm:mt-0 mt-4">
-            Crack your goal with India’s top educators
+          {header2}
           </h2>
           <p className="font-semibold mt-4">
             Over <span className="text-green-600"> 10 crore</span> learners
@@ -23,7 +26,7 @@ const FreeCourses = () => {
             <Input placeholder="Enter your mobile number" />
           </div>
           <p className="text-xs mt-2 text-gray-500">
-            We'll send an OTP for verification.
+           {p}
           </p>
           <Button
             text={"Join for free"}

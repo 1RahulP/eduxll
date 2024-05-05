@@ -119,6 +119,10 @@ const coursesSchema = new Schema({
     type: String,
     default: "",
   },
+  universityLogo: {
+    type: String,
+    default: "",
+  },
   logoOne: {
     type: String,
     default: "",
@@ -158,7 +162,6 @@ const coursesSchema = new Schema({
     default: [],
   },
 });
-
 const Study = mongoose?.models?.study || mongoose.model("study", coursesSchema);
 
 export default Study;

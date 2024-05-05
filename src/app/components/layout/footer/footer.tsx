@@ -1,6 +1,30 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      setShowButton(scrollTop > 100); // Adjust the threshold as needed
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <div className="pt-[50px] pb-[0px] bg-[#e6f8ff] relative  ">
@@ -146,6 +170,19 @@ const Footer = () => {
           <Image src="/shape7.png" width={200} height={117} alt="shape7" />
         </div> */}
       </div>
+
+      {showButton && (
+        <button
+          className="scroll-top-btn  
+        
+          fixed bottom-[20px] right-[20px] border border-red-500 w-[50px] h-[50px]   justify-center flex items-center bg-gradient-to-r from-[#ee2c3c] to-[#da202f] rounded-[100px]    
+        
+        "
+          onClick={scrollToTop}
+        >
+          <Image src="/arrow-up-line.svg" width={18} height={18} alt="arrow" />
+        </button>
+      )}
     </>
   );
 };

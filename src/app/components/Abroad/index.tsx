@@ -17,11 +17,12 @@ import {
   BachelorBranch,
   CertificateBranch,
   CourseCatgory,
-  CourseFilter,
+  // CourseFilter,
   FreeCoursesBranch,
   MasterBranch,
 } from "@/constant/ConstantData";
 import AboradCard from "../abroadCard";
+import Link from "next/link";
 
 const AbroadCourses = () => {
   const [popUp, setPopUp] = useState("");
@@ -38,6 +39,29 @@ const AbroadCourses = () => {
       ? FreeCoursesBranch
       : [];
 
+      const CourseFilter = [
+        {
+            id:0, 
+            label: 'View All',
+            value: 'view-all'
+        }, 
+        {
+            id: 1,
+            label: 'Master',
+            value: 'master'
+        }, 
+        {
+            id: 2,
+            label: 'Bachelor',
+            value: 'bachelor'
+        },
+        {
+            id: 3,
+            label: 'Certificate',
+            value: 'certificate'
+        }
+    ]
+
   return (
     <>
       <section className="bg-[#f6f8fb] py-[50px] lg:px-0 px-6">
@@ -46,12 +70,14 @@ const AbroadCourses = () => {
             <h2 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[20px]">
               Study Abroad
             </h2>
+            <Link href="/study-abroad">
             <Button
               text={"View All  "}
               className={
                 "  whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] !rounded-lg   text-white font-medium px-spacing24    "
               }
             />
+            </Link>
           </div>
           <div className="md:flex  grid grid-cols-3 gap-[45px] mb-[10px]">
             {CourseFilter?.map((item, index) => {
@@ -76,9 +102,10 @@ const AbroadCourses = () => {
             })}
           </div>
 
-          <div className="flex flex-wrap   gap-[10px] gap-y-[5px] my-[10px]">
+          <div className="flex overflow-x-auto pb-2  gap-[10px] gap-y-[5px] my-[10px]" style={{scrollbarWidth:"thin"}}>
             {nestedFilter?.map((item, index) => {
               return (
+                <div className="w-full whitespace-nowrap cursor-pointer">
                 <BadgeChip
                   theme={
                     item?.value == activeCourseBranch ? "success" : "default"
@@ -89,6 +116,7 @@ const AbroadCourses = () => {
                 >
                   {item?.label}
                 </BadgeChip>
+                </div>
               );
             })}
           </div>

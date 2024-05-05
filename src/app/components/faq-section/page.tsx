@@ -11,7 +11,7 @@ const FaqNew = () => {
 
   return (
     <div className="sm:my-16 my-8 md:mx-16 sm:px-16 px-4">
-      <h3 className="mb-4 sm:text-2xl text-lg mb-8 text-center font-semibold tracking-wide">
+      <h3 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[10px]">
         Frequently Asked Questions
       </h3>
       <div className="grid gap-4">
@@ -25,7 +25,7 @@ const FaqNew = () => {
                 className="flex justify-between cursor-pointer p-4 bg-[#f3f4f678] cursor-pointer"
                 onClick={() => faqToggle(item.ques)}
               >
-                <h4 className="text-[15px] font-[500] text-[#000]">
+                <h4 className="text-[15px] font-[500] text-[#000] !mb-[0px]">
                   {item.ques}
                 </h4>
                 <Image
