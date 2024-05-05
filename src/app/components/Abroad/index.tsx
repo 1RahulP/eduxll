@@ -105,13 +105,15 @@ const AbroadCourses = () => {
           <div className="flex overflow-x-auto pb-2  gap-[10px] gap-y-[5px] my-[10px]" style={{scrollbarWidth:"thin"}}>
             {nestedFilter?.map((item, index) => {
               return (
-                <div className="w-full whitespace-nowrap cursor-pointer">
+                <div className="w-full whitespace-nowrap cursor-pointer" 
+                key={item?.label}
+                
+                >
                 <BadgeChip
                   theme={
                     item?.value == activeCourseBranch ? "success" : "default"
                   }
                   size="medium"
-                  key={item?.label}
                   onClick={() => setActiveCourseBranch(item?.value)}
                 >
                   {item?.label}
