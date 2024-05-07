@@ -35,8 +35,8 @@ const News = async ({ params }: any) => {
   return (
     <>
       <HeaderLayout>
-        <section className="flex items-center justify-center w-[100] h-[200px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
-          <h1 className="text-[35px] font-[600] text-[#fff] text-center">
+        <section className=" singleblog flex items-center justify-center w-[100%] before:absolute relative h-[250px] before:w-[100%] before:h-[100%] before:left-[0px] before:top-[0px]  before:bg-gradient-to-r before:from-[#00000096] before:via-[#00000096] before:to-[#00000096] ">
+          <h1 className="  font-[600] text-[#fff] text-center max-w-[500px] text-[#fff] leading-[28px] text-[25px] relative">
             {response?.title}
           </h1>
         </section>

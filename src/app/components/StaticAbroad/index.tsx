@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import CourseCard from "../courseCard";
 import Slidernav1 from "../slidernav";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+
 import Slider from "react-slick";
 import {
   BachelorBranch,
@@ -25,7 +25,16 @@ import AboradCard from "../abroadCard";
 import Link from "next/link";
 import StaticCard from "../staticCard";
 
-const StaticAbroad = ({onlyCards}:any) => {
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+const StaticAbroad = ({ onlyCards }: any) => {
   const [popUp, setPopUp] = useState("");
   const [activeTab, setActiveTab] = useState("view-all");
   const [activeCourseBranch, setActiveCourseBranch] = useState("");
@@ -49,12 +58,12 @@ const StaticAbroad = ({onlyCards}:any) => {
               Study Abroad
             </h2>
             <Link href="/study-abroad">
-            <Button
-              text={"View All  "}
-              className={
-                "  whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] !rounded-lg   text-white font-medium px-spacing24    "
-              }
-            />
+              <Button
+                text={"View All  "}
+                className={
+                  "  whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] !rounded-lg   text-white font-medium px-spacing24    "
+                }
+              />
             </Link>
           </div>
           <div className="md:flex  grid grid-cols-3 gap-[45px] mb-[10px]">
@@ -80,23 +89,39 @@ const StaticAbroad = ({onlyCards}:any) => {
             })}
           </div>
 
-          <div className="flex flex-wrap   gap-[10px] gap-y-[5px] my-[10px]">
-            {nestedFilter?.map((item, index) => {
-              return (
-                <BadgeChip
-                  theme={
-                    item?.value == activeCourseBranch ? "success" : "default"
-                  }
-                  size="medium"
-                  key={item?.label}
-                  onClick={() => setActiveCourseBranch(item?.value)}
-                >
-                  {item?.label}
-                </BadgeChip>
-              );
-            })}
-          </div>
+          <div className="relative tabsliderlayout mb-[16px]">
+            <Slidernav1 navfix="3" navsize="25" />
 
+            <Swiper
+              slidesPerView={6}
+              spaceBetween={15}
+              className="mySwiper3 width-100"
+              navigation={{
+                nextEl: ".review3-swiper-button-next",
+                prevEl: ".review3-swiper-button-prev",
+              }}
+              modules={[Navigation]}
+            >
+              {nestedFilter?.map((item, index) => {
+                return (
+                  <SwiperSlide key={item?.label}>
+                    <BadgeChip
+                      theme={
+                        item?.value == activeCourseBranch
+                          ? "success"
+                          : "default"
+                      }
+                      size="medium"
+                      key={item?.label}
+                      onClick={() => setActiveCourseBranch(item?.value)}
+                    >
+                      {item?.label}
+                    </BadgeChip>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
           <div className="relative gap-[15px]">
             <StaticCard
               activeTab={activeTab}

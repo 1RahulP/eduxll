@@ -9,7 +9,7 @@ interface LatestNewsProps {
   response?: any;
 }
 
-const LatestNews = () => {
+const LatestNews = ({ category }: any) => {
   const [blogData, setBlogData] = useState<any>([]);
 
   const getAllBlogsData = async () => {
@@ -27,8 +27,26 @@ const LatestNews = () => {
   const latestNewsArray = blogData;
   const onlyThree = latestNewsArray?.slice(0, 4);
 
+  // const categoryFilter = latestNewsArray?.map((item: any) => {
+  //   return item?.customCategory.map((item: any) => {
+  //     return item?.value;
+  //   });
+  // });
+
+  // const categoryFilter = React.useCallback(() => {
+  //   return latestNewsArray?.map((item: any) => {
+  //     return item?.customCategory.map((item: any) => {
+  //       return item?.value;
+  //     });
+  //   });
+  // }, [latestNewsArray]);
+
+  // console.log("categoryFilter", categoryFilter());
+
   const filterBlogData = latestNewsArray?.filter((item: any) => {
-    return item?.customCategory[0]?.value === "blogs";
+    return item?.customCategory.map((item: any) => {
+      return item?.value === category;
+    });
   });
 
   const sliceData = filterBlogData?.slice(0, 3);
@@ -38,14 +56,14 @@ const LatestNews = () => {
     <>
       <section>
         <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
-          <div className="relative">
+          <div className="relative sm:flex grid w-full justify-between items-center">
             <h2 className="text-3xl font-semibold my-8 text-center">
               Read Our Latest Blogs
             </h2>
             <Button
               text={"View All  "}
               className={
-                "absolute top-[0px] right-[0px] justify-center items-center gap-spacing8 inline-flex whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] rounded-lg shadow-cta text-white font-medium px-spacing24 py-spacing14 md:py-spacing10 z-10 min-w-124px"
+                "justify-center items-center gap-spacing8 inline-flex whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] rounded-lg shadow-cta text-white font-medium px-spacing24 py-spacing14 md:py-spacing10 z-10 min-w-124px"
               }
             />
           </div>

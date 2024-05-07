@@ -32,7 +32,7 @@ const ReviewSlider = () => {
   };
   return (
     <>
-      <section className="bg-[#fff] py-[50px]  ">
+      <section className="bg-[#fff] sm:py-[50px] py-[20px]">
         <div>
           <div className="reviewSlider">
             <Slider

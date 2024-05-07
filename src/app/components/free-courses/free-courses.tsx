@@ -23,7 +23,7 @@ const FreeCoursesSlider = () => {
 
   return (
     <>
-      <section className="   lg:px-0 px-6">
+      <section className="   lg:px-0 sm:px-6">
         <div className=" md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
           <div className="flex justify-between items-center"></div>
           <div className="md:flex hidden grid grid-cols-3 gap-[45px] mb-[10px]">
@@ -50,7 +50,7 @@ const FreeCoursesSlider = () => {
             <Slidernav1 navfix="2" />
 
             <Swiper
-              slidesPerView={3.2}
+              slidesPerView={window.innerWidth < 600 ? 1 : 3.2}
               spaceBetween={15}
               className="mySwiper2 width-100 "
               navigation={{

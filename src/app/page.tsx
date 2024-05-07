@@ -129,14 +129,14 @@ const page = () => {
             </div>
           </div>
         </section>
-        <div className="my-12 md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
+        <div className="sm:mt-12 sm:mb-12 mt-12 mb-0 md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
           <h2 className="text-center text-3xl font-semibold">
             What Students <br />
             Think and Say About Eduman
           </h2>
           <ReviewSlider />
         </div>
-        <section className="py-[50px] bg-[#fcf1f5]">
+        <section className="sm:py-[50px] py-[20px] bg-[#fcf1f5]">
           <div className="  md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
             <h2 className="text-center text-3xl font-semibold">
               Start with our Free Courses

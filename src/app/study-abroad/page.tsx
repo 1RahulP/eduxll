@@ -15,6 +15,7 @@ import FormUI from "../components/form/page";
 import ReviewSlider from "../components/review-slider/review-slider";
 import StaticAbroad from "../components/StaticAbroad";
 import WebinarSlider from "../components/upcoming-webinar/webinar-slider";
+import LatestNews from "../components/latest-news/latest-news";
 const getAllClassess = async () => {
   try {
     connect();
@@ -115,7 +116,7 @@ const Courses = async () => {
             </div>
           </div>
           <div>
-            <div className="max-w-[716px] flex justify-center items-center rounded-full h-[616px] block relative">
+            <div className="max-w-[716px] flex justify-center items-center rounded-full   block relative">
               <div className="flex-1 max-w-[400px]">
                 <FormUI />
               </div>
@@ -134,10 +135,11 @@ const Courses = async () => {
             <ProgramsDropdown />
           </div>
         </div> */}
+
         <StaticAbroad onlyCards={true} />
       </div>
       <div className="max-w-[1200px] m-auto">
-        <div className="my-12">
+        <div className="mt-12">
           <h2 className="  text-3xl font-semibold">
             What Students <br />
             Think and Say About Eduman
@@ -147,7 +149,31 @@ const Courses = async () => {
             <ReviewSlider />
           </div>
         </div>
-        <div className="mb-12">
+      </div>
+
+      <div className="bg-purple-900 py-8 ">
+        <div className="text-white max-w-[900px] m-auto flex gap-[50px]">
+          <div>
+            <Image src={"/refer.png"} alt="refer" width={200} height={200} />
+          </div>
+          <div className="flex-1">
+            <h2 className="text-2xl">Refer and Earn</h2>
+            <p className="text-sm mt-2">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p className="text-sm mt-2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Aspernatur, iure.
+            </p>
+            <Button
+              text={"Refer Now"}
+              className={"bg-white !rounded-md text-black border-0 mt-4"}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="max-w-[1200px] m-auto">
+        <div className="py-[50px]">
           <h2 className="text-4xl font-semibold mb-4">
             Study Abroad Destinations
           </h2>
@@ -174,35 +200,15 @@ const Courses = async () => {
             })}
           </div>
         </div>
-        <div>
+        {/* <div>
           <h2 className="my-12 text-4xl font-semibold">
             Top Study Abroad Colleges/Universities
           </h2>
           <AbroadUniveritySlider />
-        </div>
+        </div> */}
       </div>
-      <div className="bg-purple-900 py-8 my-12">
-        <div className="text-white max-w-[900px] m-auto flex gap-4">
-          <div>
-            <Image src={"/refer.png"} alt="refer" width={100} height={100} />
-          </div>
-          <div>
-            <h2 className="text-2xl">Refer and Earn</h2>
-            <p className="text-sm mt-2">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p className="text-sm mt-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Aspernatur, iure.
-            </p>
-            <Button
-              text={"Refer Now"}
-              className={"bg-white !rounded-md text-black border-0 mt-4"}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="bg-[#f4f4f4] py-8 mb-8">
+
+      <div className="bg-[#f4f4f4] py-[50px] mb-8">
         <div className="max-w-[1200px] m-auto mb-12">
           <h2 className="text-4xl font-semibold mb-6">
             Frequently Asked Questions
@@ -217,14 +223,14 @@ const Courses = async () => {
           <WebinarSlider />
         </div>
         <div className="mb-12">
-          <h2 className="text-4xl font-semibold mb-2">
+          {/* <h2 className="text-4xl font-semibold mb-2">
             Explore Study Abroad Blogs
-          </h2>
-          <p className="mb-12">
+          </h2> */}
+          {/* <p className="mb-12">
             Read our blog collection to find the answers of your most asked
             questions
-          </p>
-          <BlogsSlider />
+          </p> */}
+          <LatestNews />
         </div>
       </div>
     </HeaderLayout>

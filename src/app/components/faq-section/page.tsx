@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import InnerFaq from "./ineer-faq/page";
 
-const FaqNew = () => {
+const FaqNew = ({ headingbgcolor, courseModule }: any) => {
   const [showFaq, setShowFaq] = useState("");
 
   const faqToggle = (faq: any) => {
@@ -14,36 +15,13 @@ const FaqNew = () => {
       <h3 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[10px]">
         Frequently Asked Questions
       </h3>
-      <div className="grid gap-4">
-        {faqCollection?.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className=" border border-dashed rounded-md overflow-hidden"
-            >
-              <div
-                className="flex justify-between cursor-pointer p-4 bg-[#f3f4f678] cursor-pointer"
-                onClick={() => faqToggle(item.ques)}
-              >
-                <h4 className="text-[15px] font-[500] text-[#000] !mb-[0px]">
-                  {item.ques}
-                </h4>
-                <Image
-                  src={"/svg/arrow-down.svg"}
-                  alt="arrow-down"
-                  width={12}
-                  height={12}
-                />
-              </div>
-              {showFaq === item.ques && (
-                <p className="p-4   sm:text-sm text-xs text-[#767676] font-[400]">
-                  {item.ans}
-                </p>
-              )}
-            </div>
-          );
-        })}
-      </div>
+
+      <InnerFaq
+        faqToggle={faqToggle}
+        showFaq={showFaq}
+        headingbgcolor={headingbgcolor}
+        courseModule={courseModule}
+      />
     </div>
   );
 };

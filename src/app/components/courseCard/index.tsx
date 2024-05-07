@@ -39,24 +39,24 @@ const CourseCard = ({
     dots: true,
     infinite: false,
     speed: 1000,
-    slidesToShow: 3,
+    slidesToShow: window.innerWidth < 600 ? 1 : 3,
     slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     breakpoint: 1200,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 768,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    // ],
   };
 
   const getAllCourses = async () => {
@@ -99,18 +99,49 @@ const CourseCard = ({
   return (
     <>
       <div className="relative">
-        <Slidernav1 navfix="3" />
+        <div
+          className={`review3-swiper-button-next shadow-lg hover:shadow-red-500/40 newswiper3-button-next absolute flex justify-center items-center   bg-[#fcf1f5] hover:bg-[#da202f] rounded-[100px] cursor-pointer   right-[-20px]`}
+          style={{
+            zIndex: "9",
+            top: "50%",
+            transform: "translate(0, -50%)",
+          }}
+        >
+          <span className="line-height-0">
+            <Image
+              src="/svg/chevron-right1.svg"
+              width={20}
+              height={20}
+              alt="left1"
+            />
+          </span>
+        </div>
+        <div
+          className={`review3-swiper-button-prev shadow-lg hover:shadow-red-500/40 newswiper3-button-prev  flex justify-center items-center   bg-[#fcf1f5] hover:bg-[#da202f]  rounded-[100px]  absolute cursor-pointer left-[-20px]`}
+          style={{
+            zIndex: "9",
+            top: "50%",
+            transform: "translate(0, -50%)",
+          }}
+        >
+          <span className="line-height-0">
+            <Image
+              src="/svg/chevron-left1.svg"
+              width={20}
+              height={20}
+              alt="left1"
+              priority
+            />
+          </span>
+        </div>
 
         <Swiper
-          slidesPerView={3.2}
+          slidesPerView={window.innerWidth < 600 ? 1 : 3.2}
           spaceBetween={15}
           className="mySwiper3 width-100"
           navigation={{
             nextEl: ".review3-swiper-button-next",
             prevEl: ".review3-swiper-button-prev",
-          }}
-          grid={{
-            rows: 2,
           }}
           modules={[Navigation]}
         >
@@ -128,7 +159,7 @@ const CourseCard = ({
                   <Link
                     href={`/product/${item?.slug}`}
                     key={index}
-                    className="h-[300px] block"
+                    className="h-[330px] block"
                   >
                     <div className="cursor-pointer relative h-[100%] block pb-[20px]">
                       <div className="  rounded-xl bg-white shadow-md  h-[100%] ">
@@ -181,7 +212,7 @@ const CourseCard = ({
                             <h3 className="text-[16px] font-semibold mt-2 line-clamp-2">
                               {item?.courseBranch[0]?.label}
                             </h3>
-                            <h3 className="text-[12px]  mt-2 line-clamp-2">
+                            <h3 className="text-[12px]  mt-2 line-clamp-1">
                               {item?.title}
                             </h3>
 

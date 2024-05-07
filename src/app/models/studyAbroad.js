@@ -6,6 +6,11 @@ const CourseModuleSchema = new Schema({
   modulTitle: { type: String, trim: true },
   modulDescription: { type: String, trim: true },
 });
+const CourseFaqSchema = new Schema({
+  id: { type: Number },
+  modulTitle: { type: String, trim: true },
+  modulDescription: { type: String, trim: true },
+});
 
 const customCategorySchema = new mongoose.Schema({
   value: {
@@ -144,6 +149,10 @@ const coursesSchema = new Schema({
 
   courseModule: {
     type: [CourseModuleSchema],
+    default: [],
+  },
+  courseFaq: {
+    type: [CourseFaqSchema],
     default: [],
   },
 

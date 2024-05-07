@@ -7,15 +7,15 @@ const Banner = () => {
     <>
       <section className=" bg-[#f5f5f5]">
         <div className=" ">
-          <div className="grid lg:grid-cols-[1.5fr_1fr] justify-between items-center gap-8 p-12 py-[30px] ">
+          <div className="grid lg:grid-cols-[1.5fr_1fr] justify-between items-center gap-8 sm:p-12 p-4 sm:py-[30px] py-[20px]">
             <div>
               <h2 className="sm:text-[2.1rem] text-2xl mb-[16px] leading-[1.2em] font-bold text-[#21225F] tracking-wider">
                 Discover Learning Without Borders
               </h2>
-              <p className=" text-[22px] text-[#808292]">
+              <p className=" sm:text-[22px] text-[18px] text-[#808292]">
                 Bridge the Distance and Join the Revolution
               </p>
-              <p className="mb-[20px] text-[18px] text-[#808292]">
+              <p className="mb-[20px] sm:text-[18px] text-[16px] text-[#808292]">
                 Connect with Top-Tier Educators and Innovative Curricula from
                 Around the World
               </p>

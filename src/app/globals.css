@@ -46,9 +46,20 @@ body {
   width: 4px;
 }
 .master-banner {
+  background-position: bottom;
   /* background: linear-gradient(270deg, rgba(91, 90, 90, 0) -2.59%, hsla(0, 4%, 5%, .746) 49.82%, rgba(0, 0, 0, .854) 98.45%); */
-  background-image: url("/master.webp");
+  background-image: url("https://wallpapers.com/images/hd/library-background-du3t0yq3wjpybj5i.jpg");
+
 }
+
+.singleblog {
+  background-position: center;
+  /* background: linear-gradient(270deg, rgba(91, 90, 90, 0) -2.59%, hsla(0, 4%, 5%, .746) 49.82%, rgba(0, 0, 0, .854) 98.45%); */
+  background-image: url("/360_F_322033323_ClvhgLXQXRRJXh7mkWhGTzbnvNzUOPXQ.jpg");
+  background-size: cover;
+
+}
+
 /* Track */
 .overflow-y::-webkit-scrollbar-track {
   background: #616161;
@@ -88,7 +99,7 @@ body {
 }
 
 .tabsliderlayout .swiper-wrapper .swiper-slide {
-  width: fit-content;
+  width: fit-content !important;
 }
 
 .loadingSpinnerContainer {
@@ -424,7 +435,8 @@ h4 {
 
 .rankcontentbox p {
   font-size: 12px;
-  color: #7e7c7c;
+    color: #000000;
+    font-weight: 500;
 }
 
 .rankcontentbox {
@@ -458,4 +470,30 @@ section, .section {
 }
 .online-cards:hover .register-button{
   display: flex;
+}
+
+
+
+.certting {
+  background: url('../../public/pngtree-white-.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+
+
+ 
+
+.coursesyllabusui ul li {
+  margin-left: 30px;
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5em;
+  list-style: square;
+  position: relative;
+}
+
+.coursesyllabusui ul li::marker {
+color: #de2232; 
 }

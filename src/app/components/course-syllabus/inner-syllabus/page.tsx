@@ -2,18 +2,18 @@ import { connect } from "@/app/dbConfig";
 import Courses from "@/app/models/coursesModels";
 import Image from "next/image";
 
-const Inner = ({ toggleSylabbus, syllabus , courseModule}: any) => {
+const Inner = ({ toggleSylabbus, syllabus, courseModule }: any) => {
   return (
     <div className="sm:my-16 my-8 max-w-[1200px] w-[100%] mx-auto px-[15px]">
       <h3 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[10px]">
         Course Syllabus
       </h3>
       <div className="flex flex-col gap-[10px]">
-        {courseModule?.map((value:any) => {
+        {courseModule?.map((value: any) => {
           return (
             <div
               key={value._id}
-              className="  border border-dashed rounded-md overflow-hidden"
+              className="  border   rounded-md overflow-hidden"
             >
               <div
                 className={`grid sm:grid-cols-3 grid-cols-[3fr_2fr_1fr] cursor-pointer   p-4 bg-[#f3f4f678] ${
@@ -67,11 +67,14 @@ const Inner = ({ toggleSylabbus, syllabus , courseModule}: any) => {
                     );
                   })} */}
                   {/* <div dangerouslySetInnerHTML={{ __html: value?.modulDescription.replace(/"/g, "")}}></div> */}
-                  <div dangerouslySetInnerHTML={{ __html: value?.modulDescription
-                    // if there is <p> tag in the string, then remove it from <ul> tag <li> tag
-                    .replace(/<p>/g, "<li>")
-                  }}></div>
-                  
+                  <div
+                    className="p-4  coursesyllabusui"
+                    dangerouslySetInnerHTML={{
+                      __html: value?.modulDescription
+                        // if there is <p> tag in the string, then remove it from <ul> tag <li> tag
+                        .replace(/<p>/g, "<li>"),
+                    }}
+                  ></div>
                 </>
               )}
             </div>

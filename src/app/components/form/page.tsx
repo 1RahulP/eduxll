@@ -1,12 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-interface formProp{
-  crossIcon?:boolean;
-  onClick?:any
-}
 
-const FormUI = ({crossIcon,onClick}:formProp) => {
+const FormUI = () => {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleChange = (event: any) => {
@@ -14,7 +10,7 @@ const FormUI = ({crossIcon,onClick}:formProp) => {
   };
   return (
     <>
-      <div className="max-w-[400px] rounded-[10px] border-[1px] border-slate-200 bg-slate-100 relative p-[20px]">
+      <div className="max-w-[400px] z-0 rounded-[10px] border-[1px] border-slate-200 bg-slate-100 relative p-[20px]">
         <h3 className="text-[20px] font-[600] mb-[10px]">
           Get Free Consultation
         </h3>
@@ -65,9 +61,6 @@ const FormUI = ({crossIcon,onClick}:formProp) => {
               Submit
             </button>
           </div>
-        </div>
-        <div onClick={onClick} className="cursor-pointer w-8 h-8 bg-white rounded-full border border-[#999999] text-xl flex justify-center absolute top-[-8px] right-[-8px]">
-          <span >x</span>
         </div>
       </div>
     </>

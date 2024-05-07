@@ -39,44 +39,44 @@ const AbroadCourses = () => {
       ? FreeCoursesBranch
       : [];
 
-      const CourseFilter = [
-        {
-            id:0, 
-            label: 'View All',
-            value: 'view-all'
-        }, 
-        {
-            id: 1,
-            label: 'Master',
-            value: 'master'
-        }, 
-        {
-            id: 2,
-            label: 'Bachelor',
-            value: 'bachelor'
-        },
-        {
-            id: 3,
-            label: 'Certificate',
-            value: 'certificate'
-        }
-    ]
+  const CourseFilter = [
+    {
+      id: 0,
+      label: "View All",
+      value: "view-all",
+    },
+    {
+      id: 1,
+      label: "Master",
+      value: "master",
+    },
+    {
+      id: 2,
+      label: "Bachelor",
+      value: "bachelor",
+    },
+    {
+      id: 3,
+      label: "Certificate",
+      value: "certificate",
+    },
+  ];
 
   return (
     <>
-      <section className="bg-[#f6f8fb] py-[50px] lg:px-0 px-6">
+      <section className="bg-[#f6f8fb] sm:py-[50px] py-0 lg:px-0 px-6">
         <div className=" md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
           <div className="flex justify-between items-center">
             <h2 className="sm:text-[35px] text-2xl text-black leading-[1.3] font-bold mb-[20px]">
               Study Abroad
             </h2>
             <Link href="/study-abroad">
-            <Button
-              text={"View All  "}
-              className={
-                "  whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] !rounded-lg   text-white font-medium px-spacing24    "
-              }
-            />
+              <Button
+                text={"View All  "}
+                className={
+                  "  whitespace-nowrap bg-gradient-to-r from-[#ee2c3c] to-[#da202f] !rounded-lg   text-white font-medium px-spacing24    "
+                }
+              />
             </Link>
           </div>
           <div className="md:flex  grid grid-cols-3 gap-[45px] mb-[10px]">
@@ -101,29 +101,46 @@ const AbroadCourses = () => {
               );
             })}
           </div>
+            
+          <div className=" ">
+            <div className="relative tabsliderlayout">
+              <Slidernav1 navfix="7 " navsize="25" />
 
-          <div className="flex overflow-x-auto pb-2  gap-[10px] gap-y-[5px] my-[10px]" style={{scrollbarWidth:"thin"}}>
-            {nestedFilter?.map((item, index) => {
-              return (
-                <div className="w-full whitespace-nowrap cursor-pointer" 
-                key={item?.label}
-                
-                >
-                <BadgeChip
-                  theme={
-                    item?.value == activeCourseBranch ? "success" : "default"
-                  }
-                  size="medium"
-                  onClick={() => setActiveCourseBranch(item?.value)}
-                >
-                  {item?.label}
-                </BadgeChip>
-                </div>
-              );
-            })}
+              <Swiper
+                slidesPerView={6}
+                spaceBetween={15}
+                className="mySwiper7 width-100"
+                navigation={{
+                  nextEl: ".review7-swiper-button-next",
+                  prevEl: ".review7-swiper-button-prev",
+                }}
+                modules={[Navigation]}
+              >
+                {nestedFilter?.map((item, index) => {
+                  return (
+                    <>
+                      <SwiperSlide key={item?.label}>
+                        <BadgeChip
+                          theme={
+                            item?.value == activeCourseBranch
+                              ? "success"
+                              : "default"
+                          }
+                          size="medium"
+                          key={item?.label}
+                          onClick={() => setActiveCourseBranch(item?.value)}
+                        >
+                          {item?.label}
+                        </BadgeChip>
+                      </SwiperSlide>
+                    </>
+                  );
+                })}
+              </Swiper>
+            </div>
           </div>
 
-          <div className="relative gap-[15px]">
+          <div className="relative  mt-[15px] ">
             <AboradCard
               activeTab={activeTab}
               activeCourseBranch={activeCourseBranch}

@@ -6,6 +6,11 @@ const CourseModuleSchema = new Schema({
   modulTitle: { type: String, trim: true },
   modulDescription: { type: String, trim: true },
 });
+const CourseFaqSchema = new Schema({
+  id: { type: Number },
+  modulTitle: { type: String, trim: true },
+  modulDescription: { type: String, trim: true },
+});
 
 const customCategorySchema = new mongoose.Schema({
   value: {
@@ -146,6 +151,10 @@ const coursesSchema = new Schema({
     type: [CourseModuleSchema],
     default: [],
   },
+  courseFaq: {
+    type: [CourseFaqSchema],
+    default: [],
+  },
 
   customCategory: {
     type: [customCategorySchema],
@@ -163,34 +172,32 @@ const coursesSchema = new Schema({
   },
 });
 
-coursesSchema.statics.getAllCourses = async function (){
+coursesSchema.statics.getAllCourses = async function () {
   const course = await this.find();
-  
-  const courseList = course?.map((course)=>({
+
+  const courseList = course?.map((course) => ({
     ...course,
     _id: course._id.toString(),
 
-    customCategory: course.customCategory.map((category)=>({
+    customCategory: course.customCategory.map((category) => ({
       ...category,
-      _id: category._id.toString()
+      _id: category._id.toString(),
     })),
-    courseBranch: course.courseBranch.map((branch)=>({
+    courseBranch: course.courseBranch.map((branch) => ({
       ...branch,
-      _id: branch._id.toString()
+      _id: branch._id.toString(),
     })),
-    featureCategoryInsert: course.featureCategoryInsert.map((feature)=>({
+    featureCategoryInsert: course.featureCategoryInsert.map((feature) => ({
       ...feature,
-      _id: feature._id.toString()
+      _id: feature._id.toString(),
     })),
-    courseModule: course.courseModule.map((module)=>({
+    courseModule: course.courseModule.map((module) => ({
       ...module,
-      _id: module._id.toString()
-    }))
-
-  }))
-  return courseList;  
-}
-
+      _id: module._id.toString(),
+    })),
+  }));
+  return courseList;
+};
 
 const Courses =
   mongoose?.models?.courses || mongoose.model("courses", coursesSchema);

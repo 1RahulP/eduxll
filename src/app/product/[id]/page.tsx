@@ -17,22 +17,15 @@ const getSingleCourse = async (slug: string) => {
     const json = JSON.stringify(cour);
     const plainObj = JSON.parse(json);
     return plainObj;
-    
   } catch (error) {
     return error;
   }
 };
 
-
-
-
 const ProductPage = async ({ params }: any) => {
   const paramA = params.id;
   const response = await getSingleCourse(paramA);
-  
 
-  
-  
   return (
     <>
       <HeaderLayout>
@@ -165,7 +158,7 @@ const ProductPage = async ({ params }: any) => {
               </div> */}
           </div>
 
-          <section className="bg-gradient-to-r from-[#ee2c3c] to-[#da202f] py-[10px] sticky top-[66px]">
+          <section className="bg-gradient-to-r from-[#ee2c3c] to-[#da202f] py-[10px] sticky top-[66px] z-[9]">
             <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] flex justify-center	">
               <ul className="flex gap-[10px]">
                 {tabsarry?.map((nav, index) => {
@@ -214,11 +207,11 @@ const ProductPage = async ({ params }: any) => {
 
           <section
             id="certificate"
-            className=" py-[30px] border border-b-slate-50 bg-slate-50 border-t-slate-50 mt-[30px] bg-[#d8dadd]"
+            className=" py-[30px] certting border border-b-slate-50 bg-slate-50 border-t-slate-50 mt-[30px]  "
           >
             <div className="md:max-w-[1200px] w-[100%] mx-auto px-[15px] ">
               <div className="grid sm:grid-cols-2 gap-4 items-center">
-                <div className="certificatebigimage p-[20px] bg-[#e7e7e74f]  certificate shadow-[0px 0px 10px] shadow-[#cfcbcb]">
+                <div className="certificatebigimage p-[20px] bg-[#fff] border border-[#cfcece]  certificate shadow-[0px 0px 10px] shadow-[#cfcbcb]">
                   <div>
                     <Image
                       src={response?.universityImage}
@@ -228,98 +221,100 @@ const ProductPage = async ({ params }: any) => {
                       objectFit="cover"
                     />
                   </div>
-                  <div className="textbox flex flex-col gap-[10px] p-[10px]">
-                    <div
+                </div>
+                <div className="contentbox">
+                  <div className=" ">
+                    <div className="grid sm:grid-cols-2 gap-4 items-start">
+                      <div className="certificate-detail-wrapper">
+                        <div className="inner">
+                          <Image
+                            src={response?.certificate}
+                            width={550}
+                            height={550}
+                            alt="certificate"
+                            className="object-contain"
+                          />
+                        </div>
+                        {/* <div className="text-center mt-[20px]">
+                          <Link
+                            href="#"
+                            className="text-[red] text-[15px] font-[500] underline underline-offset-8 cursor-pointer"
+                          >
+                            View Sample Certificate
+                          </Link>
+                        </div> */}
+                      </div>
+                      <div className="rank-detail-wrapper flex flex-col gap-[10px]">
+                        <div className="flex gap-[10px] ">
+                          <div className="rankimage w-[70px] h-[70px] bg-[#fff] border border-[#cfcece]  certificate shadow-[0px 0px 10px] shadow-[#cfcbcb]">
+                            <Image
+                              src={response?.logoOne}
+                              width={70}
+                              height={70}
+                              alt={"logo"}
+                            />
+                          </div>
+                          <div className="rankcontentbox flex-1">
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: response?.logoOnedescription?.replace(
+                                  /"/g,
+                                  ""
+                                ),
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+                        <div className="flex gap-[10px] ">
+                          <div className="rankimage w-[70px] h-[70px] bg-[#fff] border border-[#cfcece]    shadow-[0px 0px 10px] shadow-[#cfcbcb]">
+                            <Image
+                              src={response?.logoTwo}
+                              width={70}
+                              height={70}
+                              alt={"logo"}
+                            />
+                          </div>
+                          <div className="rankcontentbox flex-1 mt-[20px]">
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: response?.logoTwodescription?.replace(
+                                  /"/g,
+                                  ""
+                                ),
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <h4
+                      className="text-[15px] font-[600] mb-[5px] text-[#343434]  mt-[15px]   "
                       dangerouslySetInnerHTML={{
-                        __html: response?.universityDescription?.replace(
+                        __html: response?.certificateDescription?.replace(
                           /"/g,
                           ""
                         ),
                       }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="contentbox">
-                  <div className="grid sm:grid-cols-2 gap-4 items-start ">
-                    <div className="certificate-detail-wrapper">
-                      <div className="inner">
-                        <Image
-                          src={response?.certificate}
-                          width={550}
-                          height={550}
-                          alt="certificate"
-                          className="object-contain"
-                        />
-                      </div>
-                      <div className="text-center mt-[20px]">
-                        <h4
-                          className="text-[15px] font-[600] mb-[5px] text-[#343434]   "
-                          dangerouslySetInnerHTML={{
-                            __html: response?.certificateDescription?.replace(
-                              /"/g,
-                              ""
-                            ),
-                          }}
-                        ></h4>
-
-                        <Link
-                          href="#"
-                          className="text-[red] text-[15px] font-[500] underline underline-offset-8 cursor-pointer"
-                        >
-                          View Sample Certificate
-                        </Link>
-                      </div>
-                    </div>
-                    <div className="rank-detail-wrapper flex flex-col gap-[10px]">
-                      <div className="flex gap-[10px] ">
-                        <div className="rankimage w-[70px] h-[70px]">
-                          <Image
-                            src={response?.logoOne}
-                            width={70}
-                            height={70}
-                            alt={"logo"}
-                          />
-                        </div>
-                        <div className="rankcontentbox flex-1">
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: response?.logoOnedescription?.replace(
-                                /"/g,
-                                ""
-                              ),
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                      <div className="flex gap-[10px] ">
-                        <div className="rankimage w-[70px] h-[70px]">
-                          <Image
-                            src={response?.logoTwo}
-                            width={70}
-                            height={70}
-                            alt={"logo"}
-                          />
-                        </div>
-                        <div className="rankcontentbox flex-1">
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: response?.logoTwodescription?.replace(
-                                /"/g,
-                                ""
-                              ),
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
+                    ></h4>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
+          <section className=" !py-[30px] ">
+            <div className="md:max-w-[1200px] w-[100%] mx-auto  textbox flex flex-col gap-[10px] p-[10px]">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: response?.universityDescription?.replace(/"/g, ""),
+                }}
+              ></div>
+            </div>
+          </section>
+
           <section id="course-cyllabus">
-            <CourseSyllabusPage courseModule = {response?.courseModule} />
+            <CourseSyllabusPage courseModule={response?.courseModule} />
           </section>
 
           <section className="bg-slate-200 p-[30px]" id="fee">
@@ -386,7 +381,7 @@ const ProductPage = async ({ params }: any) => {
           </section>
 
           <section id="faqNew">
-            <FaqNew />
+            <FaqNew courseModule={response?.courseFaq} />
           </section>
 
           <div className="sm:px-16 px-4 md:mx-16">

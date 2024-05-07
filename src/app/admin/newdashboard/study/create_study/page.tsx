@@ -83,6 +83,13 @@ const CreateCourse = () => {
       modulDescription: "",
     },
   ]);
+  const [courseFaq, setCourseFaq] = useState([
+    {
+      id: 1,
+      modulTitle: "",
+      modulDescription: "",
+    },
+  ]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoadig(true);
@@ -93,6 +100,7 @@ const CreateCourse = () => {
       featureCategoryInsert: featureCategory,
       courseBranch: courseBranch,
       courseModule: courseModule,
+      courseFaq: courseFaq,
     };
     const response = await axios.post("/api/study", courseData);
 
@@ -176,8 +184,17 @@ const CreateCourse = () => {
       { id: courseModule.length + 1, modulTitle: "", modulDescription: "" },
     ]);
   };
+  const addMoreFaq = () => {
+    setCourseFaq([
+      ...courseFaq,
+      { id: courseFaq.length + 1, modulTitle: "", modulDescription: "" },
+    ]);
+  };
   const removeModule = (id: number) => {
     setCourseModule(courseModule.filter((module) => module.id !== id));
+  };
+  const removeFaq = (id: number) => {
+    setCourseFaq(courseFaq.filter((module) => module.id !== id));
   };
 
   return (
@@ -451,6 +468,9 @@ const CreateCourse = () => {
                         }
                       />
                     </div>
+                    <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                      Course Module
+                    </label>
 
                     <div className="modulebox flex flex-col gap-[10px] p-[20px] justify-center rounded-md    border border-slate-400/60">
                       <div className="rounded-md flex flex-col gap-[5px]  p-[10px]  border border-slate-400/60">
@@ -495,34 +515,36 @@ const CreateCourse = () => {
                                 </label>
 
                                 <IRichTextEditor
-                        id="rte"
-                        sticky={false}
-                        controls={[
-                          ["bold", "italic", "underline"],
-                          ["link", "image", "video", "blockquote", "code"],
-                          ["unorderedList", "h1", "h2", "h3"],
-                          ["alignLeft", "alignCenter", "alignRight"],
-                        ]}
-                        value={item?.modulDescription}
-                       // need to add onchange function here for eichtexteditor
-                       
-                       onChange={(value) =>
-                        setCourseModule(
-                          courseModule.map((module) =>
-                            module.id === item.id
-                              ? {
-                                  ...module,
-                                  modulDescription: value,
-                                }
-                              : module
-                          )
+                                  id="rte"
+                                  sticky={false}
+                                  controls={[
+                                    ["bold", "italic", "underline"],
+                                    [
+                                      "link",
+                                      "image",
+                                      "video",
+                                      "blockquote",
+                                      "code",
+                                    ],
+                                    ["unorderedList", "h1", "h2", "h3"],
+                                    ["alignLeft", "alignCenter", "alignRight"],
+                                  ]}
+                                  value={item?.modulDescription}
+                                  // need to add onchange function here for eichtexteditor
 
-                        )
-
-                       }
-
-
-                      />
+                                  onChange={(value) =>
+                                    setCourseModule(
+                                      courseModule.map((module) =>
+                                        module.id === item.id
+                                          ? {
+                                              ...module,
+                                              modulDescription: value,
+                                            }
+                                          : module
+                                      )
+                                    )
+                                  }
+                                />
                                 {/* <textarea
                                   placeholder="Modul Description"
                                   name="modulDescription"
@@ -550,6 +572,87 @@ const CreateCourse = () => {
                       <div
                         onClick={() => addMoreModuee()}
                         className="text-[15px] cursor-pointer flex items-center rounded-md gap-[10px] justify-center	 px-[20px] py-[10px] text-[#fff] transition-all hover:transition-all bg-indigo-500 hover:bg-indigo-700"
+                      >
+                        <Image
+                          src="/add-line.svg"
+                          width={20}
+                          height={20}
+                          alt="add"
+                        />
+                        Add More
+                      </div>
+                    </div>
+
+                    <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                      Course Faq
+                    </label>
+                    <div className="modulebox flex flex-col gap-[10px] p-[20px] justify-center rounded-md    border border-slate-400/60">
+                      <div className="rounded-md flex flex-col gap-[5px]  p-[10px]  border border-slate-400/60">
+                        {courseFaq?.map((item, index) => {
+                          return (
+                            <React.Fragment key={item?.id}>
+                              <div className="w-full">
+                                <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                                  Faq Title
+                                </label>
+
+                                <input
+                                  type="text"
+                                  placeholder="Modul Title"
+                                  name="modultitle"
+                                  className=" text-[14px] text-[#686868] form-input w-full rounded-md  border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                  value={item.modulTitle}
+                                  onChange={(e) => {
+                                    setCourseFaq(
+                                      courseFaq.map((module) =>
+                                        module.id === item.id
+                                          ? {
+                                              ...module,
+                                              modulTitle: e.target.value,
+                                            }
+                                          : module
+                                      )
+                                    );
+                                  }}
+                                />
+
+                                {index > 0 && (
+                                  <p onClick={() => removeFaq(item?.id)}>Del</p>
+                                )}
+                              </div>
+
+                              <div className="w-full">
+                                <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                                  Faq Description
+                                </label>
+
+                                <textarea
+                                  placeholder="Modul Description"
+                                  name="modulDescription"
+                                  className=" text-[14px] text-[#686868] form-input w-full rounded-md  border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                  value={item.modulDescription}
+                                  onChange={(e) => {
+                                    setCourseFaq(
+                                      courseFaq.map((module) =>
+                                        module.id === item.id
+                                          ? {
+                                              ...module,
+                                              modulDescription: e.target.value,
+                                            }
+                                          : module
+                                      )
+                                    );
+                                  }}
+                                />
+                              </div>
+                            </React.Fragment>
+                          );
+                        })}
+                      </div>
+
+                      <div
+                        onClick={() => addMoreFaq()}
+                        className="text-[15px] flex items-center rounded-md gap-[10px] justify-center	 px-[20px] py-[10px] text-[#fff] transition-all hover:transition-all bg-indigo-500 hover:bg-indigo-700"
                       >
                         <Image
                           src="/add-line.svg"

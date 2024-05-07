@@ -94,15 +94,12 @@ const AboradCard = ({
         <Slidernav1 navfix="3" />
 
         <Swiper
-          slidesPerView={3.2}
+          slidesPerView={window.innerWidth < 600 ? 1 : 3}
           spaceBetween={15}
           className="mySwiper3 width-100"
           navigation={{
             nextEl: ".review3-swiper-button-next",
             prevEl: ".review3-swiper-button-prev",
-          }}
-          grid={{
-            rows: 2,
           }}
           modules={[Navigation]}
         >
@@ -120,7 +117,7 @@ const AboradCard = ({
                   <Link
                     href={`/study/${item?.slug}`}
                     key={index}
-                    className="h-[300px] block"
+                    className="h-[330px] block"
                   >
                     <div className="cursor-pointer relative h-[100%] block pb-[20px]">
                       <div className="  rounded-xl bg-white shadow-md  h-[100%] ">
@@ -140,14 +137,14 @@ const AboradCard = ({
                               transform: "translate(0%, -30%)",
                             }}
                           >
-                           <Image
+                            <Image
                               className="rounded-[5px]"
                               src={item?.universityLogo}
                               alt={"image"}
                               width={100}
                               height={50}
                               objectFit="cover"
-                          />
+                            />
                           </div>
                         </div>
                         <div>
@@ -173,7 +170,7 @@ const AboradCard = ({
                             <h3 className="text-[16px] font-semibold mt-2 line-clamp-2">
                               {item?.courseBranch[0]?.label}
                             </h3>
-                            <h3 className="text-[12px]  mt-2 line-clamp-2">
+                            <h3 className="text-[12px]  mt-2 line-clamp-1">
                               {item?.title}
                             </h3>
                             <div className="mt-2 flex gap-[10px] items-center">

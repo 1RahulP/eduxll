@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import Button from "../button/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,10 +11,9 @@ import { Navigation } from "swiper/modules";
 import FormUI from "../form/page";
 import { useState } from "react";
 
-
 const FreeOnlineCourses = () => {
-  const [registerPopup, setRegisterPopup] = useState("button")
-  const [card,setCard]= useState("")
+  const [registerPopup, setRegisterPopup] = useState("button");
+  const [card, setCard] = useState("");
   return (
     <div className="relative free-online-courses my-12">
       <Slidernav1 navfix="3" />
@@ -34,73 +33,84 @@ const FreeOnlineCourses = () => {
       >
         {coursesCollection?.map((item, index) => {
           return (
-            <SwiperSlide
-            key={index}
-            className="relative"
-           
-          >
-            <div className="w-[300px] h-[375px] p-2 border shadow-xl mb-8 rounded-xl cursor-pointer online-cards" onMouseEnter={()=>setCard(item?.title)}>
-              <div className="relative">
-                <div>
-                  <Image
-                    src={item?.imageUrl}
-                    alt="image"
-                    width={285}
-                    height={260}
-                    className="!w-[285px] !h-[260px]"
-                  />
-                </div>
-                <div className={"absolute top-[40%] w-full flex justify-evenly hidden register-button"}><Button onClick={()=>setRegisterPopup(item?.title)} text={"Register"} className={"!bg-red-700 !rounded-md text-white"} /></div>
-                {/* <div className="absolute top-[40%] left-[2%]">
+            <SwiperSlide key={index} className="relative">
+              <div
+                className="w-[300px] h-[375px] p-2 border shadow-xl mb-8 rounded-xl cursor-pointer online-cards"
+                onMouseEnter={() => setCard(item?.title)}
+              >
+                <div className="relative">
+                  <div>
+                    <Image
+                      src={item?.imageUrl}
+                      alt="image"
+                      width={285}
+                      height={260}
+                      className="!w-[285px] !h-[260px]"
+                    />
+                  </div>
+                  <div
+                    className={
+                      "absolute top-[40%] w-full flex justify-evenly hidden register-button"
+                    }
+                  >
+                    <Button
+                      onClick={() => setRegisterPopup(item?.title)}
+                      text={"Register"}
+                      className={"!bg-red-700 !rounded-md text-white"}
+                    />
+                  </div>
+                  {/* <div className="absolute top-[40%] left-[2%]">
                   {item?.imageContent}
                 </div> */}
-                <span className="absolute bottom-[5%] left-[5%] bg-green-600 rounded-md text-white font-semibold px-4">FREE</span>
-              </div>
-              <div>
-                <h3 className="font-semibold mt-2">{item?.title}</h3>
-                <div className="flex gap-2 justify-between my-2">
-                  <div className="flex items-center gap-[3px]">
-                    <Image
-                      src={"/svg/rating.svg"}
-                      alt="star"
-                      width={16}
-                      height={16}
-                    />
-                    <span className="text-sm">{item?.rating}</span>
-                  </div>
-                  <div className="text-sm"> {item?.learners}</div>
-                  <div className="text-sm">{item?.stage}</div>
+                  <span className="absolute bottom-[5%] left-[5%] bg-green-600 rounded-md text-white font-semibold px-4">
+                    FREE
+                  </span>
                 </div>
-                <div className="flex justify-between">
-                  <div className="flex items-center gap-2">
-                    <div>
+                <div>
+                  <h3 className="font-semibold mt-2">{item?.title}</h3>
+                  <div className="flex gap-2 justify-between my-2">
+                    <div className="flex items-center gap-[3px]">
                       <Image
-                        src="/svg/time.svg"
-                        alt="time"
+                        src={"/svg/rating.svg"}
+                        alt="star"
                         width={16}
                         height={16}
                       />
+                      <span className="text-sm">{item?.rating}</span>
                     </div>
-                    <span>{item?.duration}</span>
+                    <div className="text-sm"> {item?.learners}</div>
+                    <div className="text-sm">{item?.stage}</div>
                   </div>
-                  <Button
-                    text={"Enroll Now"}
-                    className={"bg-transparent border-none"}
-                  />
+                  <div className="flex justify-between">
+                    <div className="flex items-center gap-2">
+                      <div>
+                        <Image
+                          src="/svg/time.svg"
+                          alt="time"
+                          width={16}
+                          height={16}
+                        />
+                      </div>
+                      <span>{item?.duration}</span>
+                    </div>
+                    <Button
+                      text={"Enroll Now"}
+                      className={"bg-transparent border-none"}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
             </SwiperSlide>
           );
         })}
       </Swiper>
-        {
-        registerPopup===card ?
-         <div className="forms fixed top-0 left-0 grid items-center justify-center h-screen w-screen z-[9] backdrop-blur-md">
-         <FormUI crossIcon={true} onClick={()=>setRegisterPopup("")} />
-       </div>
-       :""
-        }
+      {registerPopup === card ? (
+        <div className="forms fixed top-0 left-0 grid items-center justify-center h-screen w-screen z-[9] backdrop-blur-md">
+          <FormUI />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

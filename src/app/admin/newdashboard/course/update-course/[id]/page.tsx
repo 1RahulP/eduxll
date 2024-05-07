@@ -9,25 +9,29 @@ import { uploadFiletoFirebase } from "@/app/utils";
 import { createCourse, updateCourseFields } from "@/app/actions";
 import LinkModelBox from "@/app/components/linkmodelbox/linkmodelbox";
 import { useParams, useRouter } from "next/navigation";
-import Select from 'react-select'
-import makeAnimated from 'react-select/animated';
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 import SideBarLayout from "../../../ui/sidebarlayout/page";
-import { BachelorBranch, CertificateBranch, CourseCatgory, FreeCoursesBranch, MasterBranch } from "@/constant/ConstantData";
+import {
+  BachelorBranch,
+  CertificateBranch,
+  CourseCatgory,
+  FreeCoursesBranch,
+  MasterBranch,
+} from "@/constant/ConstantData";
 
 const IRichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
   loading: () => null,
 });
 const options = [
-  { value: 'development', label: 'Development' },
-  { value: 'business', label: 'Business' },
-]
+  { value: "development", label: "Development" },
+  { value: "business", label: "Business" },
+];
 const featureOptions = [{ value: "latest-card", label: "Latest Card" }];
 const animatedComponents = makeAnimated();
 
 const CreateCourse = () => {
-
- 
   const [courseImage, setCourseImage] = useState<any>(null);
   const [courseBrochure, setCourseBrochure] = useState<any>(null);
   const [courseCertificate, setCourseCertificate] = useState<any>(null);
@@ -39,21 +43,20 @@ const CreateCourse = () => {
   const [featureCategory, setFeatureCategory] = React.useState([]);
   const [courseBranch, setCourseBranch] = React.useState([]);
 
-
   const branchOptions =
-  category?.value === "master"
-    ? MasterBranch
-    : category?.value === "bachelor"
-    ? BachelorBranch
-    : category?.value === "certificate"
-    ? CertificateBranch
-    : category?.value === "free-courses"
-    ? FreeCoursesBranch
-    : [];
+    category?.value === "master"
+      ? MasterBranch
+      : category?.value === "bachelor"
+      ? BachelorBranch
+      : category?.value === "certificate"
+      ? CertificateBranch
+      : category?.value === "free-courses"
+      ? FreeCoursesBranch
+      : [];
 
-const params = useParams()
+  const params = useParams();
 
-const id = params.id as string
+  const id = params.id as string;
 
   const [courses, setCourses] = useState({
     title: "",
@@ -68,8 +71,7 @@ const id = params.id as string
     logoOnedescription: "",
     logoTwodescription: "",
 
-    
-semesterPrice: "",
+    semesterPrice: "",
   });
   const [courseModule, setCourseModule] = useState([
     {
@@ -78,68 +80,64 @@ semesterPrice: "",
       modulDescription: "",
     },
   ]);
+  const [courseFaq, setCourseFaq] = useState([
+    {
+      id: 1,
+      modulTitle: "",
+      modulDescription: "",
+    },
+  ]);
 
-
-  const fetchCourse = async ()=>{
+  const fetchCourse = async () => {
     try {
-      const response = await axios.get(`/api/course/${id}`)
-      
-      if(response?.data){
-          setCourses({
-            title: response.data.title,
-            duration: response.data.duration,
-            description: response.data.description,
-            certificateDescription: response.data.certificateDescription,
-            metaTitle: response.data.metaTitle,
-            metaDescription: response.data.metaDescription,
-            coursePrice: response.data.coursePrice,
-            semesterPrice: response.data.semesterPrice,
-            priceContent: response.data.priceContent,
-            universityDescription: response.data.universityDescription,
-            logoOnedescription: response.data.logoOnedescription,
-            logoTwodescription: response.data.logoTwodescription,
-          }) 
-          setFeatureCategory(response.data.featureCategoryInsert)
-          setCourseModule(response.data.courseModule)
-          setCourseBranch(response.data.courseBranch)
-          setCategory(response.data.customCategory)
+      const response = await axios.get(`/api/course/${id}`);
 
+      if (response?.data) {
+        setCourses({
+          title: response.data.title,
+          duration: response.data.duration,
+          description: response.data.description,
+          certificateDescription: response.data.certificateDescription,
+          metaTitle: response.data.metaTitle,
+          metaDescription: response.data.metaDescription,
+          coursePrice: response.data.coursePrice,
+          semesterPrice: response.data.semesterPrice,
+          priceContent: response.data.priceContent,
+          universityDescription: response.data.universityDescription,
+          logoOnedescription: response.data.logoOnedescription,
+          logoTwodescription: response.data.logoTwodescription,
+        });
+        setFeatureCategory(response.data.featureCategoryInsert);
+        setCourseModule(response.data.courseModule);
+        setCourseFaq(response.data.courseFaq);
+        setCourseBranch(response.data.courseBranch);
+        setCategory(response.data.customCategory);
       }
-      
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
-  useEffect(()=>{
-      fetchCourse()
-  }, [])
-
-
-
-
-
-
-
-
-
+  useEffect(() => {
+    fetchCourse();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoadig(true);
     e.preventDefault();
 
-
-    const courseData = { ...courses, 
+    const courseData = {
+      ...courses,
       customCategory: category,
       featureCategoryInsert: featureCategory,
       courseBranch: courseBranch,
       courseModule: courseModule,
-
-     };
+      courseFaq: courseFaq,
+    };
     const response = await axios.patch(`/api/course/${id}`, courseData);
 
     if (response.status === 200) {
-      console.log(response?.data)
+      console.log(response?.data);
       setLoadig(false);
       setBlogPopup(true);
     }
@@ -152,8 +150,17 @@ semesterPrice: "",
       { id: courseModule.length + 1, modulTitle: "", modulDescription: "" },
     ]);
   };
+  const addMoreFaq = () => {
+    setCourseFaq([
+      ...courseFaq,
+      { id: courseFaq.length + 1, modulTitle: "", modulDescription: "" },
+    ]);
+  };
   const removeModule = (id: number) => {
     setCourseModule(courseModule.filter((module) => module.id !== id));
+  };
+  const removeFaq = (id: number) => {
+    setCourseFaq(courseFaq.filter((module) => module.id !== id));
   };
 
   return (
@@ -205,48 +212,36 @@ semesterPrice: "",
                         Course Category
                       </label>
 
-
-                       
-
-<Select
+                      <Select
                         options={CourseCatgory}
                         components={animatedComponents}
                         onChange={(value: any) => setCategory(value)}
                         value={category}
                       />
-
                     </div>
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                      Featured Category
+                        Featured Category
                       </label>
 
-
-                     
-
                       <Select
-                          options={featureOptions}
-                          components={animatedComponents}
-                          onChange={(value: any) => setFeatureCategory(value)}
-                          value={featureCategory}
-                        />
-
+                        options={featureOptions}
+                        components={animatedComponents}
+                        onChange={(value: any) => setFeatureCategory(value)}
+                        value={featureCategory}
+                      />
                     </div>
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
-                      Course Branch
+                        Course Branch
                       </label>
 
-
-                     
-
                       <Select
-                          options={branchOptions}
-                          components={animatedComponents}
-                          onChange={(value: any) => setCourseBranch(value)}
-                          value={courseBranch}
-                        />
-
+                        options={branchOptions}
+                        components={animatedComponents}
+                        onChange={(value: any) => setCourseBranch(value)}
+                        value={courseBranch}
+                      />
                     </div>
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
@@ -364,7 +359,6 @@ semesterPrice: "",
                       />
                     </div>
 
-
                     <div className=" w-full">
                       <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
                         Univesity Description
@@ -432,7 +426,9 @@ semesterPrice: "",
                         }
                       />
                     </div>
-
+                    <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                      Course Module
+                    </label>
                     <div className="modulebox flex flex-col gap-[10px] p-[20px] justify-center rounded-md    border border-slate-400/60">
                       <div className="rounded-md flex flex-col gap-[5px]  p-[10px]  border border-slate-400/60">
                         {courseModule?.map((item, index) => {
@@ -476,30 +472,34 @@ semesterPrice: "",
                                 </label>
 
                                 <IRichTextEditor
-                        id="rte"
-                        sticky={false}
-                        controls={[
-                          ["bold", "italic", "underline"],
-                          ["link", "image", "video", "blockquote", "code"],
-                          ["unorderedList", "h1", "h2", "h3"],
-                          ["alignLeft", "alignCenter", "alignRight"],
-                        ]}
-                        value={item.modulDescription}
-                        onChange={(value) =>
-                          setCourseModule(
-                            courseModule.map((module) =>
-                              module.id === item.id
-                                ? {
-                                    ...module,
-                                    modulDescription: value,
+                                  id="rte"
+                                  sticky={false}
+                                  controls={[
+                                    ["bold", "italic", "underline"],
+                                    [
+                                      "link",
+                                      "image",
+                                      "video",
+                                      "blockquote",
+                                      "code",
+                                    ],
+                                    ["unorderedList", "h1", "h2", "h3"],
+                                    ["alignLeft", "alignCenter", "alignRight"],
+                                  ]}
+                                  value={item.modulDescription}
+                                  onChange={(value) =>
+                                    setCourseModule(
+                                      courseModule.map((module) =>
+                                        module.id === item.id
+                                          ? {
+                                              ...module,
+                                              modulDescription: value,
+                                            }
+                                          : module
+                                      )
+                                    )
                                   }
-                                : module
-                            )
-  
-                          )
-  
-                         }
-                      />
+                                />
                                 {/* <textarea
                                   placeholder="Modul Description"
                                   name="modulDescription"
@@ -526,6 +526,88 @@ semesterPrice: "",
 
                       <div
                         onClick={() => addMoreModuee()}
+                        className="text-[15px] flex items-center rounded-md gap-[10px] justify-center	 px-[20px] py-[10px] text-[#fff] transition-all hover:transition-all bg-indigo-500 hover:bg-indigo-700"
+                      >
+                        <Image
+                          src="/add-line.svg"
+                          width={20}
+                          height={20}
+                          alt="add"
+                        />
+                        Add More
+                      </div>
+                    </div>
+
+                    {/* faq */}
+                    <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                      Course Faq
+                    </label>
+                    <div className="modulebox flex flex-col gap-[10px] p-[20px] justify-center rounded-md    border border-slate-400/60">
+                      <div className="rounded-md flex flex-col gap-[5px]  p-[10px]  border border-slate-400/60">
+                        {courseFaq?.map((item, index) => {
+                          return (
+                            <React.Fragment key={item?.id}>
+                              <div className="w-full">
+                                <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                                  Faq Title
+                                </label>
+
+                                <input
+                                  type="text"
+                                  placeholder="Modul Title"
+                                  name="modultitle"
+                                  className=" text-[14px] text-[#686868] form-input w-full rounded-md  border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                  value={item?.modulTitle}
+                                  onChange={(e) => {
+                                    setCourseFaq(
+                                      courseFaq?.map((module) =>
+                                        module.id === item.id
+                                          ? {
+                                              ...module,
+                                              modulTitle: e.target.value,
+                                            }
+                                          : module
+                                      )
+                                    );
+                                  }}
+                                />
+
+                                {index > 0 && (
+                                  <p onClick={() => removeFaq(item?.id)}>Del</p>
+                                )}
+                              </div>
+
+                              <div className="w-full">
+                                <label className="font-medium text-sm text-slate-600 dark:text-slate-400">
+                                  Faq Description
+                                </label>
+
+                                <textarea
+                                  placeholder="Modul Description"
+                                  name="modulDescription"
+                                  className=" text-[14px] text-[#686868] form-input w-full rounded-md  border border-slate-400/60 dark:border-slate-400 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                                  value={item.modulDescription}
+                                  onChange={(e) => {
+                                    setCourseFaq(
+                                      courseFaq.map((module) =>
+                                        module.id === item.id
+                                          ? {
+                                              ...module,
+                                              modulDescription: e.target.value,
+                                            }
+                                          : module
+                                      )
+                                    );
+                                  }}
+                                />
+                              </div>
+                            </React.Fragment>
+                          );
+                        })}
+                      </div>
+
+                      <div
+                        onClick={() => addMoreFaq()}
                         className="text-[15px] flex items-center rounded-md gap-[10px] justify-center	 px-[20px] py-[10px] text-[#fff] transition-all hover:transition-all bg-indigo-500 hover:bg-indigo-700"
                       >
                         <Image
@@ -617,9 +699,6 @@ semesterPrice: "",
                     />
                   </label>
                 </div> */}
-
-
-
               </div>
               <div className="mt-[10px] bg-[#ffe4e6] flex flex-col gap-[10px] p-[20px] justify-center rounded-md    border border-[#fda4af]">
                 <div className=" w-full">
@@ -659,11 +738,9 @@ semesterPrice: "",
                 </div>
               </div>
               {loading && (
-                <button
-                className="mt-[20px] w-min text-[15px] flex items-center rounded-md gap-[10px] justify-center	 px-[20px] py-[10px] text-[#fff] transition-all hover:transition-all bg-indigo-500 hover:bg-indigo-700"
-              >
-                Loading...
-              </button>
+                <button className="mt-[20px] w-min text-[15px] flex items-center rounded-md gap-[10px] justify-center	 px-[20px] py-[10px] text-[#fff] transition-all hover:transition-all bg-indigo-500 hover:bg-indigo-700">
+                  Loading...
+                </button>
               )}
 
               {!loading && (
